@@ -1,0 +1,47 @@
+{% if _.n-p_addon_gal-title %}
+  <section class="product-section-addons">
+    <div class="product-wrap ps-addons">
+      <div class="ps-addons__hero">
+        <h2 class="h1 ps-addons__title">{{ _.n-p_addon_gal-title }}</h3>
+
+        {% unless _.n-p_addon_gal-subtitle == blank %}
+          <h3 class="h2 ps-addons__subtitle">{{ _.n-p_addon_gal-subtitle }}</h4>
+        {% endunless %}
+      </div>
+
+      <div class="ps-addons__gallery" product="addon-gallery">
+        {% for i in (1..3) %}
+          {% assign addon_item_title = 'n-p_addon_gal_#-title' | replace: '#', i %}
+          {% assign addon_item_image = 'n-p_addon_gal_#-image' | replace: '#', i %}
+          {% assign addon_item_video = 'n-p_addon_gal_#-video' | replace: '#', i %}
+          {% assign addon_item_subtitle = 'n-p_addon_gal_#-subtitle' | replace: '#', i %}
+
+          <div class="ps-addons__slide">
+            <div class="ps-addons__media-wrapper" product="addon-gallery__wrapper">
+              {% if _[addon_item_video] %}
+                <div class="ps-addons__video">
+                  <video
+                    src="{{ _[addon_item_video] | file_url }}"
+                    poster="{{ '5x4-video-placeholder.svg' | file_url }}"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    product-addon-gallery="video"
+                  ></video>
+                </div>
+              {% else %}
+                <img {% if forloop.first %}src{% else %}data-flickity-lazyload{% endif %}="{{ images[_[addon_item_image]] | img_url: '720x' }}" alt="">
+              {% endif %}
+            </div>
+
+            <div class="ps-addons__text">
+              <h3 class="h1">{{ _[addon_item_title] }}</h3>
+              <h4 class="h2">{{ _[addon_item_subtitle] }}</h4>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

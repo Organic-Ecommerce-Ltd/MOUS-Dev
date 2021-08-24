@@ -1,0 +1,61 @@
+{% include 'detect-store' %}
+
+{% if detect_store == 'DEV' %}
+  {% assign klaviyo_id = 'T5xzMk' %}
+{% elsif detect_store == 'US' %}
+  {% assign klaviyo_id = 'UJTaSG' %}
+{% elsif detect_store == 'UK' %}
+  {% assign klaviyo_id = 'Ty6zwx' %}
+{% elsif detect_store == 'ROW' %}
+  {% assign klaviyo_id = 'WKqfHg' %}
+{% else %}
+  {% assign klaviyo_id = 'T38xmt' %}
+{% endif %}
+
+<div class="article">
+  <div class="article__main">
+    <div class="article__header">
+      <h1 class="article__title">{{ article.title }}</h1>
+
+      <span class="article__author-date">{{ 'blogs.article.by_author' | t: author: article.author }} {{ article.published_at | time_tag: '%d %B %Y' }}</span>
+    </div>
+
+    <div class="article__body rte" itemprop="articleBody">
+      {{ article.content }}
+    </div>
+
+    <div class="article__return">
+      <a href="{{ blog.url }}" class="article__return-link">
+        {% include 'icon-misc' with icon: 'arrow-left-black' %}
+
+        {{ 'blogs.article.back_to_listing' | t: blog: blog.title }}
+      </a>
+    </div>
+
+    <div class="article__newsletter article-signup">
+      <div class="article-signup__container">
+        <div class="klaviyo-form-{{ klaviyo_id }}"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article__sidebar article-sidebar">
+    <div class="article-sidebar__title h2">{{ 'blogs.article.sidebar_title' | t }}</div>
+
+    <ul class="article-sidebar__list">
+      {% for side_article in blog.articles limit: 4 %}
+        {% unless side_article.handle == article.handle %}
+          <li class="article-sidebar__item">
+            {% include 'article-card', article: side_article, class: 'article-sidebar__card' %}
+          </li>
+        {% endunless %}
+      {% endfor %}
+    </ul>
+
+    <div class="article-sidebar__link-container">
+      <a href="{{ blog.url }}" class="btn btn-alt">
+        {{ 'blogs.article.sidebar_view_all' | t: blog: blog.title }}
+      </a>
+    </div>
+  </div>
+</div>

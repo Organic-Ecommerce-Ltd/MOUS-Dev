@@ -1,0 +1,17 @@
+{% if _.p_video != blank %}
+  <section class="product-section-video">
+    <div class="product-wrap ps-video">
+      <div class="ps-video__wrapper">
+        {% if _.p_video contains 'youtube' or _.p_video contains 'youtu.be' %}
+          <iframe
+            src="{{ _.p_video }}"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        {% else %}
+          <video src="{{ _.p_video | file_url }}" autoplay muted loop playsinline></video>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}

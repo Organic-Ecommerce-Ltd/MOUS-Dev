@@ -1,0 +1,41 @@
+<div class="pagination">
+  <ul class="pagination__list">
+    <li class="pagination__item">
+      {% unless paginate.previous.is_link %}
+        <div class="pagination__btn pagination__btn--disabled pagination__btn--previous">
+          <span class="icon icon-chevron-left" aria-hidden="true"></span>
+          <span>{{ 'general.pagination.previous' | t }}</span>
+        </div>
+      {% else %}
+        <a href="{{ paginate.previous.url }}" class="pagination__btn pagination__btn--previous">
+          <span class="icon icon-chevron-left" aria-hidden="true"></span>
+          <span>{{ 'general.pagination.previous' | t }}</span>
+        </a>
+      {% endunless %}
+    </li>
+
+    <li class="pagination__item">
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <a href="{{ part.url }}" class="pagination__page">{{ part.title }}</a>
+        {% else %}
+          <span class="pagination__page pagination__page--current">{{ part.title }}</span>
+        {% endif %}
+      {% endfor %}
+    </li>
+
+    <li class="pagination__item">
+      {% unless paginate.next.is_link %}
+        <div class="pagination__btn pagination__btn--next pagination__btn--disabled">
+          <span>{{ 'general.pagination.next' | t }}</span>
+          <span class="icon icon-chevron-right" aria-hidden="true"></span>
+        </div>
+      {% else %}
+        <a href="{{ paginate.next.url }}" class="pagination__btn pagination__btn--next">
+          <span>{{ 'general.pagination.next' | t }}</span>
+          <span class="icon icon-chevron-right" aria-hidden="true"></span>
+        </a>
+      {% endunless %}
+    </li>
+  </ul>
+</div>

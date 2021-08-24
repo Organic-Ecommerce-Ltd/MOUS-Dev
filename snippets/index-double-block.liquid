@@ -1,0 +1,62 @@
+{% include 'media-queries' %}
+
+<section class="index-double index-bg-{{ section.settings.background }}">
+  <div class="index-wrap">
+    <div class="index-double__intro double-intro">
+      <h2 class="index-section-title double-intro__heading">{{ section.settings.section_title }}</h2>
+
+      {% if section.settings.section_description != blank %}
+        <p class="index-section-subtitle double-intro__desc">{{ section.settings.section_description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="index-double__container">
+      {% for block in section.blocks %}
+        <div class="double-wrapper">
+          <div class="double-wrapper__media-container">
+            {% if block.settings.video != blank %}
+              <video
+                class="lazy double-wrapper__video"
+                data-src="{{ block.settings.video | file_url }}"
+                autoplay
+                loop
+                muted
+                playsinline
+              ></video>
+            {% else %}
+              {% if block.settings.button_link != blank %}
+                <a href="{{ block.settings.button_link }}">
+              {% endif %}
+                <picture>
+                  <source 
+                    media="{{ medium_mq }}"
+                    data-srcset="{{ block.settings.image | img_url: '605x' }}"
+                  >
+                  <img 
+                    class="double-wrapper__image lazy" 
+                    data-src="{{ block.settings.image | img_url: '350x' }}"
+                    alt="" 
+                  >
+                </picture>
+
+              {% if block.settings.button_link != blank %}
+                </a>
+              {% endif %}
+            {% endif %}
+
+            {% unless block.settings.button_link == blank %}
+              <a class="btn index-button double-wrapper__btn{% if block.settings.btn_light %} double-wrapper__btn--white{% endif %}" href="{{ block.settings.button_link }}">{{ block.settings.button_title }}</a>
+            {% endunless %}
+          </div>
+
+          {% unless block.settings.title == blank %}
+            <div class="double-wrapper__content double-content">
+              <h3 class="index-block-title double-content__heading">{{ block.settings.title }}</h3>
+              <p class="index-copy double-content__description">{{ block.settings.description }}</p>
+            </div>
+          {% endunless %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

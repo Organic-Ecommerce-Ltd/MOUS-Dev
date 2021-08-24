@@ -1,0 +1,27 @@
+{% assign first_image = true %}
+
+{% for image in product.images %}
+  {% assign flexline_list_image = false %}
+  {% assign image_alt_option1 = image.alt | split: '|' | last | strip | split: ',' %}
+  {% assign image_alt_match = false %}
+
+  {% for option in image_alt_option1 %}
+    {% if option == selected_variant.option1 %}
+      {% assign image_alt_match = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% if image_alt_match or product.has_only_default_variant or flexline_list_image %}
+    <div class="upsell-product__gallery-slide" upsell="gallery-slide">
+      {% if image.alt contains '|' %}
+        {% assign img_alt = image.alt | split: '|' | first | strip %}
+      {% else %}
+        {% assign img_alt = image.alt %}
+      {% endif %}
+
+      <img alt="{{ img_alt }}" {% if first_image %}src{% else %}data-flickity-lazyload{% endif %}="{{ image.src | img_url: '400x' }}">
+    </div>
+
+    {% assign first_image = false %}
+  {% endif %}
+{% endfor %}

@@ -1,0 +1,64 @@
+<script>
+  window.dataLayer = window.dataLayer || []
+
+  {%- if template contains 'product' -%}
+    {% comment %} PRODUCT VIEW {% endcomment %}
+
+    window.dataLayer.push({
+      event: 'productDetail',
+      ecommerce: {
+        currencyCode: '{{ shop.currency }}',
+        detail: {
+          products: [{
+            id: '{{ product.first_available_variant.sku }}',
+            name: '{{ product.title }}',
+            brand: '{{ product.vendor }}',
+            category: '{{ product.type }}',
+            variant: '{{ product.selected_or_first_available_variant.title }}',
+            price: {{ product.selected_or_first_available_variant.price | divided_by: 100.00 }},
+            compareAtPrice: {{ product.selected_or_first_available_variant.compare_at_price | divided_by: 100.00 }},
+            imageURL: '{{ shop.url }}/{{ product.featured_image.src }}',
+          }],
+        },
+      },
+    })
+  {%- elsif template contains 'login' -%}
+    {% comment %} ACCOUNT CREATION @ LOGIN {% endcomment %}
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var errorEl = document.querySelector('[login="error"]')
+      var verifyEl = document.querySelector('[login="verify"]')
+
+      if (errorEl && (document.referrer.indexOf('/challenge') > -1 || document.referrer.indexOf('/register') > -1)) {
+        window.dataLayer.push({
+          event: 'accountCreateFail',
+          failReason: errorEl.innerText,
+        })
+      } else if (verifyEl) {
+        window.dataLayer.push({
+          event: 'accountCreate',
+        })
+      }
+    })
+  {%- elsif template contains 'account' -%}
+    {% comment %} ACCOUNT CREATION @ ACCOUNT {% endcomment %}
+
+    document.addEventListener('DOMContentLoaded', function() {
+      if (document.referrer.indexOf('/challenge') > -1 || document.referrer.indexOf('/register') > -1) {
+        window.dataLayer.push({
+          event: 'accountCreate',
+        })
+      }
+    })
+  {%- endif -%}
+
+  {% comment %} KLAVIYO SIGNUP SUBMIT {% endcomment %}
+
+  window.addEventListener('klaviyoForms', function(event) {
+    if (event.detail.type == 'submit') {
+      window.dataLayer.push({
+        event: 'newsletterSignup',
+      })
+    }
+  })
+</script>

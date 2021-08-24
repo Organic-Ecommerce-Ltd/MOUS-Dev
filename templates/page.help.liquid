@@ -1,0 +1,15 @@
+<div class="page pdv">
+  <div class="mw pdh tc">
+    <h1 class="measure tc mv0 page-title">Help & Support</h1>
+
+    {% include 'page-subnav' with nav: 'help-subnav' %}
+  </div>
+
+  {% if page.handle contains 'help' or page.handle contains 'faq' %}
+    {% section 'tpl-faq' %}
+  {% elsif page.handle contains 'tutorials' %}
+    {% section 'tpl-tutorials' %}
+  {% elsif page.handle contains 'get-in-touch' %}
+    {% section 'tpl-getintouch' %}
+  {% endif %}
+</div>

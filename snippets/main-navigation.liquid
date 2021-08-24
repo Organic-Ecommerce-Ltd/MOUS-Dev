@@ -1,0 +1,97 @@
+{% assign menu = linklists['main-nav-2021'] %}
+
+<nav class="main-nav" nav="wrapper">
+  <div class="main-nav__l1 nav-l1">
+    <ul class="nav-l1__list">
+      {% for level1 in menu.links %}
+        {% assign nav_icon_handle = level1.title | handleize | prepend: 'nav-icon-' %}
+        {% assign has_child_links = false %}
+
+        {% if level1.levels > 0 %}
+          {% assign has_child_links = true %}
+        {% endif %}
+
+        <li class="nav-l1__item" nav-item="l1">
+          <a class="nav-l1__link" href="{{ level1.url }}"{% if has_child_links %} nav="submenu-trigger"{% endif %}>
+            {% include 'icon-misc' with icon: nav_icon_handle %}
+
+            <span class="nav-l1__text">
+              {{ level1.title }}
+
+              {% if has_child_links %}
+                {% include 'icon-misc' with icon: 'arrow-thin-down' %}
+              {% endif %}
+            </span>
+          </a>
+
+          {% if has_child_links %}
+            <div class="nav-l1__l2 nav-l2" nav-submenu="parent">
+              <div class="nav-l2__inner">
+                <button class="nav-l2__back-btn" nav="parent-menu-trigger">
+                  {% include 'icon-misc' with icon: 'arrow-thin-prev' %}
+                  {{ 'general.header.navigation.top_level_back_button_text' | t }}
+                </button>
+
+                <h2 class="nav-l2__title">{{ level1.title }}</h2>
+
+                <ul class="nav-l2__list">
+                  {% for level2 in level1.links %}
+                    {% assign nav_icon_handle = level2.title | handleize | prepend: 'nav-icon-' %}
+                    {% assign has_child_links = false %}
+
+                    {% if level2.levels > 0 %}
+                      {% assign has_child_links = true %}
+                    {% endif %}
+
+                    <li class="nav-l2__item{% if forloop.first %} is-active{% endif %}" nav-item="l2">
+                      <a href="{{ level2.url }}" class="nav-l2__link"{% if has_child_links %} nav="submenu-trigger"{% endif %}>
+                        {% include 'icon-misc' with icon: nav_icon_handle %}
+
+                        <span class="nav-l2__text">
+                          {{ level2.title }}
+                          {% include 'icon-misc' with icon: 'arrow-thin-next' %}
+                        </span>
+                      </a>
+
+                      {% if has_child_links %}
+                        <div class="nav-l2__l3 nav-l3" nav-submenu="child">
+                          <button class="nav-l3__back-btn" nav="parent-menu-trigger">
+                            {% include 'icon-misc' with icon: 'arrow-thin-prev' %}
+                            {{ level1.title }}
+                          </button>
+
+                          <div class="nav-l3__combined-lists" nav="combined-lists">
+                            <ul class="nav-l3__list">
+                              {% for level3 in level2.links %}
+                                {% if level3.title == '-----' %}
+                                  </ul>
+                                  <ul class="nav-l3__list">
+                                {% else %}
+                                  {% assign l3_title = false %}
+
+                                  {% if level3.title contains '#' %}
+                                    {% assign l3_title = true %}
+                                  {% endif %}
+
+                                  <li class="nav-l3__item{% if l3_title %} nav-l3__item--title{% endif %}" nav-item="l3">
+                                    <a href="{{ level3.url }}" class="{% if l3_title %}nav-l3__title{% else %}nav-l3__link{% endif %}">{{ level3.title | remove: '#' }}</a>
+                                  </li>
+                                {% endif %}
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        </div>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+
+                {% include 'main-nav-rating' %}
+              </div>
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

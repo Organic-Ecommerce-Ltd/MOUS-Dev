@@ -1,0 +1,93 @@
+<section class="index-rating index-bg-{{ section.settings.background }}">
+  <div class="index-wrap">
+    <div class="index-rating__inner">
+      <div class="index-rating__text-container">
+        <h2 class="index-section-title index-rating__title">{{ section.settings.title }}</h2>
+
+        <h3 class="index-section-subtitle index-rating__subtitle">{{ section.settings.subtitle }}</h3>
+      </div>
+
+      <a class="index-rating__score-container score-container" href="/pages/reviews">
+        <div class="score-container__stars">
+          {% comment %}
+            - This is slightly convoluted but it's because they want any rating over .5 to show a full star
+            but show half stars for rating exactly equally .5 (eg. 4.5).
+            - Once limit is reached then the remaining stars need to be empty.
+          {% endcomment %}
+          {% assign rating_with_decimal = section.settings.rating | plus: 0 | round: 1 %}
+          {% assign rating_mod = section.settings.rating | plus: 0 | modulo: 1 %}
+          {% assign limit_reached = false %}
+
+          {% for i in (1..5) %}
+            {% if i <= rating_with_decimal %}
+              {% include 'icon-misc' with icon: 'review-star-full' %}
+            {% else %}
+              {% if limit_reached %}
+                {% include 'icon-misc' with icon: 'review-star-empty' %}
+
+              {% else %}
+                {% if rating_mod == 0 %}
+                  {% include 'icon-misc' with icon: 'review-star-empty' %}
+                {% elsif rating_mod <= 0.5 %}
+                  {% include 'icon-misc' with icon: 'review-star-half' %}
+                {% else %}
+                  {% include 'icon-misc' with icon: 'review-star-full' %}
+                {% endif %}
+
+                {% assign limit_reached = true %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="score-container__rating-container">
+          <span class="score-container__rating">{{ section.settings.rating }}</span>/5
+        </div>
+
+        <img class="score-container__logo" src="{{ 'yotpo-logo-green.png' | file_url }}" alt="Yotpo logo">
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mous rating",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "grey", "label": "Light grey" }
+      ],
+      "label": "Background colour"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Don't just take our word for it"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Product ratings from over 10K verified customers"
+    },
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Rating",
+      "default": "4.8",
+      "info": "Enter a number out of 5."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mous rating",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

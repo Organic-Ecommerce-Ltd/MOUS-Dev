@@ -1,0 +1,1399 @@
+{
+  "current": {
+    "cookies_banner_text": "We use cookies to ensure that we give you the best experience on our website. By continuing to use our site you agree to us using cookies in accordance with our Cookie Policy.",
+    "cookies_banner_more_info": "Learn more.",
+    "cookies_banner_privacy_page": "privacy",
+    "cookies_banner_button_text": "Accept",
+    "hidden_filter_handles": "airpods-cases, airtag-cases, airpods-pro-case, ipad-pro-11-inch-2020-case, ipad-pro-12-9-inch-2020-case, ipad-pro-11-inch-2021-case, ipad-pro-12-9-inch-2021-case",
+    "excluded_magsafe_handles": "screen-protectors, airpods-cases, ipad-cases, charging-cables-phone-accessories, iphone-11-pro-max-case, iphone-11-pro-case, iphone-11-case, iphone-se-case, iphone-xs-max-case, iphone-xs-case, iphone-xr-case, iphone-x-case, iphone-8-plus-case, iphone-8-case, iphone-7-plus-case, iphone-7-case, iphone-6s-plus-case, iphone-6s-case, iphone-6-plus-case, iphone-6-case, galaxy-s21-case, galaxy-s21-plus-case, galaxy-s21-ultra-case, galaxy-note-20-ultra-case, galaxy-note-20-case, galaxy-s20-case, galaxy-s20-plus-case, galaxy-s20-ultra-case, galaxy-note-10-case, galaxy-note-10-plus-case, galaxy-s10-case, galaxy-s10e-case, galaxy-s10-plus-case, galaxy-s9-case, galaxy-s9-plus-case, galaxy-s8-case, galaxy-s8-plus-case, google-pixel-5-case, google-pixel-4a-5g-case, google-pixel-4-case, google-pixel-4xl-case, galaxy-s20-FE-case, galaxy-cases, google-pixel-cases, airtag-cases, airpods-pro-case, galaxy-s20-fe-case, google-pixel-4-xl-case, ipad-pro-11-inch-2020-case, ipad-pro-12-9-inch-2020-case, ipad-pro-11-inch-2021-case, ipad-pro-12-9-inch-2021-case, wireless-charging",
+    "excluded_device_handles": "iphone-12-pro-max-case, iphone-12-pro-case, iphone-12-case, iphone-12-mini-case, iphone-11-pro-max-case, iphone-11-pro-case, iphone-11-case, iphone-se-case, iphone-xs-max-case, iphone-xs-case, iphone-xr-case, iphone-x-case, iphone-8-plus-case, iphone-8-case, iphone-7-plus-case, iphone-7-case, iphone-6s-plus-case, iphone-6s-case, iphone-6-plus-case, iphone-6-case, galaxy-s21-case, galaxy-s21-plus-case, galaxy-s21-ultra-case, galaxy-note-20-ultra-case, galaxy-note-20-case, galaxy-s20-case, galaxy-s20-plus-case, galaxy-s20-ultra-case, galaxy-note-10-case, galaxy-note-10-plus-case, galaxy-s10-case, galaxy-s10e-case, galaxy-s10-plus-case, galaxy-s9-case, galaxy-s9-plus-case, galaxy-s8-case, galaxy-s8-plus-case, google-pixel-5-case, google-pixel-4a-5g-case, google-pixel-4-case, google-pixel-4xl-case, galaxy-s20-fe-case, google-pixel-4-xl-case",
+    "excluded_range_handles": "airpods-cases, screen-protectors, charging-cables-phone-accessories, ipad-cases, airtag-cases, airpods-pro-case, ipad-pro-11-inch-2020-case, ipad-pro-12-9-inch-2020-case, ipad-pro-11-inch-2021-case, ipad-pro-12-9-inch-2021-case",
+    "collection_url_variant_array": "iphone-xs-case,iphone-x-case,iphone-x-cases=iphone-x-xs|iphone-8-plus-case,iphone-7-plus-case,iphone-6s-plus-case,iphone-6-plus-case=iphone-8-7-6-plus|iphone-8-case,iphone-7-case,iphone-6s-case,iphone-6-case,iphone-8-7-6-cases=iphone-8-7-6|iphone-12-cases,iphone-cases=iphone-12|iphone-11-cases=iphone-11|iphone-se-cases=iphone-se-2nd-gen|galaxy-s20-cases=galaxy-s20|galaxy-s10-cases=galaxy-s10|galaxy-s8-s9-cases=galaxy-s9|galaxy-note-20-cases=galaxy-note-20|galaxy-note-10-cases=galaxy-note-10-plus|google-pixel-cases,google-pixel-4-cases=google-pixel-4|ipad-pro-12-9-inch-2021-case=12-9-inch-2021|ipad-pro-11-inch-2021-case=11-inch-2021|ipad-pro-12-9-inch-2020-case=12-9-inch-2020|ipad-pro-11-inch-2020-case=11-inch-2020|galaxy-cases=galaxy-s21,galaxy-s20,galaxy-s9",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "social_twitter_link": "https:\/\/twitter.com\/MousCase\/",
+    "social_facebook_link": "https:\/\/facebook.com\/mous\/",
+    "social_pinterest_link": "",
+    "social_instagram_link": "https:\/\/instagram.com\/mouscase\/",
+    "social_tumblr_link": "",
+    "social_snapchat_link": "",
+    "social_youtube_link": "https:\/\/youtube.com\/channel\/UC6_DchggYg4N199lxNVn5hQ",
+    "social_vimeo_link": "",
+    "favicon": "",
+    "chk_text": "<strong>Please note<\/strong> \n our cases are seriously protective but they do not make your phone indestructible. Throwing, dropping or\nmistreating phones in our cases can cause cracked screens and internal damage. View our warranty page to see the full details of the product warranty which applies to all Mous products purchased directly through us.",
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/checkout-logo-2-01.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "small",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#f7f7f7",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#00cc9c",
+    "checkout_button_color": "#1d2122",
+    "checkout_error_color": "#e32c2b",
+    "shipping_times_lightbox_enabled": false,
+    "shipping_times_lightbox_cta": "Want yours for Christmas?",
+    "shipping_times_lightbox_title": "Christmas Shipping Times",
+    "mini_cart": true,
+    "color_text": "#3d4246",
+    "color_body_text": "#788188",
+    "color_sale_text": "#7796A8",
+    "color_borders": "#e8e9eb",
+    "color_button": "#7796A8",
+    "color_button_text": "#fff",
+    "color_small_button": "#fff",
+    "color_small_button_text": "#3d4246",
+    "color_text_field": "#fff",
+    "color_text_field_text": "#000",
+    "color_image_overlay_text": "#fff",
+    "color_image_overlay": "#3d4246",
+    "color_body_bg": "#fff",
+    "type_bold_product_titles": false,
+    "type_header_family": "Google_Work+Sans_600_sans",
+    "type_base_family": "Google_Work+Sans_400_sans",
+    "sections": {
+      "index-hero": {
+        "type": "index-hero",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/Summer_Sale_Desktop_Banner_Orange_01_1246x488px.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/Summer_Sale_Mobile_Banner_Orange_01_1768x496px.jpg",
+          "title": "OUR SUMMER SALE IS A SCORCHER<br>UP TO 60% OFF",
+          "btn_title": "Shop sale",
+          "btn_link": "",
+          "light_content": true
+        }
+      },
+      "index-hero-iphone-11-cases": {
+        "type": "index-hero-iphone-11-cases",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/HeaderImage_Lim2_iPhone11_1246x488_Edit.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/HeaderImage_Lim2_iPhone11_373x242_Edit.jpg",
+          "title": "Extreme Protection & Extreme Style for the iPhone 11",
+          "btn_title": "Shop iPhone 11",
+          "btn_link": "\/collections\/iphone-11-cases",
+          "light_content": true
+        }
+      },
+      "index-hero-iphone-11-pro-cases": {
+        "type": "index-hero-iphone-11-pro-cases",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/HeaderImage_Lim2_iPhone11Pro_Edit.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/Lim2_iPhone11Pro_Edit_HeaderImage_mobile.jpg",
+          "title": "Extreme Protection & Extreme Style for the iPhone 11 Pro",
+          "btn_title": "Shop iPhone 11 Pro",
+          "btn_link": "\/collections\/phone-cases\/filter-device-iphone-11-pro",
+          "light_content": true
+        }
+      },
+      "index-hero-iphone-11-pro-max-cases": {
+        "type": "index-hero-iphone-11-pro-max-cases",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/HeaderImage_Lim2_iPhone11Pro_Edit.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/Lim2_iPhone11Pro_Edit_HeaderImage_mobile.jpg",
+          "title": "Extreme Protection & Extreme Style for the iPhone 11 Pro Max",
+          "btn_title": "Shop iPhone 11 Pro Max",
+          "btn_link": "\/collections\/phone-cases\/filter-device-iphone-11-pro-max",
+          "light_content": true
+        }
+      },
+      "index-hero-iphone-x-xs-cases": {
+        "type": "index-hero-iphone-x-xs-cases",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/Lim2_iPhoneXs_1246x488_HeaderImage.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/Lim2_iPhoneXs_375x242_HeaderImage.jpg",
+          "title": "Extreme Protection & Extreme Style for the iPhone X\/XS",
+          "btn_title": "Shop iPhone X\/XS",
+          "btn_link": "\/collections\/phone-cases\/filter-device-iphone-x-xs",
+          "light_content": true
+        }
+      },
+      "index-hero-iphone-xr-cases": {
+        "type": "index-hero-iphone-xr-cases",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/Lim2_iPhoneXr_1246x488_HeaderImage.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/Lim2_iPhoneXr_375x242_HeaderImage.jpg",
+          "title": "Extreme Protection & Extreme Style for the iPhone XR",
+          "btn_title": "Shop iPhone XR",
+          "btn_link": "\/collections\/phone-cases\/filter-device-iphone-xr",
+          "light_content": true
+        }
+      },
+      "index-triple-block": {
+        "type": "index-triple-block",
+        "blocks": {
+          "1595433978627": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/iPhone12_5x4_Clarity_Fan.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "",
+              "desc": "",
+              "button_title": "Shop cases",
+              "button_link": "\/collections\/phone-cases\/iphone-12",
+              "btn_light": true
+            }
+          },
+          "1595433952912": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/iPhone12_5x4_limitless_Fan2.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "",
+              "desc": "",
+              "button_title": "Shop cases",
+              "button_link": "\/collections\/phone-cases\/iphone-12",
+              "btn_light": true
+            }
+          },
+          "1595434002269": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/iPhone12_Limitless_5x4_1080x864_CardWallet.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "",
+              "desc": "",
+              "button_title": "Shop accessories",
+              "button_link": "\/collections\/iphone-12-accessories",
+              "btn_light": true
+            }
+          }
+        },
+        "block_order": [
+          "1595433978627",
+          "1595433952912",
+          "1595434002269"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "Just launched – iPhone 12 cases",
+          "section_description": "Lined with impact-absorbing AiroShock™ technology, our stylish iPhone 12 cases deliver refined protection you can depend on."
+        }
+      },
+      "index-triple-block-iphone-11-cases": {
+        "type": "index-triple-block-iphone-11-cases",
+        "blocks": {
+          "15954339529121": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/DSC09646_1080x864_i11_edit_Lim2.0.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Limitless",
+              "desc": "Just the right amount of everything. Extreme protection, stylish design, magnetic functionality.",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/lim-3-protective-iphone-11-case",
+              "btn_light": true
+            }
+          },
+          "15954339786271": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/DSC09802_1080x864_Clarity.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Clarity",
+              "desc": "Admire your phone, worry-free. Our protective, clear case is engineered to stay transparent and scratch resistant.",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/clear-iphone-11-case",
+              "btn_light": true
+            }
+          },
+          "15954340022691": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Contour_i11_1080x864_BlackLeatherFall.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Contour",
+              "desc": "Protection you won't believe. Ergonomically designed, Contour feels slim and lightweight.",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/contour-slim-protective-iphone-11-case",
+              "btn_light": true
+            }
+          }
+        },
+        "block_order": [
+          "15954339529121",
+          "15954339786271",
+          "15954340022691"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "Live without limits",
+          "section_description": "Inspired by our global community and how people use their technology, we design and create intuitive, considered products that people can rely on."
+        }
+      },
+      "index-triple-block-iphone-11-pro-cases": {
+        "type": "index-triple-block-iphone-11-pro-cases",
+        "blocks": {
+          "15954339529122": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/DSC09646_1080x864_845b42a5-f696-4ee5-9ea7-a202f641e7d7.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Limitless",
+              "desc": "Just the right amount of everything. Extreme protection, stylish design, magnetic functionality.",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/lim-3-protective-iphone-11-pro-case",
+              "btn_light": true
+            }
+          },
+          "15954339786272": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Clarity_i11_i11pro_Sweden_01_5x4_aafa88b2-ca33-4f10-a518-28e178766e6d.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Clarity",
+              "desc": "Admire your phone, worry-free. Our protective, clear case is engineered to stay transparent and scratch resistant.",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/clear-iphone-11-pro-case",
+              "btn_light": true
+            }
+          },
+          "15954340022692": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/BlackLeather_Contour_i11pro_Greece_07_5x4_89ec96f5-c30a-4f44-a719-6fbc91f5eb56.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Contour",
+              "desc": "Protection you won't believe. Ergonomically designed, Contour feels slim and lightweight.",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/contour-slim-protective-iphone-11-pro-case",
+              "btn_light": true
+            }
+          }
+        },
+        "block_order": [
+          "15954339529122",
+          "15954339786272",
+          "15954340022692"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "Live without limits",
+          "section_description": "Inspired by our global community and how people use their technology, we design and create intuitive, considered products that people can rely on."
+        }
+      },
+      "index-triple-block-iphone-11-pro-max-cases": {
+        "type": "index-triple-block-iphone-11-pro-max-cases",
+        "blocks": {
+          "15954339529123": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/DSC09646_1080x864_845b42a5-f696-4ee5-9ea7-a202f641e7d7.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Limitless",
+              "desc": "Just the right amount of everything. Extreme protection, stylish design, magnetic functionality.",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/lim-3-protective-iphone-11-pro-max-case",
+              "btn_light": true
+            }
+          },
+          "15954339786273": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Clarity_i11_i11pro_Sweden_01_5x4_aafa88b2-ca33-4f10-a518-28e178766e6d.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Clarity",
+              "desc": "Admire your phone, worry-free. Our protective, clear case is engineered to stay transparent and scratch resistant.",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/clear-iphone-11-pro-max-case",
+              "btn_light": true
+            }
+          },
+          "15954340022693": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/BlackLeather_Contour_i11pro_Greece_07_5x4_89ec96f5-c30a-4f44-a719-6fbc91f5eb56.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Contour",
+              "desc": "Protection you won't believe. Ergonomically designed, Contour feels slim and lightweight.",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/contour-slim-protective-iphone-11-pro-max-case",
+              "btn_light": true
+            }
+          }
+        },
+        "block_order": [
+          "15954339529123",
+          "15954339786273",
+          "15954340022693"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "Live without limits",
+          "section_description": "Inspired by our global community and how people use their technology, we design and create intuitive, considered products that people can rely on."
+        }
+      },
+      "index-double-block": {
+        "type": "index-double-block",
+        "blocks": {
+          "1595865213755": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/iPhone12_Limitless3.0_5x4_CardWalletWithPhone.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/collections\/magnetic-phone-cases",
+              "btn_light": true,
+              "title": "Limitless",
+              "description": "Just the right amount of everything. Extreme protection, stylish design, magnetic functionality."
+            }
+          },
+          "1595865265853": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/iPhone12_Clarity_5x4_Group.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/collections\/clear-phone-cases",
+              "btn_light": true,
+              "title": "Clarity",
+              "description": "Admire your phone, worry-free. Our protective, clear case is engineered to stay transparent and scratch resistant."
+            }
+          }
+        },
+        "block_order": [
+          "1595865213755",
+          "1595865265853"
+        ],
+        "settings": {
+          "background": "white",
+          "section_title": "Live without limits",
+          "section_description": "Inspired by our global community and how people use their technology, we design and create intuitive, considered products that people can rely on."
+        }
+      },
+      "index-double-block-iphone-x-xs-cases": {
+        "type": "index-double-block-iphone-x-xs-cases",
+        "blocks": {
+          "15983642131391": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/DSC09940_1080x864_iPhoneX-XS_Edit_2.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/lim-2-protective-iphone-xs-iphone-x-case",
+              "btn_light": true,
+              "title": "Limitless",
+              "description": "Just the right amount of everything. Extreme protection, stylish design, magnetic functionality."
+            }
+          },
+          "15983642541301": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/IPX_Group_1080x864_Clarity.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/clear-iphone-xs-iphone-x-case",
+              "btn_light": true,
+              "title": "Clarity",
+              "description": "Admire your phone, worry-free. Our protective, clear case is engineered to stay transparent and scratch resistant."
+            }
+          }
+        },
+        "block_order": [
+          "15983642131391",
+          "15983642541301"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "Live without limits",
+          "section_description": "Inspired by our global community and how people use their technology, we design and create intuitive, considered products that people can rely on."
+        }
+      },
+      "index-double-block-iphone-xr-cases": {
+        "type": "index-double-block-iphone-xr-cases",
+        "blocks": {
+          "15983642131392": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/DSC09940_1080x864_iPhoneXR_Edit_2.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/lim-2-protective-iphone-xr-case",
+              "btn_light": true,
+              "title": "Limitless",
+              "description": "Just the right amount of everything. Extreme protection, stylish design, magnetic functionality."
+            }
+          },
+          "15983642541302": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/DSC07139_1080x864_Clarity.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/clear-iphone-xr-case",
+              "btn_light": true,
+              "title": "Clarity",
+              "description": "Admire your phone, worry-free. Our protective, clear case is engineered to stay transparent and scratch resistant."
+            }
+          }
+        },
+        "block_order": [
+          "15983642131392",
+          "15983642541302"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "Live without limits",
+          "section_description": "Inspired by our global community and how people use their technology, we design and create intuitive, considered products that people can rely on."
+        }
+      },
+      "index-rating": {
+        "type": "index-rating",
+        "settings": {
+          "background": "grey",
+          "title": "Don't just take our word for it",
+          "subtitle": "Product ratings from over 10K verified customers",
+          "rating": "4.8"
+        }
+      },
+      "index-video": {
+        "type": "index-video",
+        "settings": {
+          "background": "white",
+          "title": "Best-in-class<br> drop protection",
+          "desc": "Nothing makes your tech indestructible but that doesn't stop us from trying.",
+          "button_title": "Get protected",
+          "button_link": "\/collections\/phone-cases",
+          "video_link": "https:\/\/youtu.be\/7E_sbCqaZhU"
+        }
+      },
+      "index-featured": {
+        "type": "index-featured",
+        "blocks": {
+          "1595843559253": {
+            "type": "product",
+            "settings": {
+              "featured_product": "clear-iphone-12-pro-case-magsafe-compatible",
+              "tag": "New"
+            }
+          },
+          "1595843581212": {
+            "type": "product",
+            "settings": {
+              "featured_product": "lim-3-protective-galaxy-s21-case",
+              "tag": "Top rated"
+            }
+          },
+          "1595843565135": {
+            "type": "product",
+            "settings": {
+              "featured_product": "protective-airpods-case",
+              "tag": "Best Seller"
+            }
+          },
+          "1595843590308": {
+            "type": "product",
+            "settings": {
+              "featured_product": "protective-12-9-inch-ipad-pro-case",
+              "tag": "New"
+            }
+          },
+          "1597313772315": {
+            "type": "product",
+            "settings": {
+              "featured_product": "lim-3-card-wallet",
+              "tag": "Magnetic"
+            }
+          },
+          "1595843576180": {
+            "type": "product",
+            "settings": {
+              "featured_product": "wireless-suction-charger-for-car",
+              "tag": "Best Seller"
+            }
+          },
+          "1597313623954": {
+            "type": "product",
+            "settings": {
+              "featured_product": "lim-3-protective-iphone-11-pro-case",
+              "tag": "Top rated"
+            }
+          },
+          "dd73b80b-1ddf-4980-b043-7538a523f6fe": {
+            "type": "product",
+            "settings": {
+              "featured_product": "magsafe-compatible-charger-stand",
+              "tag": "New"
+            }
+          }
+        },
+        "block_order": [
+          "1595843559253",
+          "1595843581212",
+          "1595843565135",
+          "1595843590308",
+          "1597313772315",
+          "1595843576180",
+          "1597313623954",
+          "dd73b80b-1ddf-4980-b043-7538a523f6fe"
+        ],
+        "settings": {
+          "background": "grey",
+          "title": "Our current top picks"
+        }
+      },
+      "index-triple-block-2": {
+        "type": "index-triple-block-2",
+        "blocks": {
+          "1597074130752": {
+            "type": "image",
+            "settings": {
+              "icon": "warranty-shield",
+              "icon_text": "Lifetime<br>Warranty",
+              "title": "",
+              "desc": "We design our cases with long-lasting protection in mind and offer a lifetime warranty to all customers, so you're covered for life.",
+              "button_title": "Shop",
+              "button_link": "",
+              "btn_light": true
+            }
+          },
+          "1597074163321": {
+            "type": "image",
+            "settings": {
+              "icon": "happy-heart",
+              "icon_text": "Over 1 million<br>happy customers",
+              "title": "",
+              "desc": "From a crowdfunding campaign to a global community, we're constantly communicating with real Mous users to stay in tune with what you want.",
+              "button_title": "Shop",
+              "button_link": "",
+              "btn_light": true
+            }
+          },
+          "1597074176188": {
+            "type": "image",
+            "settings": {
+              "icon": "shipping-truck",
+              "icon_text": "Global<br>Shipping",
+              "title": "",
+              "desc": "We're a UK company but we have customers all over the world, so no matter where you are, we'll come to you.",
+              "button_title": "Shop",
+              "button_link": "",
+              "btn_light": true
+            }
+          }
+        },
+        "block_order": [
+          "1597074130752",
+          "1597074163321",
+          "1597074176188"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "Need to know",
+          "section_description": ""
+        }
+      },
+      "index-double-block-2": {
+        "type": "index-double-block-2",
+        "blocks": {
+          "1596106651929": {
+            "type": "image",
+            "settings": {
+              "video": "Animation_AiroShockRender_5x4_Logo.mp4",
+              "button_title": "",
+              "button_link": "",
+              "btn_light": true,
+              "title": "Impressive impact materials",
+              "description": "AiroShock™ has been designed to absorb impact, allowing our cases to be both super slim and extremely protective."
+            }
+          },
+          "1596106722945": {
+            "type": "image",
+            "settings": {
+              "video": "Kitchen_Cupboard_5-4.mp4",
+              "button_title": "",
+              "button_link": "",
+              "btn_light": true,
+              "title": "Innovative magnetic technology",
+              "description": "AutoAlign™ is our innovative magnetic mounting system that allows all of our Limitless cases to attach seamlessly with our Limitless accessories."
+            }
+          }
+        },
+        "block_order": [
+          "1596106651929",
+          "1596106722945"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "What's different about our products",
+          "section_description": ""
+        }
+      },
+      "index-press": {
+        "type": "index-press",
+        "blocks": {
+          "1599042434170": {
+            "type": "media",
+            "settings": {
+              "press_logo": "Mashable_Logo.svg",
+              "press_quote": "\"When it comes to protection… Limitless gets the job done\"",
+              "press_link": "https:\/\/mashable.com\/2018\/04\/13\/best-cases-for-samsung-galaxy-s9\/"
+            }
+          },
+          "1599042532027": {
+            "type": "media",
+            "settings": {
+              "press_logo": "Evening_Standard_Logo.svg",
+              "press_quote": "\"Ground-breaking... really, really good\"",
+              "press_link": "https:\/\/www.standard.co.uk\/tech\/women-in-tech-mous-phone-case-start-up-a3944376.html"
+            }
+          },
+          "1599042535624": {
+            "type": "media",
+            "settings": {
+              "press_logo": "T3_Logo.svg",
+              "press_quote": "\"This case is on point in protection and style\"",
+              "press_link": "https:\/\/www.t3.com\/features\/best-iphone-x-cases"
+            }
+          },
+          "1599042540030": {
+            "type": "media",
+            "settings": {
+              "press_logo": "Metro_Logo.svg",
+              "press_quote": "\"The go-to-guardian for protecting your phone\"",
+              "press_link": "https:\/\/www.metro.news\/new-tech-we-want-14\/1302503\/"
+            }
+          }
+        },
+        "block_order": [
+          "1599042434170",
+          "1599042532027",
+          "1599042535624",
+          "1599042540030"
+        ],
+        "settings": {
+          "background": "grey"
+        }
+      },
+      "index-about": {
+        "type": "index-about",
+        "blocks": {
+          "1595843890074": {
+            "type": "text",
+            "settings": {
+              "icon": "phone-drop",
+              "title": "Expect more from tech accessories",
+              "text": "We push the boundaries in design and engineering to ensure people have protection they can rely on."
+            }
+          },
+          "1595843993784": {
+            "type": "text",
+            "settings": {
+              "icon": "phone-pinch",
+              "title": "Products with purpose",
+              "text": "We take a less-is-more approach to design where all the details enhance the experiences you have with your tech."
+            }
+          },
+          "1595844017046": {
+            "type": "text",
+            "settings": {
+              "icon": "thumbs-up",
+              "title": "Customer enjoyment",
+              "text": "We started out as a crowdfunded project, backed by thousands of people who genuinely believe in our products."
+            }
+          }
+        },
+        "block_order": [
+          "1595843890074",
+          "1595843993784",
+          "1595844017046"
+        ],
+        "settings": {
+          "title": "About Mous"
+        }
+      },
+      "header": {
+        "type": "header",
+        "blocks": {
+          "1591113704330": {
+            "type": "text",
+            "settings": {
+              "show_on_stores": "",
+              "dynamic_shipping_text": true,
+              "dynamic_excluded_states_text": false,
+              "slide_link": "\/collections\/phone-cases",
+              "slide_text": ""
+            }
+          },
+          "ac483dc6-d89b-42cc-924c-f1af88776bf6": {
+            "type": "text",
+            "settings": {
+              "show_on_stores": "",
+              "dynamic_shipping_text": false,
+              "dynamic_excluded_states_text": false,
+              "slide_link": "\/collections\/sale",
+              "slide_text": "SHOP OUR SWELTERING, SIZZLING, SCORCHING SUMMER SALE WITH UP TO 60% OFF"
+            }
+          }
+        },
+        "block_order": [
+          "1591113704330",
+          "ac483dc6-d89b-42cc-924c-f1af88776bf6"
+        ],
+        "settings": {
+          "main_linklist": "main-nav-2020"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "15914110376546": {
+            "type": "text",
+            "settings": {
+              "platform": "Facebook",
+              "link": "https:\/\/www.facebook.com\/mous\/"
+            }
+          },
+          "15914110412856": {
+            "type": "text",
+            "settings": {
+              "platform": "Twitter",
+              "link": "https:\/\/twitter.com\/MousCase"
+            }
+          },
+          "15914110431304": {
+            "type": "text",
+            "settings": {
+              "platform": "Instagram",
+              "link": "https:\/\/www.instagram.com\/mouscase\/"
+            }
+          },
+          "15914110449819": {
+            "type": "text",
+            "settings": {
+              "platform": "Youtube",
+              "link": "https:\/\/www.youtube.com\/channel\/UC6_DchggYg4N199lxNVn5hQ"
+            }
+          },
+          "1597311842625": {
+            "type": "text",
+            "settings": {
+              "platform": "Tiktok",
+              "link": "https:\/\/www.tiktok.com\/@mouscase"
+            }
+          }
+        },
+        "block_order": [
+          "15914110376546",
+          "15914110412856",
+          "15914110431304",
+          "15914110449819",
+          "1597311842625"
+        ],
+        "settings": {
+          "legal_text": "Mous Products Ltd. All rights reserved.",
+          "newsletter_title": "Join our global community",
+          "newsletter_subtitle": "Keep up-to-date with our latest product launches, epic stunts and special offers."
+        }
+      },
+      "insta-bar": {
+        "type": "insta-bar",
+        "blocks": {
+          "1590076265671": {
+            "type": "text",
+            "settings": {
+              "ig-image": "shopify:\/\/shop_images\/Limitless_3.0_iPhone11Pro_1080x1080_993c26dc-1de3-4d54-b6fd-ce3a3ff636f9.jpg",
+              "ig-link": "shopify:\/\/collections\/phone-cases"
+            }
+          },
+          "1590076669367": {
+            "type": "text",
+            "settings": {
+              "ig-image": "shopify:\/\/shop_images\/mous-wireless-charger.jpg",
+              "ig-link": "shopify:\/\/collections\/wireless-charging"
+            }
+          },
+          "1590076545886": {
+            "type": "text",
+            "settings": {
+              "ig-image": "shopify:\/\/shop_images\/Card_Wallet_1080x1080_a553cb05-300c-4643-a87e-28f0e10ade32.jpg",
+              "ig-link": "shopify:\/\/collections\/phone-wallets"
+            }
+          },
+          "1590076511639": {
+            "type": "text",
+            "settings": {
+              "ig-image": "shopify:\/\/shop_images\/Airpod_Pro_SkyDrop_1080x1080_77f3db87-78d9-4752-b9ff-6c86806d50e6.jpg",
+              "ig-link": "shopify:\/\/collections\/airpods-cases"
+            }
+          },
+          "1590076611315": {
+            "type": "text",
+            "settings": {
+              "ig-image": "shopify:\/\/shop_images\/Infinity_Magsafe_Falling_4x4_Charger.jpg",
+              "ig-link": "shopify:\/\/collections\/magsafe-cases"
+            }
+          }
+        },
+        "block_order": [
+          "1590076265671",
+          "1590076669367",
+          "1590076545886",
+          "1590076511639",
+          "1590076611315"
+        ],
+        "settings": {
+          "show": true,
+          "index": false,
+          "collection": false,
+          "product": false,
+          "cart": false,
+          "page": false,
+          "blog": false,
+          "article": false,
+          "insta_more": false,
+          "insta_more_text": "Shop <br>Insta"
+        }
+      },
+      "tpl-faq": {
+        "type": "tpl-faq",
+        "settings": {
+          "show_contact": true,
+          "contact_link": "shopify:\/\/pages\/get-in-touch"
+        }
+      },
+      "tpl-tutorials": {
+        "type": "tpl-tutorials",
+        "blocks": {
+          "664daad5-8f38-4dd1-9177-fe65b101662c": {
+            "type": "section",
+            "settings": {
+              "title": "Using your iPad Pro case"
+            }
+          },
+          "28707372-b9de-4140-89a8-3272608e8278": {
+            "type": "video",
+            "settings": {
+              "title": "Putting on Your Mous iPad Pro Case",
+              "video": "https:\/\/www.youtube.com\/watch?v=MEFzfaEYYbU",
+              "image": "shopify:\/\/shop_images\/iPadProTutorial_Thumbnail.jpg"
+            }
+          },
+          "3c57b83f-0efc-4fed-b970-fcd5a0614fcb": {
+            "type": "section",
+            "settings": {
+              "title": "Using your MagSafe Compatible Accessories"
+            }
+          },
+          "155758d1-936b-43b1-b2c1-aff6a66e6261": {
+            "type": "video",
+            "settings": {
+              "title": "How to Assemble Your Mous MagSafe Compatible Charger Stand",
+              "video": "https:\/\/www.youtube.com\/watch?v=j_IyWuJvilc",
+              "image": "shopify:\/\/shop_images\/DUCKOStand02.jpg"
+            }
+          },
+          "b3b68fd6-a492-4d04-923c-50862ade137e": {
+            "type": "video",
+            "settings": {
+              "title": "How to Assemble Your Mous MagSafe Compatible Dock",
+              "video": "https:\/\/www.youtube.com\/watch?v=7A83QowPGoo",
+              "image": "shopify:\/\/shop_images\/DUCKODock01.jpg"
+            }
+          },
+          "7caff345-9f54-4c7c-b3ef-bd3722a40590": {
+            "type": "section",
+            "settings": {
+              "title": "MagSafe®"
+            }
+          },
+          "061b66e5-59e5-4ba8-9150-c6e1c70b3d9a": {
+            "type": "video",
+            "settings": {
+              "title": "How does MagSafe® work with Mous cases?",
+              "video": "https:\/\/www.youtube.com\/watch?v=qqEYZfixT9M",
+              "image": "shopify:\/\/shop_images\/Magsafe_Tutorial_V3.jpg"
+            }
+          },
+          "c2462f7e-36ab-4d7e-bd76-bcf095bc2236": {
+            "type": "section",
+            "settings": {
+              "title": "Using your iPad Case"
+            }
+          },
+          "81786d8f-7cb3-495d-aecd-8f7d16cdc731": {
+            "type": "video",
+            "settings": {
+              "title": "Putting On Your Mous iPad Case",
+              "video": "https:\/\/www.youtube.com\/watch?v=FAgYvrjPxuE",
+              "image": "shopify:\/\/shop_images\/Putting_on_your_Mous_iPad_Case.jpg"
+            }
+          },
+          "1531307950299": {
+            "type": "section",
+            "settings": {
+              "title": "Removing Your Case"
+            }
+          },
+          "1531307939711": {
+            "type": "video",
+            "settings": {
+              "title": "iPhone X",
+              "video": "https:\/\/www.youtube.com\/watch?v=ymI7vkXWvuo",
+              "image": "shopify:\/\/shop_images\/pocket.jpg"
+            }
+          },
+          "1531308008303": {
+            "type": "video",
+            "settings": {
+              "title": "iPhone 8\/7\/6 & iPhone 8\/7\/6 Plus",
+              "video": "https:\/\/www.youtube.com\/watch?v=ymI7vkXWvuo",
+              "image": "shopify:\/\/shop_images\/IP8.jpg"
+            }
+          },
+          "1531308037387": {
+            "type": "video",
+            "settings": {
+              "title": "Samsung Galaxy - All Models",
+              "video": "https:\/\/www.youtube.com\/watch?v=kZoORzqzkRA",
+              "image": "shopify:\/\/shop_images\/Samsung_6.jpg"
+            }
+          },
+          "1531308060990": {
+            "type": "section",
+            "settings": {
+              "title": "Applying Your Screen Protector"
+            }
+          },
+          "1571235518490": {
+            "type": "video",
+            "settings": {
+              "title": "How To Apply Your TPU Screen Protector",
+              "video": "https:\/\/www.youtube.com\/watch?v=T2_hM2NDzUw",
+              "image": "shopify:\/\/shop_images\/TPU_Screen_protector_Tutorial.png"
+            }
+          },
+          "1571236116727": {
+            "type": "video",
+            "settings": {
+              "title": "How To Apply Your Hybrid Screen Protector",
+              "video": "https:\/\/www.youtube.com\/watch?v=eq6FbAiixkA",
+              "image": "shopify:\/\/shop_images\/Hyrbid_Screen_protector_Tutorial.png"
+            }
+          },
+          "1595492756669": {
+            "type": "video",
+            "settings": {
+              "title": "How To Apply Your Hybrid Glass Screen Protector - S20 Handsets",
+              "video": "https:\/\/www.youtube.com\/watch?v=w2-TJNJuSRI",
+              "image": "shopify:\/\/shop_images\/S20_Screen_protector_Tutorial.png"
+            }
+          },
+          "1571236235625": {
+            "type": "video",
+            "settings": {
+              "title": "How To Apply Your Tempered Glass Screen Protector",
+              "video": "https:\/\/www.youtube.com\/watch?v=4av7QFIfy2c",
+              "image": "shopify:\/\/shop_images\/Tempered_Glass_Screen_protector_Tutorial.png"
+            }
+          },
+          "1579868735881": {
+            "type": "section",
+            "settings": {
+              "title": "Using Your AirPods Case"
+            }
+          },
+          "1579868818357": {
+            "type": "video",
+            "settings": {
+              "title": "How To Attach Your Keychain",
+              "video": "https:\/\/www.youtube.com\/watch?v=7ugK9oBToYI",
+              "image": "shopify:\/\/shop_images\/Tutorial-thumbnail.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "664daad5-8f38-4dd1-9177-fe65b101662c",
+          "28707372-b9de-4140-89a8-3272608e8278",
+          "3c57b83f-0efc-4fed-b970-fcd5a0614fcb",
+          "155758d1-936b-43b1-b2c1-aff6a66e6261",
+          "b3b68fd6-a492-4d04-923c-50862ade137e",
+          "7caff345-9f54-4c7c-b3ef-bd3722a40590",
+          "061b66e5-59e5-4ba8-9150-c6e1c70b3d9a",
+          "c2462f7e-36ab-4d7e-bd76-bcf095bc2236",
+          "81786d8f-7cb3-495d-aecd-8f7d16cdc731",
+          "1531307950299",
+          "1531307939711",
+          "1531308008303",
+          "1531308037387",
+          "1531308060990",
+          "1571235518490",
+          "1571236116727",
+          "1595492756669",
+          "1571236235625",
+          "1579868735881",
+          "1579868818357"
+        ],
+        "settings": {}
+      },
+      "cart-reviews": {
+        "type": "cart-reviews",
+        "blocks": {
+          "1600167435529": {
+            "type": "text",
+            "settings": {
+              "name": "Giorvi A.",
+              "rating": "5",
+              "quote": "I have a had quite a few phone wallets in the past and none have been as convenient as this one. I love that it magnetically attaches and is super slim."
+            }
+          },
+          "1600167449000": {
+            "type": "text",
+            "settings": {
+              "name": "Isaac B.",
+              "rating": "4",
+              "quote": "It’s a great mount and haven’t had any issues with it losing suction yet. The only thing I wish it had was an extendable arm. Definitely recommend"
+            }
+          },
+          "1600167460029": {
+            "type": "text",
+            "settings": {
+              "name": "Stephen P.",
+              "rating": "5",
+              "quote": "I drive a lot off road and this mount with the mous case 3.0 work literally the best. Completely satisfied and trust me I have had my phone thrown to the floor of my truck with other mounts and this one holds up."
+            }
+          },
+          "1600177951018": {
+            "type": "text",
+            "settings": {
+              "name": "William C.",
+              "rating": "5",
+              "quote": "Great screen protector, super easy to install. The tools and instructions are easy to use and understand."
+            }
+          },
+          "1600177961345": {
+            "type": "text",
+            "settings": {
+              "name": "Jerry T.",
+              "rating": "5",
+              "quote": "When you buy a Mous case, you are lucky enough to buy into an entire ecosystem of accessories that allow you to be more productive and efficient. The add on wallet is great for giving me options of taking just the essentials when I go to the gym or a concert. Then, when I don't need it, I can shed the bulk. Very well thought out product line."
+            }
+          },
+          "1600178014616": {
+            "type": "text",
+            "settings": {
+              "name": "David D.",
+              "rating": "5",
+              "quote": "The Card Wallet is a great complement to the Limitless 3.0 cases (I now own 3 cases and love those too). I use the Card Wallet on the weekends or when running quick errands and don’t want to carry my full wallet. Awesome accessory and love how it center’s perfectly on the Limitless case."
+            }
+          }
+        },
+        "block_order": [
+          "1600167435529",
+          "1600167449000",
+          "1600167460029",
+          "1600177951018",
+          "1600177961345",
+          "1600178014616"
+        ],
+        "settings": {}
+      },
+      "index-hero-iphone-12-cases": {
+        "type": "index-hero-iphone-12-cases",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/HeroWebBanner_1246x488_September.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/HeroWebBanner_768x496_September.jpg",
+          "title": "Explore our new iPhone 12 collection",
+          "btn_title": "Shop now",
+          "btn_link": "\/collections\/phone-cases\/iphone-12",
+          "light_content": true
+        }
+      },
+      "index-double-block-iphone-12-cases": {
+        "type": "index-double-block-iphone-12-cases",
+        "blocks": {
+          "1601040660953": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/iPhone12_Limitless_Range_5x4_Fan.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/collections\/iphone-12-magnetic-cases",
+              "btn_light": true,
+              "title": "Limitless",
+              "description": "Just the right amount of everything. Extreme protection, stylish design, magnetic functionality."
+            }
+          },
+          "1601041091057": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/iPhone12_Clarity_1080x864_5x4_Sizes.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/collections\/iphone-12-clear-cases",
+              "btn_light": true,
+              "title": "Clarity",
+              "description": "Admire your phone, worry-free. Our protective, clear case is engineered to stay transparent and scratch resistant."
+            }
+          }
+        },
+        "block_order": [
+          "1601040660953",
+          "1601041091057"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "iPhone 12 cases - extreme protection and extreme style",
+          "section_description": "AiroShock™ to offer superior drop protection in a slim and sleek design"
+        }
+      },
+      "index-triple-block-iphone-12-cases": {
+        "type": "index-triple-block-iphone-12-cases",
+        "blocks": {
+          "1601041292379": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/iPhone11_TemperedGlassScreenProtector_5x4_1080x864_Dark.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Screen protectors",
+              "desc": "The thinnest possible screen protector with maximum protection and durability",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/collections\/iphone-12-screen-protectors",
+              "btn_light": true
+            }
+          },
+          "1601041381084": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/iPhone11Pro_Limitless3.0_5x4_1080x864_FlipWallet.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Phone wallets",
+              "desc": "Slim and stylish leather wallets so you can keep your cards and phone in one place",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/collections\/iphone-12-wallets",
+              "btn_light": true
+            }
+          },
+          "1601041437278": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Limitless3.0_CarVentMount_5x4_1080x864_WithPhone.jpg",
+              "icon": "",
+              "icon_text": "",
+              "title": "Mounts",
+              "desc": "Enhance your hands-free experience with our fully adjustable mounts",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/collections\/iphone-12-mounts",
+              "btn_light": true
+            }
+          }
+        },
+        "block_order": [
+          "1601041292379",
+          "1601041381084",
+          "1601041437278"
+        ],
+        "settings": {
+          "background": "white",
+          "section_title": "Live without limits",
+          "section_description": "Inspired by how you use your technology, we design and create intuitive, considered products that you can rely on."
+        }
+      },
+      "index-video-iphone-12-cases": {
+        "type": "index-video-iphone-12-cases",
+        "settings": {
+          "background": "white",
+          "title": "Best-in-class<br> drop protection",
+          "desc": "Nothing makes your tech indestructible but that doesn't stop us from trying.",
+          "button_title": "Get protected",
+          "button_link": "\/collections\/iphone-12-cases\/",
+          "video_link": "https:\/\/youtu.be\/Iqfl57_Qzb8"
+        }
+      },
+      "index-double-block-2-iphone-12-cases": {
+        "type": "index-double-block-2-iphone-12-cases",
+        "blocks": {
+          "1601041834642": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/BrownLeather_airpodscase_airpods1-2_Wales_02_5x4_5a43c9a5-7e78-465a-bbf8-02c11bdb2be6.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/protective-airpods-case",
+              "btn_light": true,
+              "title": "",
+              "description": ""
+            }
+          },
+          "1601041897927": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/BlackLeather_airpodscase_airpodspro_Greece_09_5x4_647f1fa8-5e61-4774-9820-baf4186201fa.jpg",
+              "video": "",
+              "button_title": "Shop",
+              "button_link": "shopify:\/\/products\/protective-airpods-pro-case",
+              "btn_light": true,
+              "title": "",
+              "description": ""
+            }
+          }
+        },
+        "block_order": [
+          "1601041834642",
+          "1601041897927"
+        ],
+        "settings": {
+          "background": "grey",
+          "section_title": "AirPods and AirPods Pro Cases",
+          "section_description": "Crafted with real leather and lined with impact-absorbing AiroShock™ technology, our cases deliver refined protection you can depend on."
+        }
+      },
+      "index-featured-iphone-12-cases": {
+        "type": "index-featured-iphone-12-cases",
+        "blocks": {
+          "1601042168331": {
+            "type": "product",
+            "settings": {
+              "featured_product": "clear-iphone-11-case",
+              "tag": ""
+            }
+          },
+          "1601042213458": {
+            "type": "product",
+            "settings": {
+              "featured_product": "lim-3-protective-galaxy-note-20-case",
+              "tag": "New"
+            }
+          },
+          "1601042229291": {
+            "type": "product",
+            "settings": {
+              "featured_product": "hybrid-glass-screen-protector-iphone-11",
+              "tag": ""
+            }
+          },
+          "1601042255109": {
+            "type": "product",
+            "settings": {
+              "featured_product": "lim-3-card-wallet",
+              "tag": ""
+            }
+          }
+        },
+        "block_order": [
+          "1601042168331",
+          "1601042213458",
+          "1601042229291",
+          "1601042255109"
+        ],
+        "settings": {
+          "background": "white",
+          "title": "Check out our best sellers"
+        }
+      },
+      "index-double-block-3-iphone-12-cases": {
+        "type": "index-double-block-3-iphone-12-cases",
+        "blocks": {
+          "1601042581269": {
+            "type": "image",
+            "settings": {
+              "video": "Animation_AiroShockRender_5x4_Logo.mp4",
+              "button_title": "",
+              "btn_light": true,
+              "title": "Impressive impact materials",
+              "description": "AiroShock™ has been designed to absorb impact, allowing our cases to be both super slim and extremely protective."
+            }
+          },
+          "1601042643098": {
+            "type": "image",
+            "settings": {
+              "video": "Kitchen_Cupboard_5-4.mp4",
+              "button_title": "",
+              "btn_light": true,
+              "title": "Innovative magnetic technology",
+              "description": "AutoAlign™ is our innovative magnetic mounting system that allows all of our Limitless cases to attach seamlessly with our Limitless accessories."
+            }
+          }
+        },
+        "block_order": [
+          "1601042581269",
+          "1601042643098"
+        ],
+        "settings": {
+          "background": "white",
+          "section_title": "What's different about our products",
+          "section_description": ""
+        }
+      },
+      "index-single-block": {
+        "type": "index-single-block",
+        "settings": {
+          "background": "grey",
+          "section_title": "MagSafe Compatible Cases and Accessories",
+          "section_description": "A range of <a href=\"\/collections\/magsafe-cases\"><u>cases and accessories<\/u><\/a>  for ultimate protection, maximum style and flawless compatibility with Apple’s MagSafe® phones and chargers",
+          "image": "shopify:\/\/shop_images\/Magsafe_Full_Ecosystem_1246x488px_Hero_Desktop.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/Magsafe_Full_Ecosystem_1080x864px_Hero_Mobile.jpg",
+          "button_title": "Shop MagSafe Compatible",
+          "button_link": "shopify:\/\/collections\/magsafe-cases",
+          "btn_light": true
+        }
+      },
+      "index-single-block-iphone-12-cases": {
+        "type": "index-single-block-iphone-12-cases",
+        "settings": {
+          "background": "grey",
+          "section_title": "MagSafe Compatible Cases and Accessories",
+          "section_description": "A range of <a href=\"\/collections\/magsafe-cases\"><u>cases and accessories<\/u><\/a>  for ultimate protection, maximum style and flawless compatibility with Apple’s MagSafe® phones and chargers",
+          "image": "shopify:\/\/shop_images\/Magsafe_Full_Ecosystem_1246x488px_Hero_Desktop.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/Magsafe_Full_Ecosystem_1080x864px_Hero_Mobile.jpg",
+          "button_title": "Shop MagSafe Compatible",
+          "button_link": "shopify:\/\/collections\/magsafe-cases",
+          "btn_light": true
+        }
+      }
+    },
+    "content_for_index": []
+  },
+  "presets": {
+    "Default": {
+      "color_text": "#3d4246",
+      "color_body_text": "#788188",
+      "color_sale_text": "#7796A8",
+      "color_borders": "#e8e9eb",
+      "color_button": "#7796A8",
+      "color_button_text": "#fff",
+      "color_small_button": "#fff",
+      "color_small_button_text": "#3d4246",
+      "color_text_field": "#fff",
+      "color_text_field_text": "#000",
+      "color_image_overlay_text": "#fff",
+      "color_image_overlay": "#3d4246",
+      "color_body_bg": "#fff",
+      "type_header_family": "Google_Work+Sans_600_sans",
+      "type_base_family": "Google_Work+Sans_400_sans",
+      "type_bold_product_titles": false,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {}
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {}
+        }
+      },
+      "content_for_index": []
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{% include 'detect-store' %}
+
+{% if template contains 'nohdr' %}
+  {% assign header_class = ' no-bg' %}
+{% endif %}
+
+{% capture header_logo %}
+  <div class="mous-logo" id="logo">
+    <a href="/" role="link" aria-label="Home page" itemprop="url">
+      {% include 'icon-misc' with icon: 'mous-logo' %}
+    </a>
+  </div>
+{% endcapture %}
+
+<header
+  class="hdr fixed{{ header_class }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="header-section"
+  role="banner"
+  el="header"
+>
+  {% include 'header-notice-bar' %}
+
+  <div class="hdr-main" el="header-main">
+    <div class="hdr-wrap">
+      <div class="hdr-hamburger">
+        <button class="menu-icon" header="hamburger">
+          <span class="menu-icon-bar"></span>
+          <span class="menu-icon-bar"></span>
+        </button>
+      </div>
+
+      {{ header_logo }}
+
+      {% include 'main-navigation' %}
+
+      <div class="hdr-actions">
+        <a class="country-flag" href="#" data-popup="#location-switch" popup="trigger" aria-label="Select your language">
+          <span id="icon-flag" class="{% if detect_store == 'UK' %}GB{% elsif detect_store == 'FR' %}FR{% elsif detect_store == 'ES' %}ES{% elsif detect_store == 'EU' %}EU{% elsif detect_store == 'ROW' %}ROW{% else %}US{% endif %}"></span>
+
+          <span class="country-flag__currency">{% if detect_store == 'UK' %}£{% elsif detect_store == 'US' or detect_store == 'ROW' or detect_store == 'DEV' %}US${% else %}€{% endif %}</span>
+        </a>
+
+        <a class="hdr-account" href="/account" title="Account" aria-label="Account">
+          {% include 'icon-misc' with icon: 'user-account' %}
+        </a>
+
+        {% include 'minicart' %}
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Banner",
+        "settings": [
+          {
+            "type": "text",
+            "id": "show_on_stores",
+            "label": "Which stores to show on",
+            "info": "Enter the 2 letter store code, separated by commas eg. 'US,UK,FR'. Leave blank to show on all stores."
+          },
+          {
+            "type": "checkbox",
+            "id": "dynamic_shipping_text",
+            "label": "Location based shipping text?",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "dynamic_excluded_states_text",
+            "label": "Excluded states text?",
+            "default": false
+          },
+          {
+            "type": "text",
+            "id": "slide_link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "slide_text",
+            "label": "Text",
+            "info": "If this is the dynamic shipping text, leave this field blank."
+          },
+          {
+            "type": "image_picker",
+            "id": "slide_img",
+            "label": "Logo image",
+            "info": "Sits to the right of the slide text (should be a landscape logo)."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

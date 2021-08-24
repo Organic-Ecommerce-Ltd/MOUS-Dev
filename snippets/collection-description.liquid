@@ -1,0 +1,38 @@
+{% comment %}
+  Check to see if collection is filtered by a certain device.
+  If it exists, use the metafield as SEO copy.
+
+  Else condition is for old filtered collections that didn't include filter-device-
+{% endcomment %}
+
+{% if request.path contains '/filter-device-' %}
+  {% assign filter_device = request.path | split: '/filter-device-' | last %}
+{% else %}
+  {% assign filter_device = request.path | split: '/' | last %}
+{% endif %}
+
+{% assign collection_description = '' %}
+
+{% if collection.metafields.global[filter_device] %}
+  {% assign collection_description = collection.metafields.global[filter_device] %}
+{% elsif collection.metafields.global.default_seo %}
+  {% assign collection_description = collection.metafields.global.default_seo %}
+{% else %}
+  {% assign collection_description = collection.description %}
+{% endif %}
+
+{% if collection_description != blank %}
+  <div class="collection-description">
+    {% if collection_description contains '#####' %}
+      {% assign before_content = collection_description | split: '<p>#####</p>' | first %}
+      {% assign after_content = collection_description | split: '<p>#####</p>' | last %}
+
+      {{ before_content }}
+
+      <span class="dn" collection="read-more-copy">{{ after_content }}</span>
+      <a href="" collection="read-more">Read More</a>
+    {% else %}
+      {{ collection_description }}
+    {% endif %}
+  </div>
+{% endif %}

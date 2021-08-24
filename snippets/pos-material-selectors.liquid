@@ -1,0 +1,45 @@
+<div class="pos-details__material-container">
+  <div class="pos-details__material-label">
+    {{ 'products.product.select_case' | t }} <span class="pos-details__material-name">{{ _['product_material'] }}</span>
+  </div>
+
+  {% assign ordered_products = collections[linked_material_collection].products | sort: 'title' %}
+
+  {% if ordered_products.size > 5 %}
+    {% assign no_margin = 'no-margin' %}
+  {% endif %}  
+
+  <div class="pos-details__swatches {{ no_margin }}">
+    {% assign linked_handles = '' %}
+
+    {% for product in ordered_products %}
+      {% assign linked_handles = linked_handles | append: ',' | append: product.handle %}
+      {% assign material_name = product.metafields.global['product_material'] | handle %}
+      {% assign swatch_img = material_name | handle | prepend: 'filter-material-' | append: '.png' %}
+
+      <div
+        class="pos-details__swatch pos-details__swatch--{{ material_name | handle }}{% if request.path contains material_name %} is-active{% endif %}"
+        data-index="{{ forloop.index0 }}"
+        pos="linked-material-swatch"
+      >
+        <a
+          class="pos-details__swatch-img"
+          href="{{ product.url }}"
+          pos="linked-material-link"
+        >
+          {{ swatch_img | file_img_url: '70x' | img_tag }}
+        </a>
+      </div>
+    {% endfor %}
+
+    {% assign linked_handles = linked_handles | remove_first: ',' | split: ',' %}
+  </div>
+
+  <script>
+    window.theme.helpers.linkedHandles = [
+      {%- for handle in linked_handles -%}
+        '{{- handle -}}',
+      {%- endfor -%}
+    ]
+  </script>
+</div>

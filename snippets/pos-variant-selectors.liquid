@@ -1,0 +1,91 @@
+{% if is_multi_variant %}
+  <div class="pos-details__variant-container">
+    {% if product.options_with_values[0].name == 'Material' or product.options_with_values[0].name == 'Colour' %}
+
+      {% assign ordered_variants = product.variants | sort: 'title' %}  
+
+      {% if ordered_variants.size > 5 %}
+        {% assign no_margin = 'no-margin' %}
+      {% endif %}
+
+      <div class="pos-details__swatches {{ no_margin }}">
+        {% for variant in ordered_variants %}
+          {% assign swatch_url = variant.title | handle | prepend: 'filter-material-' | append: '.png' %}
+
+          <div class="pos-details__swatch pos-details__swatch--{{ variant.title | handle }}">
+            <input
+              class="pos-details__swatch-radio"
+              id="variant-{{ variant.id }}"
+              name="id[]"
+              type="radio"
+              value="{{ variant.id }}"
+              data-product-handle="{{ product.handle }}"
+              data-sku="{{ variant.sku }}"
+              data-variant-id="{{ variant.id }}"
+              data-variant-name="{{ variant.title }}"
+              pos="variant-selector"
+              {% if variant.title == selected_variant.title %} checked{% endif %}
+            >
+
+            <label class="pos-details__swatch-img" for="variant-{{ variant.id }}">
+              {{ swatch_url | file_url | img_tag }}
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="pos-details__material-label">
+        {{ 'products.product.material_label' | t }} <span class="pos-details__material-name" pos="variant-name">{{ selected_variant.title }}</span>
+      </div>
+    {% else %}
+      {% if linked_material_collection %}
+        <div class="pos-details__device-label">
+          {{ 'products.product.select_device' | t }}
+        </div>
+      {% endif %}
+
+      <div class="pos-details__select-container pos-arrow-down">
+        <select
+          class="pos-details__select"
+          id="product-select-{{ product.id }}"
+          name="id[]"
+          pos="variant-selector"
+        >
+          {% for variant in product.variants %}
+            <option
+              value="{{ variant.id }}"
+              data-price="{{ variant.price | money }}"
+              data-product-handle="{{ product.handle }}"
+              data-sku="{{ variant.sku }}"
+              data-handle="{{ variant.title | handle }}"
+              data-variant-id="{{ variant.id }}"
+              data-variant-name="{{ variant.title }}"
+              {% if variant.title == selected_variant.title %} selected="selected"{% endif %}
+            >
+              {{ variant.title }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
+  </div>
+{% else %}
+  <input
+    class="js single-option"
+    id="variant-{{ selected_variant.id }}"
+    name="id[]"
+    type="hidden"
+    value="{{ selected_variant.id }}"
+    data-product-handle="{{ product.handle }}"
+    data-sku="{{ selected_variant.sku }}"
+    data-variant-id="{{ selected_variant.id }}"
+    data-variant-name="{{ selected_variant.title }}"
+    pos="variant-selector"
+  >
+
+  {% if show_single_variant %}
+    <div class="pos-details__single-variant">
+      {{ product.variants[0].title }}
+    </div>
+  {% endif %}
+{% endif %}

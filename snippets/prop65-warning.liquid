@@ -1,0 +1,12 @@
+<div class="prop65-warning" {{ location }}="prop65-container">
+  <img class="prop65-warning__img" src="{{ 'prop65_warning.png' | asset_url }}" alt="">
+
+  <div class="prop65-warning__content">
+    <div class="prop65-warning__text">
+      <strong>{{ 'general.prop65.warning_text' | t }}</strong>
+      {{ 'general.prop65.harm_text' | t }}
+    </div>
+
+    <a class="prop65-warning__link" href="{{ 'general.prop65.link_url' | t }}">{{ 'general.prop65.link_text' | t }}</a>.
+  </div>
+</div>

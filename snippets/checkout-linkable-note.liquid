@@ -1,0 +1,27 @@
+{% comment %}
+  This takes the setting string, looks to see if it includes opening and closing square brackets,
+  if so, it splits it up so that a link can be included in the text.
+  Like so: Hello, I'm a paragraph and [I'm a link=/relative/link].
+{% endcomment %}
+
+{% assign chk_text_before = '' %}
+{% assign chk_text_after = '' %}
+{% assign chk_text_anchor = '' %}
+{% assign chk_text_link = '' %}
+{% assign chk_text_text = '' %}
+
+{% if settings.chk_text contains '[' and settings.chk_text contains ']' %}
+  {% assign chk_text_before = settings.chk_text | split: '[' | first %}
+  {% assign chk_text_after = settings.chk_text | split: ']' | last %}
+  {% assign chk_text_anchor = settings.chk_text | split: '[' | last | split: ']' | first %}
+  {% assign chk_text_text = chk_text_anchor | split: '=' | first %}
+  {% assign chk_text_link = chk_text_anchor | split: '=' | last %}
+{% endif %}
+
+<div class="checkout__note">
+  {% if chk_text_anchor != blank %}
+    <p>{{ chk_text_before }}<a href="{{ chk_text_link }}" target="_blank">{{ chk_text_text }}</a>{{ chk_text_after }}</p>
+  {% else %}
+    <p>{{ settings.chk_text }}</p>
+  {% endif %}
+</div>

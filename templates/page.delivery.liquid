@@ -1,0 +1,125 @@
+<div class="page mw-small pdh pdv">
+  <h1 class="measure tc mv0 page-title">{{ page.title }}</h1>
+
+  {% include 'page-subnav' with nav: 'shipping-returns-subnav' %}
+
+  <div class="rte w-100">
+    {{ page.content }}
+  </div>
+
+  <div class="w-100">
+    <div id="app">
+      <form v-on:submit.prevent="search">
+        <input input="text" ref="inputVal" placeholder="{{ 'pages.shipping_delivery.search_placeholder' | t }}">
+        <button v-on:click="search">{{ 'pages.shipping_delivery.search_button' | t }}</button>
+      </form>
+
+      <p v-if="storeLocation === 'DEV' || storeLocation === 'US'">
+        <em>{{ 'general.modals.location_popup.excluded_states_html' | t }}</em>
+      </p>
+
+      <p class="popular-searches">{{ 'pages.shipping_delivery.popular_searches.title' | t }}
+        <span v-if="storeLocation === 'DEV' || storeLocation === 'US'">
+          {% assign us_1 = 'pages.shipping_delivery.popular_searches.us.1' | t %}
+          {% assign us_2 = 'pages.shipping_delivery.popular_searches.us.2' | t %}
+          {% assign us_3 = 'pages.shipping_delivery.popular_searches.us.3' | t %}
+          {% assign us_4 = 'pages.shipping_delivery.popular_searches.us.4' | t %}
+
+          {%- if us_1 != blank %}<a v-on:click.prevent="quickSearch('{{- us_1 -}}')" href="#{{- us_1 -}}">{{- us_1 -}}</a>{% endif -%}
+          {%- if us_2 != blank %}<a v-on:click.prevent="quickSearch('{{- us_2 -}}')" href="#{{- us_2 -}}">{{- us_2 -}}</a>{% endif -%}
+          {%- if us_3 != blank %}<a v-on:click.prevent="quickSearch('{{- us_3 -}}')" href="#{{- us_3 -}}">{{- us_3 -}}</a>{% endif -%}
+          {%- if us_4 != blank %}<a v-on:click.prevent="quickSearch('{{- us_4 -}}')" href="#{{- us_4 -}}">{{- us_4 -}}</a>{% endif -%}
+        </span>
+
+        <span v-if="storeLocation === 'UK'">
+          {% assign uk_1 = 'pages.shipping_delivery.popular_searches.uk.1' | t %}
+          {% assign uk_2 = 'pages.shipping_delivery.popular_searches.uk.2' | t %}
+          {% assign uk_3 = 'pages.shipping_delivery.popular_searches.uk.3' | t %}
+          {% assign uk_4 = 'pages.shipping_delivery.popular_searches.uk.4' | t %}
+
+          {%- if uk_1 != blank %}<a v-on:click.prevent="quickSearch('{{- uk_1 -}}')" href="#{{- uk_1 -}}">{{- uk_1 -}}</a>{% endif -%}
+          {%- if uk_2 != blank %}<a v-on:click.prevent="quickSearch('{{- uk_2 -}}')" href="#{{- uk_2 -}}">{{- uk_2 -}}</a>{% endif -%}
+          {%- if uk_3 != blank %}<a v-on:click.prevent="quickSearch('{{- uk_3 -}}')" href="#{{- uk_3 -}}">{{- uk_3 -}}</a>{% endif -%}
+          {%- if uk_4 != blank %}<a v-on:click.prevent="quickSearch('{{- uk_4 -}}')" href="#{{- uk_4 -}}">{{- uk_4 -}}</a>{% endif -%}
+        </span>
+
+        <span v-if="storeLocation === 'EU' || storeLocation === 'FR' || storeLocation === 'ES'">
+          {% assign eu_1 = 'pages.shipping_delivery.popular_searches.eu.1' | t %}
+          {% assign eu_2 = 'pages.shipping_delivery.popular_searches.eu.2' | t %}
+          {% assign eu_3 = 'pages.shipping_delivery.popular_searches.eu.3' | t %}
+          {% assign eu_4 = 'pages.shipping_delivery.popular_searches.eu.4' | t %}
+
+          {%- if eu_1 != blank %}<a v-on:click.prevent="quickSearch('{{- eu_1 -}}')" href="#{{- eu_1 -}}">{{- eu_1 -}}</a>{% endif -%}
+          {%- if eu_2 != blank %}<a v-on:click.prevent="quickSearch('{{- eu_2 -}}')" href="#{{- eu_2 -}}">{{- eu_2 -}}</a>{% endif -%}
+          {%- if eu_3 != blank %}<a v-on:click.prevent="quickSearch('{{- eu_3 -}}')" href="#{{- eu_3 -}}">{{- eu_3 -}}</a>{% endif -%}
+          {%- if eu_4 != blank %}<a v-on:click.prevent="quickSearch('{{- eu_4 -}}')" href="#{{- eu_4 -}}">{{- eu_4 -}}</a>{% endif -%}
+        </span>
+
+        <span v-if="storeLocation === 'ROW'">
+          {% assign row_1 = 'pages.shipping_delivery.popular_searches.row.1' | t %}
+          {% assign row_2 = 'pages.shipping_delivery.popular_searches.row.2' | t %}
+          {% assign row_3 = 'pages.shipping_delivery.popular_searches.row.3' | t %}
+          {% assign row_4 = 'pages.shipping_delivery.popular_searches.row.4' | t %}
+
+          {%- if row_1 != blank %}<a v-on:click.prevent="quickSearch('{{- row_1 -}}')" href="#{{- row_1 -}}">{{- row_1 -}}</a>{% endif -%}
+          {%- if row_2 != blank %}<a v-on:click.prevent="quickSearch('{{- row_2 -}}')" href="#{{- row_2 -}}">{{- row_2 -}}</a>{% endif -%}
+          {%- if row_3 != blank %}<a v-on:click.prevent="quickSearch('{{- row_3 -}}')" href="#{{- row_3 -}}">{{- row_3 -}}</a>{% endif -%}
+          {%- if row_4 != blank %}<a v-on:click.prevent="quickSearch('{{- row_4 -}}')" href="#{{- row_4 -}}">{{- row_4 -}}</a>{% endif -%}
+        </span>
+      </p>
+
+      <ul class="list search-results" v-if="results.length > 0 && attempts > 0 && inputVal != ''">
+        <li v-for="data in results">
+          <h2><% data.item.name %></h2>
+
+          <p class="provinces"><span v-for="province in data.item.provinces"> <% province.name %>,</span></p>
+
+          <ul class="list">
+            <li v-for="shipping in data.item.shippingPrices">
+              <p>
+                <h3><% shipping.name %></h3>
+
+                <p>
+                  <template v-if="shipping.min_order_subtotal > 0.00">
+                    Order over: <span class=money><% currencyFallback + addTrailingZeros(shipping.min_order_subtotal) %></span>
+                    <br>
+                  </template>
+
+                  Shipping price: <span class=money><% shipping.price == 0.00 ? 'Free' : currencyFallback + addTrailingZeros(shipping.price) %></span>
+                </p>
+              </p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="list search-results" v-if="attempts == 0 || inputVal == ''">
+        <li v-for="data in zones">
+          <h2><% data.name %></h2>
+
+          <p class="provinces"><span v-for="province in data.provinces"> <% province.name %>,</span></p>
+
+          <ul class="list">
+            <li v-for="shipping in data.shippingPrices">
+              <p>
+                <h3><% shipping.name %></h3>
+                <p>
+                  <template v-if="shipping.min_order_subtotal > 0.00">
+                    {{ 'pages.shipping_delivery.order_over' | t }} <span class="money"><% currencyFallback + addTrailingZeros(shipping.min_order_subtotal) %></span>
+                    <br>
+                  </template>
+
+                  {{ 'pages.shipping_delivery.shipping_price' | t }} <span class="money"><% shipping.price == 0.00 ? '{{ 'pages.shipping_delivery.free_shipping' | t }}' : currencyFallback + addTrailingZeros(shipping.price) %></span>
+                </p>
+              </p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="list search-results search-results--noresults" v-if="results.length == 0 && attempts > 0 && inputVal != ''">
+        <li v-html="noResultsText"></li>
+      </ul>
+    </div>
+  </div>
+</div>

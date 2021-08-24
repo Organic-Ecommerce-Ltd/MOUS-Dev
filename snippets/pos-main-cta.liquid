@@ -1,0 +1,15 @@
+<button
+  class="btn pos-{{ class }}__main-cta pos-main-cta{% if state_preorder %} is-preorder{% endif %}"
+  href="{{ selected_variant.url }}"
+  {% if state_oos or state_coming_soon or state_discontinued %} disabled="disabled"{% endif %}
+  {% if state_preorder %} data-preorder{% endif %}
+  pos-cta-button="{{ class }}"
+  product="add-to-cart"
+>
+  <span pos="cta-text">{{ button_state_text }}</span>
+
+  <span class="pos-{{ class }}__price-wrapper pos-price-wrapper{% if state_coming_soon and selected_variant.price == 0 %} dn{% endif %}" pos="price-wrapper">
+    - <span class="pos-price-wrapper__price" pos="price">{{ selected_variant.price | money }}</span>
+    <span class="pos-price-wrapper__price-compare{% unless selected_variant.compare_at_price > selected_variant.price %} dn{% endunless %}" pos="compare-price">{{ selected_variant.compare_at_price | money }}
+  </span>
+</button>

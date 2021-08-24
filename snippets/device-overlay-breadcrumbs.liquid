@@ -1,0 +1,17 @@
+{% assign breadcrumbs_array = 'Device,Brand,Model,Offer' | split: ',' %}
+
+<div class="device-overlay__breadcrumbs" doverlay="breadcrumbs">
+  {% for crumb in breadcrumbs_array %}
+    <div
+      class="device-overlay__crumb{% if forloop.first %} is-active{% endif %}"
+      data-position="{{ forloop.index0 }}"
+      doverlay-crumb="{{ crumb | downcase }}"
+    >
+      {% unless forloop.first %}
+        {% include 'icon-misc' with icon: 'arrow-thin-next' %}
+      {% endunless %}
+
+      <span doverlay-crumb-text>{{ crumb }}</span>
+    </div>
+  {% endfor %}
+</div>

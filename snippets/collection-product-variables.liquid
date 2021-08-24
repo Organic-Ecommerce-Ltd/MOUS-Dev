@@ -1,0 +1,117 @@
+{% assign filteredDevice = false %}
+
+{%- comment -%} Some phone models use the same case so need to reassign correctly. {%- endcomment -%}
+{% for tag in current_tags %}
+  {% if tag contains 'device' %}
+    {% assign filteredDevice = tag | handle | remove: 'filter-device-' %}
+    {% assign currentDeviceTag = currentDeviceTag | handle | remove: 'filter-device-' %}
+
+    {%- comment -%} Set filteredDevice to match variants as filter options and variants DO NOT match for various iphone models. {%- endcomment -%}
+    {% if filteredDevice == 'iphone-8' or filteredDevice == 'iphone-7' or filteredDevice == 'iphone-6-6s' or filteredDevice == 'iphone-se' %}
+      {% assign filteredDevice = 'iphone-se-8-7-6' %}
+      {% assign currentDeviceTag = 'iphone-se-8-7-6' %}
+    {% elsif filteredDevice == 'iphone-8-plus' or filteredDevice == 'iphone-7-plus' or filteredDevice == 'iphone-6-6s-plus' %}
+      {% assign filteredDevice = 'iphone-8-7-6-plus' %}
+      {% assign currentDeviceTag = 'iphone-8-7-6-plus' %}
+    {% elsif filteredDevice == 'iphone-12' or filteredDevice == 'iphone-12-pro' %}
+      {% assign filteredDevice = 'iphone-12-12-pro' %}
+      {% assign currentDeviceTag = 'iphone-12-12-pro' %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% assign selectedVariantFiltered = false %}
+
+{% if is_multi_variant %}
+  {% for variant in product.variants %}
+    {% assign variantHandle = variant.title | handle %}
+
+    {% unless filteredDevice %}
+      {% comment %} Sale specific variant selector {% endcomment %}
+      {% if collection.handle == 'sale' %}
+        {% comment %} If variant matches the filter break out of the loop so that the filtered variant is the selected one {% endcomment %}
+        {% if currentDeviceTag == variantHandle %}
+          {% assign selectedVariantFiltered = variant %}
+
+          {% break %}
+        {% endif %}
+
+        {% if variant.compare_at_price > variant.price and variant.available %}
+          {% assign selectedVariantFiltered = variant %}
+        {% endif %}
+      {% else %}
+        {%- comment -%} Check if collection_name is an array, then look for matching handle. {%- endcomment -%}
+        {% if collection_name.first %}
+          {% for collection_handle in collection_name %}
+            {% if collection_handle == variantHandle %}
+              {% assign selectedVariantFiltered = variant %}
+
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% if variantHandle == collection_name %}
+          {% assign selectedVariantFiltered = variant %}
+
+          {% break %}
+        {% endif %}
+      {% endif %}
+    {% endunless %}
+
+    {% if variantHandle == filteredDevice %}
+      {% assign selectedVariantFiltered = variant %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if selectedVariantFiltered %}
+  {% assign selectedVariant = selectedVariantFiltered %}
+{% else %}
+  {% assign selectedVariant = product.selected_or_first_available_variant %}
+{% endif %}
+
+{%- comment -%} Offer structure: offer:[SKU]=tags|split|by|pipes {%- endcomment -%}
+{% assign offer_array = false %}
+
+{% for tag in product.tags %}
+  {% comment %} Create an array of offer tags {% endcomment %}
+  {% if tag contains 'offer:' and tag contains selectedVariant.sku %}
+    {% assign offer = tag | split: 'offer:' | last %}
+    {% assign offer_array = offer_array | remove: false | append: ',' | append: offer %}
+  {% endif %}
+
+  {% if tag contains 'offer=' %}
+    {% assign offer = tag | split: 'offer=' | last %}
+    {% assign offer_array = offer_array | remove: false | append: ',' | append: offer %}
+  {% endif %}
+{% endfor %}
+
+{% if offer_array %}
+  {% assign offer_array = offer_array | remove_first: ',' | split: ',' %}
+{% endif %}
+
+{% comment %} Product prices {% endcomment %}
+{% assign non_discounted_price = selectedVariant.compare_at_price %}
+{% assign product_price = selectedVariant.price %}
+
+{% comment %} For sale collection, only show discounted products {% endcomment %}
+{% assign show_product = true %}
+
+{% if collection.handle == 'sale' %}
+  {% unless selectedVariant.compare_at_price > selectedVariant.price %}
+    {% assign show_product = false %}
+  {% endunless %}
+{% endif %}
+
+{% comment %} Loop through collection handles from schema settings to determine whether collection should show a 'from price' on mobile instead of normal pricing. {% endcomment %}
+{% assign collections_with_from_price_arr = settings.collections_with_from_price | split: ',' %}
+{% assign is_from_price_collection = false %}
+
+{% for collection_handle in collections_with_from_price_arr %}
+  {% if collection_handle == collection.handle %}
+    {% if current_tags == null %}
+        {% assign is_from_price_collection = true %}
+    {% endif %}
+  {% endif %}
+{% endfor %}

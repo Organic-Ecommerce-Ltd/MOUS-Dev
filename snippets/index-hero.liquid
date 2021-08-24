@@ -1,0 +1,43 @@
+{% include 'media-queries' %}
+
+<section class="index-hero">
+  <div class="index-wrap index-hero__inner">
+    <div class="index-hero__image-wrapper">
+      <picture>
+        <source
+          media="{{ large_mq }}"
+          data-srcset="{{ section.settings.image | img_url: '1246x' }}"
+          srcset="{{ '623x244-hero-placeholder.svg' | file_url }}"
+        >
+        <source
+          media="{{ medium_mq }}"
+          data-srcset="{{ section.settings.image | img_url: '768x' }}"
+          srcset="{{ '623x244-hero-placeholder.svg' | file_url }}"
+        >
+        <img
+          class="index-hero__image lazy"
+          data-src="{{ section.settings.mobile_image | img_url: '414x' }}"
+          src="{{ '48x31-hero-placeholder.svg' | file_url }}"
+          alt="{{ section.settings.title }}"
+        >
+      </picture>
+    </div>
+
+    <div class="index-hero__content hero-content{% if section.settings.light_content %} hero-content--light{% endif %}">
+      <h1 class="hero-content__heading">{{ section.settings.title }}</h1>
+
+      {% comment %}
+        Outcome of Summer Sale AB test decided that linking directly to the sale collection is the winner so for now, device overlay trigger properties have been removed:
+
+        data-popup="#device-overlay"
+        doverlay="trigger"
+      {% endcomment %}
+      <a
+        class="btn index-button hero-content__btn"
+        href="{{ section.settings.btn_link }}"
+      >
+        {{ section.settings.btn_title }}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+<section class="product-reviews pdh pt3-l pb5">
+  <div class="h1 tc">{{ 'products.product.reviews_title' | t }}</div>
+
+  <div class="yotpo yotpo-main-widget"
+    data-product-id="{{ product.id }}"
+    data-price="{{ product.price | money_without_currency | replace: ',', '.' }}"
+    data-currency="{{ shop.currency }}"
+    data-name="{{ product.title | escape }}"
+    data-url="{{ shop.url }}{{ product.url }}"
+    data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+    data-description="{{ product.description | escape }}"
+  >
+  </div>
+</section>

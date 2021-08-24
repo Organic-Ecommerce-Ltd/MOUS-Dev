@@ -1,0 +1,48 @@
+{%- comment -%}
+  If a customer somehow lands on the list-collections template,
+  default to phone-cases collection.
+{%- endcomment -%}
+{% if template contains 'list-collections' %}
+  {% assign collection = collections.phone-cases %}
+{% endif %}
+
+{% comment %} Hide MagSafe filter on collections that will never have MagSafe products. {% endcomment %}
+{% assign show_magsafe_filter = true %}
+
+{% if settings.excluded_magsafe_handles contains collection.handle %}
+  {% assign show_magsafe_filter = false %}
+{% endif %}
+
+{%- comment -%} Device specific collections {%- endcomment -%}
+{% assign collection_name = request.path | split: '/collections/' | last | split: '/' | first %}
+
+{%- comment -%} Ignore collections ending in 'cases' as it's only the device specific collections where we need to remove the word case. {%- endcomment -%}
+{% unless collection_name contains 'cases' %}
+  {% assign collection_name = collection_name | remove: '-case' %}
+{% endunless %}
+
+{% assign collection_urls_and_variants = settings.collection_url_variant_array | split: '|' %}
+
+{% for collection_split in collection_urls_and_variants %}
+  {% assign collection_urls = collection_split | split: '=' | first | split: ',' %}
+  {% assign matched_variants = collection_split | split: '=' | last %}
+
+  {%- comment -%} Only make into array if necessary, otherwise won't match array of length 1. {%- endcomment -%}
+  {% if matched_variants contains ',' %}
+    {% assign matched_variants = matched_variants | split: ',' %}
+  {% endif %}
+
+  {% for collection_url in collection_urls %}
+    {% assign collection_url_no_case = collection_url %}
+
+    {% unless collection_url_no_case contains 'cases' %}
+      {% assign collection_url_no_case = collection_url_no_case | remove: '-case' %}
+    {% endunless %}
+
+    {% if collection_name == collection_url_no_case %}
+      {% assign collection_name = matched_variants %}
+
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}

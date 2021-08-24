@@ -1,0 +1,122 @@
+{% include 'detect-store' %}
+
+<div class="footer__inner">
+  <div class="footer__top">
+    <div class="footer__signup footer-signup">
+      {% include 'footer-newsletter' %}
+    </div>
+
+    <div class="footer__nav footer-nav">
+      {% include 'footer-nav' %}
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__legal footer-legal">
+      {% include 'icon-misc' with icon: 'mous-logo' %}
+
+      <div class="footer-legal__content">
+        <div>&copy; {{ "now" | date: "%Y " | append: section.settings.legal_text }}</div>
+
+        <div class="footer-legal__links">
+          {% for link in linklists['footer-legal'].links %}
+            <a class="footer-legal__link" href="{{ link.url }}">{{ link.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__meta footer-meta">
+      <div class="footer-meta__top">
+        <a
+          class="footer-meta__location footer-location"
+          aria-label="Select your store"
+          href="#"
+          data-popup="#location-switch"
+          popup="trigger"
+        >
+          {% include 'icon-misc' with icon: 'pin-drop' %}
+
+          <div class="footer-location__region-picker">
+            {% if detect_store == 'UK' %}
+              {{ 'general.footer.location_switch.uk' | t }}
+            {% elsif detect_store == 'EU' %}
+              {{ 'general.footer.location_switch.eu' | t }}
+            {% elsif detect_store == 'FR' %}
+              {{ 'general.footer.location_switch.fr' | t }}
+            {% elsif detect_store == 'ES' %}
+              {{ 'general.footer.location_switch.es' | t }}
+            {% elsif detect_store == 'ROW' %}
+              {{ 'general.footer.location_switch.row' | t }}
+            {% else %}
+              {{ 'general.footer.location_switch.us' | t }}
+            {% endif %}
+
+            <span class="footer-location__switch-text">{{ 'general.footer.location_switch.switch_text' | t }}</span>
+          </div>
+        </a>
+
+        <div class="footer-meta__socials footer-socials">
+          {% for block in section.blocks %}
+            <a
+              class="footer-socials__link"
+              aria-label="{{ block.settings.platform | capitalize }}"
+              href="{{ block.settings.link }}"
+              rel="noopener"
+              target="_blank"
+              title="{{ 'layout.newsletter.social_platform' | t: platform: block.settings.platform }}"
+            >
+              <span class="icon icon-{{ block.settings.platform | downcase }}"></span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="footer-meta__payments footer-payments">
+        {% include 'payment-icons' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "legal_text",
+      "label": "Legal text",
+      "info": "This will be preceded by a copyright symbol and the current year."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "Newsletter title"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_subtitle",
+      "label": "Newsletter subtitle"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Social icons",
+      "settings": [
+        {
+          "type": "text",
+          "id": "platform",
+          "label": "Social platform eg. Facebook"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Social platform link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

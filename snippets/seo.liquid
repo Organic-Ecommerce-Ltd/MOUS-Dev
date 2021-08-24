@@ -1,0 +1,50 @@
+{%- comment -%} For collection pages when filtered {%- endcomment -%}
+{% capture filtered_by_tag %}
+  {% assign tag_string = '' %}
+
+  {% for tag in current_tags %}
+    {% assign clean_tag = tag | split: '-' | last %}
+
+    {% if forloop.length > 1 and forloop.last %}
+      {% assign tag_string = tag_string | append: ' and ' | append: clean_tag %}
+    {% else %}
+      {% assign tag_string = tag_string | append: ', ' | append: clean_tag %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign tag_string = tag_string | remove_first: ', ' %}
+
+  {{ 'general.meta.tags' | t: tags: tag_string }}
+{% endcapture %}
+
+{%- comment -%} For pages when paginated {%- endcomment -%}
+{% capture page_paginated %}
+  - {{ 'general.meta.page' | t: page: current_page }}
+{% endcapture %}
+
+{%- comment -%} SEO title {%- endcomment -%}
+{% capture seo_title %}
+  {% assign custom_page_title = page_title %}
+
+  {% if current_tags %}
+    {% assign custom_page_title = page_title | append: filtered_by_tag %}
+  {% endif %}
+
+  {% if current_page != 1 %}
+    {% assign custom_page_title = page_title | append: page_paginated %}
+  {% endif %}
+
+  {% unless custom_page_title contains 'Mous |' %}
+    {% assign custom_page_title = custom_page_title | prepend: 'Mous | ' %}
+  {% endunless %}
+
+  {{ custom_page_title }}
+{% endcapture %}
+
+<title>{{ seo_title }}</title>
+
+{% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+{% else %}
+  <meta name="description" content="{{ shop.description | default: shop.name }}">
+{% endif %}

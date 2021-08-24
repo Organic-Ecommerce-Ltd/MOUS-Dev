@@ -1,0 +1,129 @@
+<div class="cart-upsell pdh" upsell="container">
+  <div class="mw cart-upsell__inner">
+    {% for range in upsell_parent %}
+      {% assign upsell_range = range | split: ':' | first %}
+      {% assign upsell_variant = range | split: ':' | last | remove_first: '|' %}
+      {% assign upsell_collection = upsell_range | handleize | append: '-upsell' %}
+
+      <div class="cart-upsell__header">
+        <h2 class="cart-upsell__title">
+          {% if forloop.first %}
+            {% include 'icon-misc' with icon: 'checkmark' %}
+
+            {{ 'cart.upsell.title' | t }}
+          {% endif %}
+        </h2>
+
+        <span class="cart-upsell__bundle-text">
+          {{ 'cart.upsell.bundle_text' | t: range: upsell_range }}
+        </span>
+      </div>
+
+      <ul class="cart-upsell__list" upsell="main-slider">
+        {% for product in collections[upsell_collection].products %}
+          {% include 'cart-upsell-json' %}
+
+          {% include 'cart-upsell-variables' %}
+
+          {% if matching_accessory %}
+            <li
+              class="cart-upsell__product upsell-product"
+              data-index="{{ forloop.index0 }}"
+              data-range="{{ upsell_collection }}"
+              upsell="product"
+            >
+              <div class="upsell-product__inner">
+                <div class="upsell-product__gallery" upsell="gallery">
+                  {% include 'upsell-gallery-slides' %}
+                </div>
+
+                <h3 class="upsell-product__title">{{ product.title | split: '-' | first }}</h3>
+
+                {% if product_subtext %}
+                  <div class="upsell-product__subtext">
+                    <div class="upsell-product__subtext-copy">
+                      {{ product_subtext }}
+                    </div>
+
+                    {% if preorder_date %}
+                      <div class="upsell-product__subtext-preorder">
+                        {{ 'cart.upsell.preorder_text' | t: date: preorder_date }}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                <form
+                  class="upsell-product__form"
+                  action="/cart/add"
+                  method="post"
+                  upsell="form"
+                >
+                  {% if product.variants.size > 1 %}
+                    <div class="nice-select icon-chevron-down upsell-product__variant-dropdown">
+                      <select
+                        class="select"
+                        name="id"
+                        data-product-handle="{{ product.handle }}"
+                        upsell="select"
+                        upsell-variant-id
+                      >
+                        {% for variant in product.variants %}
+                          {% if variant.available %}
+                            {% assign variant_title_slug = variant.title | handleize %}
+
+                            <option
+                              value="{{ variant.id }}"
+                              {% if upsell_variant == variant_title_slug %} selected="selected" {% endif %}
+                              data-sku="{{ variant.sku }}"
+                              data-variant-id="{{ variant.id }}"
+                            >
+                              {{ variant.title }}
+                            </option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+                    </div>
+                  {% else %}
+                    <input
+                      name="id"
+                      type="hidden"
+                      value="{{ selected_variant.id }}"
+                      data-product-handle="{{ product.handle }}"
+                      upsell-variant-id
+                    >
+                  {% endif %}
+
+                  <div class="upsell-product__bundle-price">
+                    {% if bundle_saving == 0 %}
+                      {{ 'cart.upsell.price' | t }}
+                    {% else %}
+                      {{ 'cart.upsell.bundle_price' | t }}
+                    {% endif %}
+
+                    <span upsell="bundle-price">{{ product_price }}</span>
+                  </div>
+
+                  {% unless bundle_saving == 0 %}
+                    <div class="upsell-product__bundle-saving">
+                      {{ 'cart.upsell.bundle_saving' | t }} <span upsell="bundle-saving">{{ bundle_saving | money }}</span>
+                    </div>
+                  {% endunless %}
+
+                  <input type="hidden" name="quantity" value="1" />
+                  <input type="hidden" name="properties[_finalPrice]" value="{{ product_price_pence }}" />
+
+                  <button
+                    class="btn upsell-product__btn"
+                    type="submit"
+                    upsell="add-btn"
+                  >{{ 'cart.upsell.add_to_bundle_text' | t }}</button>
+                </form>
+              </div>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+</div>

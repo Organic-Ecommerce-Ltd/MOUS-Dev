@@ -1,0 +1,26 @@
+{% assign state_preorder = false %}
+{% assign state_oos = false %}
+{% assign state_coming_soon = false %}
+{% assign state_discontinued = false %}
+
+{% if variant.available %}
+	{% assign product_state = 'state_instock' %}
+
+	{% if variant.inventory_management == 'shopify' %}
+		{% if variant.inventory_policy == 'continue' and variant.inventory_quantity <= -500 %}
+			{% assign state_preorder = true %}
+			{% assign product_state = 'state_preorder' %}
+		{% endif %}
+	{% endif %}
+{% else %}
+	{% if variant.inventory_quantity == -200 %}
+		{% assign state_coming_soon = true %}
+		{% assign product_state = 'state_coming_soon' %}
+	{% elsif variant.inventory_quantity <= -201 and variant.inventory_quantity >= -300 %}
+		{% assign state_discontinued = true %}
+		{% assign product_state = 'state_discontinued' %}
+	{% elsif variant.inventory_quantity <= 0 %}
+		{% assign state_oos = true %}
+		{% assign product_state = 'state_oos' %}
+	{% endif %}
+{% endif %}

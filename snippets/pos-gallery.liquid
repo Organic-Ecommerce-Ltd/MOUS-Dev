@@ -1,0 +1,16 @@
+{%- comment -%} Gallery slides {%- endcomment -%}
+<div class="pos-gallery__container{% unless product.images.size > 1 %} is-loaded{% endunless %}" pos="gallery-container">
+  {% include 'pos-tags' %}
+
+  {% if product_has_gallery %}
+    <div class="pos-gallery__nav-wrapper">
+      <div class="pos-gallery__nav pos-gallery-nav" pos="gallery-nav">
+        {% include 'pos-gallery-slides' is_gallery_nav: true %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="pos-gallery__{% if product_has_gallery %}carousel pos-gallery-carousel{% else %}single{% endif %}" pos="gallery-carousel">
+    {% include 'pos-gallery-slides' %}
+  </div>
+</div>

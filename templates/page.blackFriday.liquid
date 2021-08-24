@@ -1,0 +1,44 @@
+{% include 'detect-store' %}
+
+{% if detect_store == 'DEV' %}
+  {% assign klaviyo_id = 'UaJmyM' %}
+{% elsif detect_store == 'US' %}
+  {% assign klaviyo_id = 'XDaS9N' %}
+{% elsif detect_store == 'UK' %}
+  {% assign klaviyo_id = 'WsRgKv' %}
+{% elsif detect_store == 'ROW' %}
+  {% assign klaviyo_id = 'WG6fs4' %}
+{% else %}
+  {% assign klaviyo_id = 'XSgCEZ' %}
+{% endif %}
+
+{% assign before_form_content = false %}
+
+{% if page.content contains '#####' %}
+  {% assign before_form_content = page.content | split: '<p><span>#####</span></p>' | first %}
+  {% assign after_form_content = page.content | split: '<p><span>#####</span></p>' | last %}
+{% endif %}
+
+{% capture klaviyo_form %}
+  <div class="black-friday-deals__form">
+    <div class="klaviyo-form-{{ klaviyo_id }}"></div>
+  </div>
+{% endcapture %}
+
+<div class="page black-friday-deals">
+  <h1 class="black-friday-deals__title page-title">{{ page.title }}</h1>
+
+  <div class="black-friday-deals__content">
+    {% if before_form_content %}
+      {{ before_form_content }}
+
+      {{ klaviyo_form }}
+
+      {{ after_form_content }}
+    {% else %}
+      {{ page.content }}
+
+      {{ klaviyo_form }}
+    {% endif %}
+  </div>
+</div>

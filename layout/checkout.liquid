@@ -1,0 +1,95 @@
+{% include 'detect-store' %}
+
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    {% include 'theme-object' %}
+    {% include 'gtm' noscript: false %}
+
+    {%- comment -%} Commented out during product page test {%- endcomment -%}
+    {% comment %} {% include 'google-optimize' experimentName: 'experiment:checkoutDiscountCode' experimentVariants: 2 %} {% endcomment %}
+
+    {% include 'standard-meta-tags' %}
+
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+
+    <link rel="stylesheet" href="{{ 'checkout.min.css' | asset_url }}">
+
+    {{ checkout_scripts }}
+
+    {% if detect_store == 'EU' or detect_store == 'FR' or detect_store == 'ES' %}
+      {% include 'weglot_switcher' %}
+    {% endif %}
+
+    <script>(function(n,t,i,r){var u,f;n[i]=n[i]||{},n[i].initial={accountCode:"MOUSP11113",host:"MOUSP11113.pcapredict.com"},n[i].on=n[i].on||function(){(n[i].onq=n[i].onq||[]).push(arguments)},u=t.createElement("script"),u.async=!0,u.src=r,f=t.getElementsByTagName("script")[0],f.parentNode.insertBefore(u,f)})(window,document,"pca","//MOUSP11113.pcapredict.com/js/sensor.js")</script>
+
+    <script src="{{ 'checkout.min.js' | asset_url }}" defer></script>
+
+    {% include 'js-inline' type:'fb-pixel' %}
+  </head>
+  <body>
+    {% include 'gtm' noscript: true %}
+    {% include 'modal-location' %}
+
+    {{ skip_to_content_link }}
+
+    <div class="banner" data-header>
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </div>
+
+    {{ order_summary_toggle }}
+
+    <div class="content" data-content>
+      {% include 'checkout-device-compatibility' %}
+      {% comment %} {% include 'checkout-existing-customer-discount' %} {% endcomment %}
+      {% include 'prop65-warning' location: 'checkout' %}
+
+      <div class="wrap">
+        <div class="main" role="main">
+          <div class="main__header">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </div>
+          <div class="main__content">
+            {{ content_for_layout }}
+          </div>
+
+          {% include 'checkout-linkable-note' %}
+
+          <div class="main__footer">
+            {{ content_for_footer }}
+          </div>
+        </div>
+
+        <div class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input type="hidden" value="{{ checkout.shipping_address.country_code }}" checkout="shipping-country">
+    <input type="hidden" value="{{ checkout.shipping_address.province_code }}" checkout="shipping-state">
+    <input type="hidden" value="{{ order.name }}" checkout="order-id">
+
+    {{ tracking_code }}
+
+    {% include 'ip-lookup' %}
+    {% include 'klaviyo-lang' %}
+    {% include 'js-inline' type:'footer-checkout' %}
+  </body>
+</html>

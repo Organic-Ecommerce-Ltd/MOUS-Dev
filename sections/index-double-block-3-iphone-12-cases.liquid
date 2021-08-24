@@ -1,0 +1,74 @@
+{% include 'index-double-block' %}
+
+{% schema %}
+{
+  "name": "Double image block",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "grey", "label": "Light grey" }
+      ],
+      "label": "Background colour"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Double image block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "video",
+          "label": "Video",
+          "info": "Video takes precedence over image."
+        },
+        {
+          "type": "text",
+          "id": "button_title",
+          "label": "Shop button title"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Shop button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "btn_light",
+          "label": "Light button?",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

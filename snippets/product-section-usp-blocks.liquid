@@ -1,0 +1,57 @@
+{% if _['p_usp_block_1-title'] or dynamic_json_metafield %}
+  <section class="product-section-imagetext">
+    <div class="product-wrap ps-imagetext">
+      {% for i in (1..4) %}
+        {% assign first_dynamic_usp_block = false %}
+        {% assign odd_even = i | modulo: 2 %}
+        {% assign usp_block_image = 'p_usp_block_#-image' | replace: '#', i %}
+        {% assign usp_block_video = 'p_usp_block_#-video' | replace: '#', i %}
+        {% assign usp_block_title = 'p_usp_block_#-title' | replace: '#', i %}
+        {% assign usp_block_subtitle = 'p_usp_block_#-subtitle' | replace: '#', i %}
+
+        {% comment %}
+          If it's has a dynamic_json_metafield and is first in the loop, show block regardless of metafield.
+        {% endcomment %}
+        {% if forloop.index == 1 and dynamic_json_metafield %}
+          {% assign first_dynamic_usp_block = true %}
+        {% endif %}
+
+        {% if _[usp_block_title] or first_dynamic_usp_block %}
+          <div
+            class="ps-imagetext__block is-{% if odd_even == 0 %}reversed{% else %}forward{% endif %}"
+            {% if forloop.index == 1 and dynamic_json_metafield %} product-usp-block="container"{% endif %}
+          >
+            <div class="ps-imagetext__col">
+              {% if _[usp_block_video] %}
+                <div class="ps-imagetext__video">
+                  {% if _[usp_block_video] contains 'youtube' or _[usp_block_video] contains 'youtu.be' %}
+                    <iframe
+                      src="{{ _[usp_block_video] | append: '?controls=0' }}"
+                      frameborder="0"
+                      allow="autoplay; encrypted-media"
+                      allowfullscreen
+                      product-usp-block="iframe"
+                    ></iframe>
+                  {% else %}
+                    <video src="{{ _[usp_block_video] | file_url }}" autoplay muted loop playsinline></video>
+                  {% endif %}
+                </div>
+              {% else %}
+                <div class="ps-imagetext__image">
+                  <img src="{{ _[usp_block_image] | file_img_url: '610x' }}" alt="" product-usp-block="image">
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="ps-imagetext__col">
+              <div class="ps-imagetext__text">
+                <h2 class="h1" product-usp-block="title">{{ _[usp_block_title] }}</h2>
+                <h3 class="h2" product-usp-block="subtitle">{{ _[usp_block_subtitle] }}</h3>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

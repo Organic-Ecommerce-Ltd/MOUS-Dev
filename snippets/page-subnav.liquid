@@ -1,0 +1,17 @@
+<div class="page-subnav pv4">
+  {% for link in linklists[nav].links %}
+    {% assign icon_name = link.url | split: 'pages/' | last %}
+
+    {% if link.url == '/pages/get-in-touch' %}
+      {% assign icon_name = 'contact' %}
+    {% elsif link.url == '/pages/delivery' %}
+      {% assign icon_name = 'shipping' %}
+    {% endif %}
+
+    <a class="page-subnav__link{% if request.path contains link.url %} active{% endif %}" href="{{ link.url }}">
+      <span class="icon icon-{{ icon_name }}"></span>
+
+      <span class="page-subnav__text">{{ link.title }}</span>
+    </a>
+  {% endfor %}
+</div>

@@ -1,0 +1,31 @@
+<div class="help-content pdh">
+  <div help="freshdesk-iframe"></div>
+</div>
+
+{% if section.settings.show_contact %}
+  <div class="contact-bar pv4 grey-bg mt5">
+    <div class="mw pdh flex fxv fxc">
+      <h4 class="dib mr4 p">{{ 'pages.faq.contact_title' | t }}</h4>
+      <a href="{{ section.settings.contact_link }}" class="btn btn--no-margin">{{ 'pages.faq.contact_link' | t }}</a>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "FAQ Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_contact",
+        "label": "Show contact at the end?",
+        "default": true
+      },
+      {
+        "type": "url",
+        "id": "contact_link",
+        "label": "Contact link"
+      }
+    ]
+  }
+{% endschema %}

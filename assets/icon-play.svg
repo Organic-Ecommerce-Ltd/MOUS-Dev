@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-play</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Designs-Latest" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-Tutorials-1a" transform="translate(-675.000000, -551.000000)" fill="#FFFFFF">
+            <g id="FAQ" transform="translate(320.000000, 446.000000)">
+                <g id="Section">
+                    <g id="i" transform="translate(248.000000, 33.000000)">
+                        <g id="icon-play" transform="translate(107.000000, 72.000000)">
+                            <path d="M27,54 C12.0883118,54 0,41.9116882 0,27 C0,12.0883118 12.0883118,0 27,0 C41.9116882,0 54,12.0883118 54,27 C54,41.9116882 41.9116882,54 27,54 Z M27,51 C40.254834,51 51,40.254834 51,27 C51,13.745166 40.254834,3 27,3 C13.745166,3 3,13.745166 3,27 C3,40.254834 13.745166,51 27,51 Z" id="Combined-Shape"></path>
+                            <path d="M19.1902934,22.3208421 L31.2563529,19.3203939 C32.3282777,19.05384 33.4133291,19.7067222 33.6798829,20.778647 C33.7586969,21.0955911 33.7586941,21.4270139 33.6798748,21.7439566 L30.6793187,33.8095822 C30.4127468,34.8815025 29.3276844,35.5343664 28.2557641,35.2677944 C27.9031876,35.1801135 27.5811546,34.9980482 27.3242471,34.74115 L18.2587437,25.6759726 C17.4776811,24.8949381 17.4776583,23.6286081 18.2586929,22.8475455 C18.5156165,22.5906127 18.8376806,22.4085257 19.1902934,22.3208421 Z" id="Play" transform="translate(25.500000, 27.500000) rotate(-315.000000) translate(-25.500000, -27.500000) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

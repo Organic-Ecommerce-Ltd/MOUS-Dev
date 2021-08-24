@@ -1,0 +1,56 @@
+{% include 'detect-store' %}
+
+{% include 'collection-variables' %}
+
+{% paginate collection.products by 40 %}
+
+{% assign product_count = 0 %}
+
+<div
+  class="collection-content"
+  data-url="{{ request.path }}"
+  data-title="{{ collection.title }}"
+  el="collection-meta"
+>
+  <div class="pdh pl2 pr2 pdb flex flex-wrap items-start">
+    {% include 'filter-menu' %}
+
+    {% if show_magsafe_filter %}
+      {% include 'magsafe-filter' with is_mobile: true %}
+    {% endif %}
+
+    <div class="collection-grid w-75-l w-100 mt2">
+      <div class="collection-grid__inner flex flex-wrap">
+        {% for product in collection.products %}
+          {% include 'detect-product' %}
+
+          {% unless is_hidden or is_hidden_from_collections %}
+            {% include 'grid-product-quickview' %}
+          {% endunless %}
+        {% endfor %}
+
+        {% if product_count == 0 %}
+          {% include 'filter-no-result' %}
+        {% endif %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        {% include 'pagination', paginate: paginate %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% if detect_store == 'US' or detect_store == 'ROW' or detect_store == 'DEV' %}
+  <script type="text/javascript">
+    var _learnq = _learnq || []
+
+    _learnq.push(["track", "Viewed Category", {
+      "CategoryName": "{{ collection.title }}",
+      "CategoryID": "{{ collection.id }}",
+      "URL": "{{ canonical_url | split: '/filter-' | first }}",
+    }])
+  </script>
+{% endif %}
+
+{% endpaginate %}

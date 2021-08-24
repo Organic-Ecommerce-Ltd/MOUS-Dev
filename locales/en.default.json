@@ -1,0 +1,548 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close_modal": "Close (esc)"
+    },
+    "meta": {
+      "tags": "filtered by {{ tags }}",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "Sorry, we can't find that page",
+      "subtext": "Hit the button below to view our sitemap.",
+      "link": "Sitemap"
+    },
+    "locations": {
+      "title": "Select Location",
+      "north_america": "North America",
+      "europe": "Europe",
+      "asia": "Asia",
+      "row": "Rest of World"
+    },
+    "modals": {
+      "location_popup": {
+        "title": "Select location",
+        "na_title": "North America",
+        "us": "USA ($)",
+        "excluded_states_html": "<strong>We have different websites which serve different regions. Please click through to the relevant site if you can't find your country:<\/strong><br>  \t- <a href=\"https:\/\/uk.mous.co\/pages\/delivery\"><u>UK site<\/u><\/a><br> \t- <a href=\"https:\/\/eu.mous.co\/pages\/delivery\"><u>Europe site<\/u><\/a><br> - <a href=\"https:\/\/row.mous.co\/pages\/delivery\"><u>Rest of World site<\/u><\/a> - if you are in Alaska or Hawaii, please use this site",
+        "eu_title": "Europe",
+        "uk": "United Kingdom (£)",
+        "es": "Spain (€)",
+        "fr": "France (€)",
+        "eu": "Europe (€)",
+        "row_title": "Rest of World",
+        "row": "Rest of World (US$)"
+      },
+      "device_overlay": {
+        "back_button": "Back",
+        "show_everything_link": "Show me everything",
+        "step_titles": {
+          "device": "What device are you shopping for?",
+          "brand": "What brand is your phone?",
+          "model": {
+            "phone": "What model is your phone?",
+            "ipad": "What model is your iPad?",
+            "airpods": "What model are your AirPods?",
+            "macbook_pro": "What model is your MacBook Pro?"
+          }
+        },
+        "discount": {
+          "title": "You're only a few clicks away",
+          "subtitle_top": "Would you like 10% off* your entire order?",
+          "subtitle_bottom": "Just copy the code and apply at checkout.",
+          "wants_discount_btn": "I'd like a discount",
+          "code": "WL01-DX67-OVRL",
+          "copy_code_btn": "Copy my code",
+          "code_copied": "Code copied",
+          "show_products_btn": "Show me the products!",
+          "privacy_and_terms_html": "*Check the <a href=\"\/pages\/privacy\">privacy policy<\/a> and <a href=\"\/pages\/terms\">terms and conditions<\/a> of our \"welcome discount\""
+        }
+      }
+    },
+    "password_page": {
+      "opening_soon": "Opening Soon",
+      "login_form_heading": "Enter store using password",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_submit": "Enter",
+      "signup_form_email_label": "Email",
+      "signup_form_success": "We will send you an email right before we open!",
+      "admin_link_html": "Are you the store owner? <a href=\"\/admin\" class=\"text-link\">Log in here<\/a>",
+      "password_link": "Enter using password",
+      "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
+    },
+    "delivery_page": {
+      "no_results_html": "<p>Sorry, we cannot find your location. Please check the spelling or click the flag icon at the top of the page to switch between our UK, Europe and Rest of World websites.<\/p><p>We are currently unable to deliver to some locations due to Covid-19 restrictions. We will restore all affected countries to our site as soon as possible. There is also a handful of countries which we are unable to ship to due to customs limitations – you can see the list of these on our <a href=\/pages\/help>FAQ page.<\/a><\/p>"
+    },
+    "social": {
+      "share_on_facebook": "Share",
+      "share_on_twitter": "Tweet",
+      "share_on_pinterest": "Pin it",
+      "alt_text": {
+        "share_on_facebook": "Share on Facebook",
+        "share_on_twitter": "Tweet on Twitter",
+        "share_on_pinterest": "Pin on Pinterest"
+      }
+    },
+    "header": {
+      "notice_bar": {
+        "worldwide_store": {
+          "usa": "Free shipping when you spend over $49",
+          "canada": "Free shipping when you spend over $79",
+          "australia": "Free shipping when you spend over $79",
+          "generic": "Free shipping when you spend over $79"
+        },
+        "europe_store": {
+          "germany": "Free shipping when you spend over €59",
+          "netherlands": "Free shipping when you spend over €59",
+          "generic": "Free shipping when you spend over €59"
+        },
+        "uk_store": {
+          "generic": "Free shipping when you spend over £39"
+        }
+      },
+      "navigation": {
+        "top_level_back_button_text": "All",
+        "rating": {
+          "title": "Don't just take our word for it",
+          "subtitle": "Product ratings from over 10K verified customers",
+          "score": "4.8"
+        }
+      }
+    },
+    "footer": {
+      "location_switch": {
+        "us": "United States",
+        "uk": "United Kingdom",
+        "eu": "Europe",
+        "fr": "France",
+        "es": "Spain",
+        "row": "Rest of World",
+        "switch_text": "Switch region"
+      }
+    },
+    "pagination": {
+      "previous": "Back",
+      "next": "Next"
+    },
+    "prop65": {
+      "warning_text": "WARNING:",
+      "harm_text": "Reproductive Harm -",
+      "link_url": "https:\/\/www.p65warnings.ca.gov",
+      "link_text": "www.P65Warnings.ca.gov"
+    }
+  },
+  "home": {
+    "featured_products": {
+      "shop_btn": "Shop now"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Cart",
+      "total": "Total",
+      "checkout": "Checkout",
+      "empty": "Your cart is currently empty.",
+      "free_item_text": "Free",
+      "addon_case_compatibility": "This accessory requires a {{ case }} case to function",
+      "clarity_screen_protector": "Free with your case",
+      "empty_cart_title": "There's nothing here... yet!",
+      "empty_cart_subtitle": "But don't worry just click below and you can add something.",
+      "shop_now_btn": "Shop now",
+      "need_help_title": "Need some help?",
+      "need_help_text_html": "If you have any questions or you need some help with your order then just visit our <a href=\"\/pages\/help\">help & contact pages<\/a>.",
+      "checkout_btn": "Checkout",
+      "upsell_btn": "Bundle up and save",
+      "wrist_strap_not_compatible": "This wrist strap is not compatible with any case in your cart",
+      "magsafe_compatible_accessory": "This accessory only works with a Limitless 4.0 or Infinity iPhone 12 case",
+      "cable_incompatibility_message": "USB-A charging cables are not compatible with the power adaptor (USB-C)"
+    },
+    "upsell": {
+      "add_to_bundle_text": "Add to bundle",
+      "title": "Bundle up and save",
+      "bundle_text": "Meet the {{ range }} Family",
+      "preorder_text": "This item ships from {{ date }}",
+      "price": "Price:",
+      "bundle_price": "Bundle Price:",
+      "bundle_saving": "Save"
+    },
+    "reviews": {
+      "title": "Mous Accessory Reviews",
+      "verified": "Verified Buyer"
+    },
+    "dynamic_shipping_message": {
+      "row_store": {
+        "spend_amount": "79",
+        "below_spend": "Spend [amount] more for free shipping",
+        "above_spend": "Free shipping"
+      },
+      "eu_store": {
+        "spend_amount": "59",
+        "below_spend": "Spend [amount] more for free shipping",
+        "above_spend": "Free shipping"
+      },
+      "uk_store": {
+        "spend_amount": "39",
+        "below_spend": "Spend [amount] more for free shipping",
+        "above_spend": "Free shipping"
+      },
+      "us_store": {
+        "spend_amount": "49",
+        "below_spend": "Spend [amount] more for free shipping",
+        "above_spend": "Free shipping"
+      }
+    }
+  },
+  "collections": {
+    "general": {
+      "shop_now": "Shop Now",
+      "no_matches": "Sorry, there are no products in this collection"
+    },
+    "magsafe": {
+      "filter_title": "MagSafe Compatible",
+      "question_expand_title": "What does this mean?",
+      "question_expanded_text": "The above filter will show our fully MagSafe compatible cases and accessories. Limitless 3.0 and Clarity iPhone 12 cases are usable with the MagSafe Charger but not accessories."
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Full name",
+      "email": "Email",
+      "reason": "Contact reason",
+      "have_ordered": "Please select an option",
+      "order_num": "Order number (if applicable)",
+      "message": "Message",
+      "upload": "Upload an image",
+      "upload_note": "If your query relates to a specific product issue, please attach a high-resolution photo clearly showing any damage or defect.",
+      "submit": "Send message",
+      "phone": "Phone number",
+      "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+    }
+  },
+  "returns": {
+    "form": {
+      "name": "Full name",
+      "email": "Email",
+      "order_num": "Order number",
+      "reason": "Reason for return",
+      "message": "Message",
+      "choice": "Request",
+      "shipping_address": "Shipping address if replacement\/exchange",
+      "upload": "Upload an image",
+      "upload_note": "If your query relates to a specific product issue, please attach a high-resolution photo clearly showing any damage or defect.",
+      "submit": "Send message"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "My Account",
+      "details": "Account Details",
+      "view_addresses": "View Addresses",
+      "return": "Return to Account Details"
+    },
+    "activate_account": {
+      "title": "Activate Account",
+      "subtext": "Create your password to activate your account.",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Activate Account",
+      "cancel": "Decline Invitation"
+    },
+    "addresses": {
+      "title": "Your Addresses",
+      "default": "Default",
+      "add_new": "Add a New Address",
+      "edit_address": "Edit address",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "company": "Company",
+      "address1": "Address1",
+      "address2": "Address2",
+      "city": "City",
+      "country": "Country",
+      "province": "Province",
+      "zip": "Postal\/Zip Code",
+      "phone": "Phone",
+      "set_default": "Set as default",
+      "add": "Add Address",
+      "update": "Update Address",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "delete_confirm": "Are you sure you wish to delete this address?"
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "forgot_password": "Forgot your password?",
+      "sign_in": "Sign In",
+      "guest_title": "Continue as a guest",
+      "guest_continue": "Continue"
+    },
+    "orders": {
+      "title": "Order History",
+      "order_number": "Order",
+      "date": "Date",
+      "payment_status": "Payment Status",
+      "fulfillment_status": "Fulfillment Status",
+      "total": "Total",
+      "none": "You haven't placed any orders yet."
+    },
+    "order": {
+      "title": "Order {{ name }}",
+      "date": "Placed on {{ date }}",
+      "cancelled": "Order Cancelled on {{ date }}",
+      "cancelled_reason": "Reason: {{ reason }}",
+      "billing_address": "Billing Address",
+      "payment_status": "Payment Status",
+      "shipping_address": "Shipping Address",
+      "fulfillment_status": "Fulfillment Status",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "product": "Product",
+      "sku": "SKU",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "fulfilled_at": "Fulfilled {{ date }}",
+      "subtotal": "Subtotal"
+    },
+    "recover_password": {
+      "title": "Reset your password",
+      "email": "Email",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "subtext": "We will send you an email to reset your password.",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "reset_password": {
+      "title": "Reset account password",
+      "subtext": "Enter a new password for {{ email }}",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Reset Password"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtext": "Create a Mous account for speedier checkout and to keep track of your order history.",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create Account"
+    }
+  },
+  "layout": {
+    "navigation": {
+      "search": "Search",
+      "toggle": "expand\/collapse",
+      "expand": "expand",
+      "collapse": "collapse"
+    },
+    "cart": {
+      "title": "Cart",
+      "no_items": "You don't have any items yet",
+      "items_count": {
+        "one": "item",
+        "other": "items"
+      }
+    },
+    "customer": {
+      "account": "Account",
+      "log_out": "Log out",
+      "log_in": "Log in",
+      "create_account": "Create account"
+    },
+    "newsletter": {
+      "social_platform": "Mous on {{ platform }}"
+    }
+  },
+  "products": {
+    "product": {
+      "returns": {
+        "worldwide_store": {
+          "usa": "30 day returns",
+          "canada": "30 day returns",
+          "australia": "30 day returns",
+          "generic": "30 day returns"
+        },
+        "europe_store": {
+          "germany": "30 day returns",
+          "netherlands": "30 day returns",
+          "generic": "30 day returns"
+        },
+        "uk_store": {
+          "generic": "30 day returns"
+        }
+      },
+      "lifetime_warranty": "Lifetime warranty",
+      "limited_warranty": "{{ year }} year warranty",
+      "warranty": {
+        "worldwide_store": "Lifetime warranty",
+        "europe_store": "Lifetime warranty",
+        "uk_store": "Lifetime warranty"
+      },
+      "change_text": "Change",
+      "material_label": "Variant:",
+      "select_case": "Select variant:",
+      "select_device": "Select device:",
+      "cta_text": {
+        "add_to_cart": "Add to Cart",
+        "coming_soon": "Coming Soon",
+        "pre_order": "Pre-order",
+        "out_of_stock": "Out of Stock"
+      },
+      "email_when_available": "Email me when available",
+      "percent_off_tag": "{{percent}}% Off",
+      "pre_order_ships": "Ships from",
+      "accordions": {
+        "title_1": "What's great about it",
+        "title_2": "Specifications",
+        "title_3": "Frequently asked questions"
+      },
+      "instagram_title": "From the Mous community",
+      "instagram_subtitle": "#mouscase",
+      "reviews_title": "Customer reviews",
+      "max_in_cart": "Maximum order amount in cart",
+      "variant_compatibility_warning": {
+        "ipad_pro_2020": ""
+      }
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title_html": "Here's your {{ value }} gift card for {{ shop }}!",
+      "subtext": "Congratulations! Here is your Mous gift card",
+      "disabled": "Disabled",
+      "expired": "Expired on {{ expiry }}",
+      "active": "Expires on {{ expiry }}",
+      "shop_link": "Start shopping",
+      "print": "Print this gift card",
+      "remaining_html": "{{ balance }} left",
+      "add_to_apple_wallet": "Add to Apple Wallet"
+    }
+  },
+  "blogs": {
+    "listing": {
+      "subtitle": "Guides, tips, & everything in between"
+    },
+    "article": {
+      "no_matches": "Sorry, there are no articles here.",
+      "by_author": "{{ author }} |",
+      "back_to_listing": "Back to {{ blog }}",
+      "sidebar_title": "In other news...",
+      "sidebar_view_all": "View all articles"
+    }
+  },
+  "pages": {
+    "faq": {
+      "contact_title": "Need something else?",
+      "contact_link": "Contact us"
+    },
+    "shipping_delivery": {
+      "search_placeholder": "Search by Country or Region...",
+      "search_button": "Search",
+      "popular_searches": {
+        "title": "Popular searches:",
+        "us": {
+          "1": "California",
+          "2": "Texas",
+          "3": "New York",
+          "4": "Florida"
+        },
+        "uk": {
+          "1": "United Kingdom",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "eu": {
+          "1": "Germany",
+          "2": "France",
+          "3": "Spain",
+          "4": ""
+        },
+        "row": {
+          "1": "Australia",
+          "2": "Canada",
+          "3": "Singapore",
+          "4": ""
+        }
+      },
+      "order_over": "Order over:",
+      "shipping_price": "Shipping price:",
+      "free_shipping": "Free"
+    }
+  },
+  "date_formats": {
+    "month_day_year": "%B %d, %Y"
+  },
+  "shopify": {
+    "checkout": {
+      "latin_characters_note": "Type shipping address below",
+      "shipping_delay_message_uk": "FALSE",
+      "shipping_delay_message_us": "The below transit times are our delivery aims, but please note that Covid-19 is still having an ongoing impact on the speed of some international deliveries. US orders are dispatching as normal.",
+      "shipping_delay_message_row": "The below transit times are our delivery aims, but please note that Covid-19 is still having an ongoing impact on the speed of some international deliveries.",
+      "shipping_delay_message_eu_generic": "SHIPPING UPDATES: All duties and taxes are included in the price. Standard shipping services are experiencing some delays into the EU.",
+      "shipping_delay_message_eu_delayed": "SHIPPING UPDATES: All duties and taxes are included in the price. Standard shipping services are experiencing some delays into the EU.",
+      "shipping_phone_number_limit": "Maximum 15 characters",
+      "dispatch_message_uk": "Tracked Postal Service orders will be dispatched within 2 working days. Orders containing a pre-order item will be dispatched from the date stated at cart. Due to courier limitations, we cannot currently offer next day delivery to The Highlands, Isle of Man, Channel and Scilly Isles.",
+      "dispatch_message_us": "Standard orders will be dispatched within 2 business days, Express orders will be dispatched within 1 business day. Orders containing a pre-order item will be dispatched from the date stated at cart.",
+      "dispatch_message_eu": "Tracked Postal Service orders will be dispatched within 2 working days. DHL Express orders will be dispatched within 1 working day. Orders containing a pre-order item will be dispatched from the date stated at cart.",
+      "dispatch_message_row": "Tracked Postal Service orders will be dispatched within 2 working days. DHL Express orders will be dispatched within 1 working day. Orders containing a pre-order item will be dispatched from the date stated at cart.",
+      "invalid_discount_code_message": "Sorry, this code has expired, but here's a treat from us. Use code 10EXTRA to get 10% off.",
+      "contact_us_link": "\/pages\/get-in-touch",
+      "contact": {
+        "optional_address2_label": "Address Line 2 (optional)"
+      },
+      "thank_you": {
+        "company_tracking_number": "Tracking number (click here to track your order): "
+      },
+      "order_summary": {
+        "expand_order_summary": "Show order & discount summary"
+      },
+      "confirmation": {
+        "important_tag": "Important",
+        "compatibility_title": "You have ordered products compatible with:",
+        "delivery_address_title": "Your order will be shipped to:",
+        "something_wrong_button": "Something wrong?",
+        "something_wrong_text": "If the order information is incorrect please click the button above to let us know ASAP.",
+        "existing_cust_discount": "Use code [BUYAGAIN] to get 20% off your next order. Be quick, it's only valid for 7 days!"
+      },
+      "how_did_you_hear": {
+        "title": "How did you hear about us?",
+        "options": {
+          "select": "Please select...",
+          "one": "YouTube",
+          "two": "Google",
+          "three": "Online press, newspaper or magazine",
+          "four": "Facebook or Instagram",
+          "five": "Recommendation from family or friend",
+          "six": "Snapchat",
+          "seven": "Someone I follow on Social Media",
+          "other": "Other"
+        }
+      },
+      "express_checkout_redirect_text": "You will be redirected to your chosen secure checkout where you can complete your payment.",
+      "order_payment_collection": {
+        "pay_now": "Pay securely now"
+      },
+      "general": {
+        "pay_now_button_label": "Pay securely now"
+      },
+      "shipping_errors": {
+        "shipping_method_not_available_generic": {
+          "one": "This order can't be shipped to your location. If you are in mainland USA please visit www.mous.co to place your order. Contact us for more information.",
+          "other": "Some items in your cart don't ship to your location. If you are in mainland USA please visit www.mous.co to place your order. Contact us for more information."
+        },
+        "shipping_method_not_available_updated": {
+          "one": "The item you added doesn't ship to your location. Remove it to check out, or contact us. If you are in mainland USA please visit www.mous.co to place your order.",
+          "other": "One or more items you added don't ship to your location. Remove them to check out, or contact us. If you are in mainland USA please visit www.mous.co to place your order."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+<section class="index-press index-bg-{{ section.settings.background }}">
+  <div class="index-wrap index-press__inner">
+    <div class="index-press__quotes" index="press-quotes">
+      {% for block in section.blocks %}
+        <div class="index-press__item">
+          <div class="index-press__text">
+            <a class="index-press__link" href="{{ block.settings.press_link }}" target="_blank">
+              {{ block.settings.press_quote }}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="index-press__gallery" index="press-gallery">
+      {% for block in section.blocks %}
+        <div class="index-press__item">
+          <img class="index-press__img" src="{{ block.settings.press_logo | file_url }}" alt="">
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Homepage press",
+    "settings": [
+      {
+        "type": "select",
+        "id": "background",
+        "options": [
+          { "value": "white", "label": "White" },
+          { "value": "grey", "label": "Light grey" }
+        ],
+        "label": "Background colour"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "media",
+        "name": "Homepage press",
+        "settings": [
+          {
+            "type": "select",
+            "id": "press_logo",
+            "options": [
+              { "value": "Mashable_Logo.svg", "label": "Mashable" },
+              { "value": "Evening_Standard_Logo.svg", "label": "Evening Standard" },
+              { "value": "T3_Logo.svg", "label": "T3" },
+              { "value": "Metro_Logo.svg", "label": "Metro" }
+            ],
+            "label": "Press logo"
+          },
+          {
+            "type": "text",
+            "id": "press_quote",
+            "label": "Quote"
+          },
+          {
+            "type": "url",
+            "id": "press_link",
+            "label": "Press link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Press quotes",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}

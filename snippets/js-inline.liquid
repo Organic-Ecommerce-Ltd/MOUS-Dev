@@ -1,0 +1,170 @@
+{% if type == 'header' %}
+  {% if detect_store == 'DEV' %}
+    <script>
+      console.log("%cPage template = {{ template }}", "background: #0066CC; color: #FFFFFF; padding: 2px 4px")
+    </script>
+  {% endif %}
+
+  <!-- INLINE-HEADER -->
+  {% include 'theme-object' %}
+
+  <!-- AB Tests -->
+  {% comment %} {% include 'google-optimize' experimentName: 'experiment:deviceOverlay', experimentVariants: 3, experimentId: 'rT_ejvINRT2drVm2ZQFedg' %} {% endcomment %}
+
+  {% comment %}
+    When removing this ab test:
+    - remove or comment the optimize and experiment includes below
+    - delete experiment file
+    - remove or implement scss in product.pos.scss (lines 310, 383 & 416)
+  {% endcomment %}
+  {% include 'google-optimize' experimentId: 'U8IJigppTMalRQs6QUqx8g', experimentName: 'experiment:productGalleryThumbnails' experimentVariants: 2, experimentDependant: 'false' %}
+
+  {% if template contains 'product' %}
+    {% include 'experiment-product-gallery-thumbnails' %}
+  {% endif %}
+
+  {% if template contains 'product' %}
+    {% if detect_store == 'US' or detect_store == 'DEV' %}
+      {% assign yotpo_id = 'pnRVCwShPhK3y3b15Odf8NyHaDIthJ6XakRb5hdM' %}
+    {% elsif detect_store == 'UK' %}
+      {% assign yotpo_id = '49zZkgxeLSBLSsihZchMLfNiHHqJczDtdO51Ww5R' %}
+    {% elsif detect_store == 'ROW' %}
+      {% assign yotpo_id = '4noCzAReWKLMu9dkMhXiWO82GlvEAv6Oy5evKjJg' %}
+    {% else %}
+      {% assign yotpo_id = 'guIJFk2YY53bP4ndCsdaU78rwdefpG3BCdLHsWdt' %}
+    {% endif %}
+
+    <script type="text/javascript">(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/{{ yotpo_id }}/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();</script>
+  {% endif %}
+
+{% elsif type == 'fb-pixel' %}
+  <script>
+    {% if detect_store == 'DEV' %}
+      {% assign fb_pixel_id = '1352309861528011' %}
+    {% else %}
+      {% assign fb_pixel_id = '1587025591602660' %}
+    {% endif %}
+
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '{{ fb_pixel_id }}'{%- if customer -%}, {
+      {%- if customer.email %}em: '{{ customer.email | downcase }}',{%- endif -%}
+      {%- if customer.first_name -%}fn: '{{ customer.first_name | downcase }}',{%- endif -%}
+      {%- if customer.last_name -%}ln: '{{ customer.last_name | downcase }}',{%- endif -%}
+      {%- if customer.default_address.city -%}ct: '{{ customer.default_address.city | downcase | handleize | replace: "-", "" }}',{%- endif -%}
+      {%- if customer.default_address.province_code -%}st: '{{ customer.default_address.province_code | downcase }}',{%- endif -%}
+      {%- if customer.default_address.country_code -%}country: '{{ customer.default_address.country_code | upcase }}',{%- endif -%}
+      {%- if customer.default_address.zip -%}zp: '{{ customer.default_address.zip | upcase | replace: ' ', '' }}',{%- endif -%}
+      {%- if customer.phone -%}ph: '{{ customer.phone }}'{%- endif -%}
+    }{%- endif -%})
+  </script>
+
+{% elsif type == 'footer' %}
+  <script defer>
+    var myLazyLoad = new LazyLoad({
+      elements_selector: '.lazy',
+      threshold: 0,
+    })
+  </script>
+
+  <script>
+    if (window.location.href.indexOf('/challenge') > -1) {
+      var challengeWrapper = document.querySelector('.shopify-challenge__container')
+      challengeWrapper.querySelector('form').insertAdjacentHTML('afterbegin', '<input type="hidden" name="return_to" value="/account"/>')
+    }
+  </script>
+
+  {% comment %} {% if detect_store == 'US' or detect_store == 'UK' or detect_store == 'FR' %}
+    <script id="studentBeans" defer>
+      var thisURL = new URL(window.location.href)
+      var studentBeansParam = thisURL.searchParams.get('aff_sub')
+
+      if (studentBeansParam) {
+        window.theme.helpers.setCookie('studentBeans', studentBeansParam)
+      }
+    </script>
+  {% endif %} {% endcomment %}
+
+{% elsif type == 'footer-checkout' %}
+  <script src="https://cdn.unidays.world/unidays-tracking.min.js"
+          integrity="sha384-bUvPj5fOb894FDlGsAUHEdp1F9DILx2A5Kiq0abipj7QpjClwoO9iFSWnZvVhn2q"
+          crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    var isThankYouPage = document.querySelector('html').classList.contains('page--thank-you')
+
+    if (isThankYouPage) {
+      var cartData = {
+        "transactionId": "{{ order.order_number }}",
+        "currency": "{{ shop.currency }}",
+        "orderTotal": "{{ order.total_price | divided_by: 100.00 }}",
+        "discounts": [
+        {% for discount in order.discounts %}
+          {
+            "code": "{{ discount.code }}",
+            "itemsUNiDAYSDiscount": "{{ discount.savings | divided_by: 100.00 }}"
+          },
+        {% endfor %}
+        ],
+        "itemsTax": "{{ order.tax_price | divided_by: 100.00 }}",
+        "shippingGross": "{{ order.shipping_price | divided_by: 100.00 }}",
+        "shippingDiscount": null,
+        "itemsGross": "{{ order.subtotal_price | divided_by: 100.00 }}",
+        "itemsOtherDiscount": null,
+        "existingCustomer": "{{ customer.has_account }}"
+      };
+
+      (function(window) {
+        var acceptedCodePrefix = 'UNI'; // Insert UNiDAYS discount code prefix here.
+        var partnerId = 'z3MReB4Mh0KPMUeYd1Nadw=='; // Insert provided UNiDAYS Partner ID here.
+        var udDiscount = false;
+        var udCode = '';
+        var udSaving = '';
+
+        for (var d = 0; d < cartData.discounts.length; d++) {
+          if (cartData.discounts[d].code.toLowerCase().substring(0, acceptedCodePrefix.length) ==	acceptedCodePrefix.toLowerCase()) {
+            udDiscount = true;
+            udCode = cartData.discounts[d].code;
+            udSaving = cartData.discounts[d].itemsUNiDAYSDiscount;
+
+            // Take the first matched UNiDAYS code.
+            break;
+          }
+        }
+
+        if (udDiscount) {
+          var udItemDiscount = udSaving.replace("-", "");
+          var grossTotal = parseFloat(cartData.itemsGross,10) + parseFloat(udSaving.replace("-", ""),10);
+          var discountPercent = (parseFloat(udSaving.replace("-", ""),10) / grossTotal) * 100;
+
+          var unidays = new UnidaysTracking(partnerId, cartData.currency, cartData.transactionId, udCode);
+          unidays.trackingScriptRequest(cartData.orderTotal, udItemDiscount, cartData.itemsTax, cartData.shippingGross, cartData.shippingDiscount, grossTotal, cartData.itemsOtherDiscount, discountPercent, !cartData.existingCustomer);
+        }
+      }(window));
+    }
+  </script>
+
+  {% comment %} <script>
+    var isThankYouPage = document.querySelector('html').classList.contains('page--thank-you')
+
+    {% if detect_store == 'US' or detect_store == 'UK' or detect_store == 'FR' %}
+      var studentBeansID = window.theme.helpers.findCookie('studentBeans')
+
+      // StudentBeans conversion tag
+      if (studentBeansID && isThankYouPage) {
+        var ifrmSB = document.createElement('iframe')
+
+        ifrmSB.setAttribute("src", "https://studentbeansnetwork.go2cloud.org/aff_lsr?transaction_id="+studentBeansID+"&amount={{ checkout.total_price | money_without_currency | replace: ',', '.' }}&adv_sub={{ checkout.order_name | remove: '#' }}")
+        ifrmSB.style.width = '0'
+        ifrmSB.style.height = '0'
+        document.body.appendChild(ifrmSB)
+      }
+    {% endif %}
+	</script> {% endcomment %}
+{% endif %}

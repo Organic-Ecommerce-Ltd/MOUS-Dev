@@ -1,0 +1,42 @@
+{%- comment -%} Product tags {%- endcomment -%}
+<div
+  class="pos-gallery__tags"
+  data-percent-text="{{ 'products.product.percent_off_tag' | t }}"
+  pos="tags"
+>
+  {% if product_offers_array %}
+    {% for variant_offers_array in product_offers_array %}
+      {% unless variant_offers_array contains '=' %}
+        {% assign offers_all_skus = variant_offers_array | downcase | split: '|' %}
+
+        {% for offer_all_skus in offers_all_skus %}
+          {% if offer_all_skus contains 'magsafe' %}
+            {% assign offer_class = 'light' %}
+          {% else %}
+            {% assign offer_class = 'dark' %}
+          {% endif %}
+
+          <div class="pos-gallery__tag pos-gallery__tag--{{ offer_class }}">{{ offer_all_skus }}</div>
+        {% endfor %}
+      {% endunless %}
+
+      {% if variant_offers_array contains selected_variant.sku %}
+        {% assign offers_no_sku = variant_offers_array | split: '=' | last | downcase | split: '|' %}
+
+        {% for offer in offers_no_sku %}
+          {% if offer contains 'magsafe' %}
+            {% assign offer_class = 'light' %}
+          {% else %}
+            {% assign offer_class = 'dark' %}
+          {% endif %}
+
+          <div class="pos-gallery__tag pos-gallery__tag--{{ offer_class }}">{{ offer }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if percent_off_tag %}
+    <div class="pos-gallery__tag pos-gallery__tag--percent">{{ percent_off_tag }}</div>
+  {% endif %}
+</div>

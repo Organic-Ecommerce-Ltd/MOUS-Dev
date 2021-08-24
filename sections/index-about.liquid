@@ -1,0 +1,60 @@
+<section class="index-about">
+  <div class="index-wrap index-about__inner">
+    <h2 class="index-section-title">{{ section.settings.title }}</h2>
+
+    <div class="index-about__blocks">
+      {% for block in section.blocks %}
+        <div class="index-about__block about-block">
+          {% include 'icon-misc' with icon: block.settings.icon %}
+
+          <h3 class="index-block-title about-block__title">{{ block.settings.title }}</h3>
+
+          <p class="index-copy about-block__text">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Mous",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "About Mous"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            { "value": "phone-drop", "label": "Phone drop" },
+            { "value": "phone-pinch", "label": "Phone pinch" },
+            { "value": "thumbs-up", "label": "Thumbs up" }
+          ],
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

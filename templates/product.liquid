@@ -1,0 +1,31 @@
+{% include 'detect-store' %}
+{% include 'detect-product' %}
+{% include 'product-variables' %}
+
+<div class="product-container{% if is_black_layout %} is-black-layout{% endif %}">
+  {%- comment -%} Point of sale {%- endcomment -%}
+  {% include 'product-pos' %}
+
+  {%- comment -%} Product sections {%- endcomment -%}
+  <div class="product-sections">
+    {% include 'product-section-specs' %}
+    {% include 'product-section-feature-blocks' %}
+    {% include 'product-section-video' %}
+    {% include 'product-section-press' %}
+    {% include 'product-section-usp-blocks' %}
+    {% include 'product-section-addon-gallery' %}
+  </div>
+
+  {%- comment -%} Instagram bar {%- endcomment -%}
+  <section class="product-instagram-section">
+    <div class="h1">{{ 'products.product.instagram_title' | t }}</div>
+    <div class="h2">{{ 'products.product.instagram_subtitle' | t }}</div>
+
+    {% section 'insta-bar' %}
+  </section>
+
+  {%- comment -%} Yotpo reviews {%- endcomment -%}
+  {% include 'product-reviews' %}
+</div>
+
+{% include 'klaviyo-product' %}

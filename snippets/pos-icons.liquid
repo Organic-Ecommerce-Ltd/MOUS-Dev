@@ -1,0 +1,58 @@
+<div class="pos-details__icons pos-icons{% if state_preorder %} is-preorder{% endif %}" pos="icons">
+  <div class="pos-icons__inner">
+    <a
+      class="pos-icons__item pos-icons__item--preorder"
+      href="/pages/delivery"
+      target="_blank"
+    >
+      {% include 'icon-misc' icon: 'thumbs-up' %}
+
+      {{ 'products.product.pre_order_ships' | t }}
+
+      <span pos="preorder-date">
+        {% if preorder_date contains 'preorder:' %}
+          {% assign preorder_date_split = preorder_date | split: ',' %}
+
+          {% for p_date in preorder_date_split %}
+            {% if p_date contains selected_variant.sku %}
+              {{ p_date | split: '_' | last }}
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {{ preorder_date | split: '_' | last }}
+        {% endif %}
+      </span>
+    </a>
+
+    <a
+      class="pos-icons__item pos-icons__item--warranty"
+      href="/pages/warranty"
+      target="_blank"
+    >
+      {% include 'icon-misc' icon: 'warranty-shield' %}
+
+
+      {% if _.limited_warranty %}
+        {{ 'products.product.limited_warranty' | t: year: _.limited_warranty }}
+      {% else %}
+        {{ 'products.product.lifetime_warranty' | t }}
+      {% endif %}
+    </a>
+
+    <a
+      class="pos-icons__item pos-icons__item--shipping"
+      href="/pages/help#can-i-return-my-order-for-a-refund-or-exchange"
+      target="_blank"
+    >
+      {% include 'icon-misc' icon: 'returns-package' %}
+
+      <span class="pos-icons__shipping-text" pos="shipping-notice">
+        {{ returns_message }}
+      </span>
+    </a>
+  </div>
+
+  {% unless is_flip_wallet or is_wireless_charger_stand_only %}
+    {% include 'prop65-warning' location: 'pos' %}
+  {% endunless %}
+</div>

@@ -1,0 +1,78 @@
+<section class="product-pos">
+  <div class="product-wrap pos">
+    {% include 'product-breadcrumbs' %}
+
+    {% include 'product-sticky-bar' %}
+
+    <div class="pos__grid pos-grid">
+      {%- comment -%} Title and range {%- endcomment -%}
+      <h1 class="h2 pos-grid__title pos-title">
+        <span class="pos-title__product">{{ product_title }}</span>
+
+        {% unless is_accessory or is_screen_protector %}
+          {% if product_range %}
+            <span class="pos-title__separator">-</span>
+            <span class="pos-title__range">{{ product_range }}</span>
+          {% endif %}
+        {% endunless %}
+      </h1>
+
+      {%- comment -%} Yotpo Rating {%- endcomment -%}
+      <div class="pos-grid__rating pos-rating">
+        <div class="yotpo bottomLine"
+          data-appkey= "{{ yotpo_app_key }}"
+          data-domain="{{ shop.permanent_domain | escape }}"
+          data-product-id="{{ product.id }}"
+          data-product-models="{{ product.id }}"
+          data-name="{{ product.title | escape }}"
+          data-url="{{ shop.url }}{{ product.url }}"
+          data-image-url="{{ product.featured_image | product_img_url: 'large' | replace: '?', '%3F' | replace: '&','%26' }}"
+          data-description="{{ product.description | escape }}"
+          data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}"
+          >
+        </div>
+      </div>
+
+      {%- comment -%} Product gallery {%- endcomment -%}
+      <div class="pos-grid__gallery pos-gallery">
+        {% include 'pos-gallery' %}
+      </div>
+
+      {%- comment -%} Subtext {%- endcomment -%}
+      <div class="pos-grid__subtext pos-subtext">
+        {{ product_subtext }}
+      </div>
+
+      {%- comment -%} Variant compatibility warning {%- endcomment -%}
+      {% include 'pos-variant-compatibility-warning' %}
+
+      {%- comment -%} Details {%- endcomment -%}
+      <div class="pos-grid__details pos-details">
+        {% if linked_material_collection %}
+          {% include 'pos-material-selectors' %}
+        {% endif %}
+
+        <form
+          action="/cart/add"
+          method="post"
+          enctype="multipart/form-data"
+          pos="form"
+        >
+          {% include 'pos-variant-selectors' %}
+
+          {% include 'pos-main-cta', class: 'details' %}
+
+          <button class="btn pos-coming-soon-cta{% unless state_coming_soon or state_preorder %} dn{% endunless %}" data-popup="#coming-soon" popup="trigger" pos="coming-soon-btn">
+            {{ 'products.product.email_when_available' | t }}
+          </button>
+
+          <a class="btn klaviyo-bis-trigger pos-bis-cta{% unless state_oos %} dn{% endunless %}" href="#" pos="bis-btn">{{ 'products.product.email_when_available' | t }}</a>
+        </form>
+
+        {% include 'pos-icons' %}
+
+        {% include 'pos-accordion' %}
+      </div>
+    </div>
+  </div>
+</section>

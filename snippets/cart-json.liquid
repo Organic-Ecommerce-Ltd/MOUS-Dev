@@ -1,0 +1,13 @@
+<script>
+  window.productVariants["{{ item.id }}"] = {
+    dataLayer: {
+      id: "{{ item.sku }}",
+      name: "{{ item.title }}",
+      brand: "{{ item.vendor }}",
+      category: "{{ item.product.type }}",
+      variant: "{{ item.variant.title }}",
+      price: {{ item.final_price | divided_by: 100.00 }},
+      quantity: 1,
+    },
+  }
+</script>

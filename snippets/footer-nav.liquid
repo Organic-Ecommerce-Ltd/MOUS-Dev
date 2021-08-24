@@ -1,0 +1,34 @@
+{% for link in linklists['footer-nav'].links %}
+  <ul class="footer-nav__list">
+    <li class="footer-nav__item">
+      {% if link.url != '#' %}
+        {% assign tag = 'a' %}
+      {% else %}
+        {% assign tag = 'span' %}
+      {% endif %}
+
+      <{{ tag }} class="footer-nav__heading"{% if link.url != '#' %} href="{{ link.url }}"{% endif %}>
+        {{- link.title -}}
+      </{{ tag }}>
+
+      {% for child_link in link.links %}
+        {% assign child_link_title = child_link.title %}
+
+        {% if child_link_title contains '|' %}
+          {% assign child_link_title = child_link.title | split: '|' | first %}
+          {% assign child_link_location = child_link.title | split: '|' | last %}
+
+          {% if detect_store == child_link_location %}
+            <li class="footer-nav__item">
+              <a class="footer-nav__link" href="{{ child_link.url }}">{{ child_link_title }}</a>
+            </li>
+          {% endif %}
+        {% else %}
+          <li class="footer-nav__item">
+            <a class="footer-nav__link" href="{{ child_link.url }}">{{ child_link_title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </li>
+  </ul>
+{% endfor %}

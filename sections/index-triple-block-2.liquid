@@ -1,0 +1,85 @@
+{% include 'index-triple-block' %}
+
+{% schema %}
+{
+  "name": "Mous triple block",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "grey", "label": "Light grey" }
+      ],
+      "label": "Background colour"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Block image"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            { "value": "", "label": "Please select" },
+            { "value": "warranty-shield", "label": "Protective shield" },
+            { "value": "happy-heart", "label": "Happy heart" },
+            { "value": "shipping-truck", "label": "Delivery truck" }
+          ],
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "icon_text",
+          "label": "Text to sit beneath icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Block title"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Block description"
+        },
+        {
+          "type": "text",
+          "id": "button_title",
+          "label": "Button title",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "btn_light",
+          "label": "Light button?",
+          "default": true
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

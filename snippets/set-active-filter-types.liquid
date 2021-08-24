@@ -1,0 +1,18 @@
+{% comment %}
+  Decide which filters should be shown for each collection.
+  - Only works inside loop of 'linklists.catalogue-filter.links'
+  Returns: show_filter_type true or false
+{% endcomment %}
+
+{% assign show_filter_type = false %}
+
+{% if level1.title == 'Device' %}
+  {% unless settings.excluded_device_handles contains collection.handle %}
+    {% assign show_filter_type = true %}
+  {% endunless %}
+
+{% elsif level1.title == 'Range' %}
+  {% unless settings.excluded_range_handles contains collection.handle %}
+    {% assign show_filter_type = true %}
+  {% endunless %}
+{% endif %}

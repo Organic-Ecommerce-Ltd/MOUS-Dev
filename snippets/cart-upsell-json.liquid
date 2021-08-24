@@ -1,0 +1,59 @@
+<script>
+  {% assign bundle_discount = 0 %}
+
+  {% for tag in product.tags %}
+    {% if tag contains 'bundle_discount:' %}
+      {% assign bundle_discount = tag | split: 'bundle_discount:' | last %}
+    {% endif %}
+  {% endfor %}
+
+  {% for variant in product.variants %}
+    window.productUpsellVariants["{{ variant.id }}"] = {
+      dataLayer: {
+        id: "{{ variant.sku }}",
+        name: "{{ product.title }}",
+        brand: "{{ product.vendor }}",
+        category: "{{ product.type }}",
+        variant: "{{ variant.title }}",
+        price: {{ variant.price | divided_by: 100.00 }},
+        quantity: 1,
+      },
+      price: "{{ variant.price | money }}",
+      compare: "{{ variant.compare_at_price | money }}",
+      pricePence: {{ variant.price | plus: 0 }},
+      comparePence: {{ variant.compare_at_price | plus: 0 }},
+      bundleDiscount: {{ bundle_discount | plus: 0 }},
+      id: "{{ variant.id }}",
+      url: "{{ variant.url }}",
+      type: "{{ product.type }}",
+      options: [
+        {option: "{{ variant.option1 }}"}{% if variant.option2.size > 0 %},
+        {option: "{{ variant.option2 }}"}{% endif %}{% if variant.option3.size > 0 %},
+        {option: "{{ variant.option3 }}"}{% endif %}
+      ],
+
+      {% include 'detect-variant-state' %}
+
+      variantState: "{{ product_state }}",
+      images: [
+        {% for image in product.images %}
+          {% assign image_alt_option1 = image.alt | split: '|' | last | strip | split: ',' %}
+          {% assign image_alt_match = false %}
+
+          {% for option in image_alt_option1 %}
+            {% if option == variant.option1 %}
+              {% assign image_alt_match = true %}
+            {% endif %}
+          {% endfor %}
+
+          {% if image_alt_match or product.has_only_default_variant %}
+            {
+              main: "{{ image.src | img_url: '400x' }}",
+              alt: "{{ image.alt }}",
+            },
+          {% endif %}
+        {% endfor %}
+      ],
+    }
+  {% endfor %}
+</script>

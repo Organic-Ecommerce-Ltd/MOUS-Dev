@@ -1,0 +1,18 @@
+{% if detect_store == 'DEV' %}
+  {% assign klaviyo_id = 'QGeMuS' %}
+{% elsif detect_store == 'US' %}
+  {% assign klaviyo_id = 'Qdutwi' %}
+{% elsif detect_store == 'UK' %}
+  {% assign klaviyo_id = 'HBqGzY' %}
+{% elsif detect_store == 'ROW' %}
+  {% assign klaviyo_id = 'XurtKM' %}
+{% else %}
+  {% assign klaviyo_id = 'QGEZvM' %}
+{% endif %}
+
+<h3 class="index-block-title">{{ section.settings.newsletter_title }}</h3>
+<div class="index-copy">{{ section.settings.newsletter_subtitle }}</div>
+
+<div class="footer-signup__form">
+  <div class="klaviyo-form-{{ klaviyo_id }}"></div>
+</div>

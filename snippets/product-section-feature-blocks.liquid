@@ -1,0 +1,40 @@
+{% if _['n-p_feature_block_1-title'] %}
+  <section class="product-section-imagetext">
+    <div class="product-wrap ps-imagetext">
+      {% for i in (1..4) %}
+        {% assign odd_even = i | modulo: 2 %}
+        {% assign feature_block_image = 'n-p_feature_block_#-image' | replace: '#', i %}
+        {% assign feature_block_video = 'n-p_feature_block_#-video' | replace: '#', i %}
+        {% assign feature_block_title = 'n-p_feature_block_#-title' | replace: '#', i %}
+        {% assign feature_block_subtitle = 'n-p_feature_block_#-subtitle' | replace: '#', i %}
+
+        {% if _[feature_block_title] %}
+          <div class="ps-imagetext__block is-{% if odd_even == 0 %}reversed{% else %}forward{% endif %}">
+            <div class="ps-imagetext__col">
+              {% if _[feature_block_video] %}
+                <div class="ps-imagetext__video">
+                  {% if _[feature_block_video] contains 'youtube' or _[feature_block_video] contains 'youtu.be' %}
+                    <iframe src="{{ _[feature_block_video] | append: '?controls=0' }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  {% else %}
+                    <video src="{{ _[feature_block_video] | file_url }}" autoplay muted loop playsinline></video>
+                  {% endif %}
+                </div>
+              {% else %}
+                <div class="ps-imagetext__image">
+                  {{ _[feature_block_image] | file_url | img_tag }}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="ps-imagetext__col">
+              <div class="ps-imagetext__text">
+                <h2 class="h1">{{ _[feature_block_title] }}</h2>
+                <h3 class="h2">{{ _[feature_block_subtitle] }}</h3>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

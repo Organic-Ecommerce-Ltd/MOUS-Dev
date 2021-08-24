@@ -1,0 +1,24 @@
+{% if _.n-p_specs-title != blank %}
+  <section class="product-section-specs">
+    <div class="product-wrap ps-specs">
+      <h3 class="h1 ps-specs__title">
+        {{ _.n-p_specs-title }}
+      </h3>
+
+      <div class="ps-specs__container">
+        {% for i in (1..6) %}
+          {% assign spec_item_image = 'n-p_specs_#-image' | replace: '#', i %}
+          {% assign spec_item_text = 'n-p_specs_#-text' | replace: '#', i %}
+
+          {% if _[spec_item_text] %}
+            <div class="ps-specs__item">
+              {{ _[spec_item_image] | file_img_url: '100x' | img_tag }}
+
+              <span class="ps-specs__text">{{ _[spec_item_text] }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

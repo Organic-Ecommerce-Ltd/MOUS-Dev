@@ -1,0 +1,7 @@
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    if (window.theme.helpers.findCookie('experiment:productGalleryThumbnails') === '1') {
+      document.querySelector('.pos-gallery__nav-wrapper').classList.add('pos-gallery-ab-test')
+    }
+  })
+</script>

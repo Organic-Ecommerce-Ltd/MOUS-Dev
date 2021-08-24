@@ -1,0 +1,160 @@
+{% include 'detect-store' %}
+
+{%- comment -%} Only iPhone 8/7/6, SE, X/XS, XR, XS Max models should get a free protector {%- endcomment -%}
+{% assign free_clarity_protector = false %}
+
+{% comment %} Check to see if there are any Limitless 2.0 or 3.0 cases in the cart {% endcomment %}
+{% assign limitless_in_cart = '' %}
+
+{%- comment -%} Check to see if there are any Limitless 4.0 cases in the cart {%- endcomment -%}
+{% assign lim4_or_infinity_case_in_cart = false %}
+
+{% comment %}
+  Build a key/value array of the products in the cart which need upsell products.
+  The structure for this is a comma separated string like below.
+  [Range]:[Variant] e.g. Limitless 2.0:iPhone X/XS,Limitless 3.0:iPhone 11
+{% endcomment %}
+{% assign upsell_parent = '' %}
+
+{%- comment -%} Check to see if there is a wrist strap in the cart {%- endcomment -%}
+{% assign wrist_strap_in_cart = '' %}
+{% assign wrist_strap_tags = '' %}
+{% assign case_tags = '' %}
+
+{%- comment -%} Check to see if there is a power adaptor in the cart {%- endcomment -%}
+{% assign power_adaptor_in_cart = false %}
+
+{% for item in cart.items %}
+  {% include 'detect-product' with product: item.product %}
+
+  {% if is_power_adaptor %}
+    {% assign power_adaptor_in_cart = true %}
+  {% endif %}
+
+  {% if is_case or is_airpods_case or is_ipad_case %}
+    {% assign item_vendor = item.product.vendor %}
+
+    {% if is_ipad_case and item_vendor == 'iPad Case' %}
+      {% assign item_vendor = 'iPad' %}
+    {% endif %}
+
+    {% if is_case or is_ipad_case %}
+      {% assign variant_title_handle = item.variant.title | handleize %}
+
+      {% comment %} iPhone 12 & 12 Pro are the same variant so need to be renamed for upsell {% endcomment %}
+      {% if variant_title_handle == 'iphone-8' or variant_title_handle == 'iphone-7' or variant_title_handle == 'iphone-6-6s' or variant_title_handle == 'iphone-se' %}
+        {% assign variant_title_handle = 'iphone-se-8-7-6' %}
+      {% elsif variant_title_handle == 'iphone-8-plus' or variant_title_handle == 'iphone-7-plus' or variant_title_handle == 'iphone-6-6s-plus' %}
+        {% assign variant_title_handle = 'iphone-8-7-6-plus' %}
+      {% elsif variant_title_handle == 'iphone-12' or variant_title_handle == 'iphone-12-pro' %}
+        {% assign variant_title_handle = 'iphone-12-12-pro' %}
+      {% endif %}
+
+      {% unless upsell_parent contains item_vendor %}
+        {% assign upsell_parent = upsell_parent | append: ',' | append: item_vendor | append: ':' | append: variant_title_handle %}
+      {% endunless %}
+    {% endif %}
+
+    {% if item_vendor == 'Infinity' or item_vendor == 'Limitless 4.0' %}
+      {% assign lim4_or_infinity_case_in_cart = true %}
+    {% endif %}
+
+    {% for tag in item.product.tags %}
+      {% if tag contains 'filter-device-' %}
+        {% comment %} Add case tags to array {% endcomment %}
+        {% assign case_tags = case_tags | append: ',' | append: tag %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% for i in (2..3) %}
+    {% assign addon_vendor = 'Limitless #.0' | replace: '#', i %}
+
+    {% if item.product.type == 'Case' and item.product.vendor == addon_vendor %}
+      {% assign limitless_in_cart = limitless_in_cart | append: 'Limitless #.0 | ' | replace: '#', i %}
+    {% endif %}
+  {% endfor %}
+
+  {% if item.product.handle contains 'clear' and item.product.handle contains 'case' %}
+    {% assign clarityCount = clarityCount | plus: item.quantity %}
+  {% endif %}
+
+  {% if item.product.handle contains 'tpu-screen-protector' %}
+    {% if item.variant.title == 'iPhone 8/7/6' or item.variant.title == 'iPhone SE' or item.variant.title == 'iPhone XR' or item.variant.title == 'iPhone X/XS' or item.variant.title == 'iPhone XS Max' %}
+      {% assign free_clarity_protector = true %}
+    {% endif %}
+  {% endif %}
+
+  {% if is_wrist_strap %}
+    {% assign wrist_strap_in_cart = true %}
+    {% assign wrist_strap_tags = item.product.tags %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Put all tags into an array we can loop through {% endcomment %}
+{% assign case_tags = case_tags | remove_first: ',' | split: ',' %}
+{%- comment -%} Check if wrist strap is compatible with case in cart {%- endcomment -%}
+{% assign strap_compatible = false %}
+
+{% if wrist_strap_in_cart %}
+  {% for tag in case_tags %}
+    {% if wrist_strap_tags contains tag %}
+      {% assign strap_compatible = true %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign upsell_parent = upsell_parent | remove_first: ',' | split: ',' %}
+
+<div class="pdh cart-full">
+  <div class="mw cart-full__inner">
+    {% if cart.item_count > 0 %}
+      <form
+        action="/cart"
+        method="post"
+        novalidate
+        cart="form"
+      >
+        {% if detect_store == 'FR' or detect_store == 'ES' %}
+          <input type="hidden" name="attributes[usrLang]" value="{{- detect_store -}}">
+        {% endif %}
+
+        <div class="cart-content">
+          <h1 class="cart-title">{{ 'cart.general.title' | t }}</h1>
+
+          {% comment %} Items {% endcomment %}
+          <div class="cart-items cart__items cart-items__list" cart="item-list">
+            {% for item in cart.items %}
+              {% include 'detect-product' with product: item.product %}
+              {% include 'cart-json' %}
+              {% include 'cart-item' %}
+            {% endfor %}
+          </div>
+
+          {%- comment -%} Summary {%- endcomment -%}
+          {% include 'cart-summary' with type: 'static' %}
+          {% include 'cart-summary' with type: 'fixed' %}
+
+          <a class="cart-payment-icons" href="/checkout">
+            {% include 'payment-icons' %}
+          </a>
+        </div>
+      </form>
+    {% else %}
+      <div class="tc">
+        <h2>{{ 'cart.general.empty_cart_title' | t }}</h2>
+        <p>{{ 'cart.general.empty_cart_subtitle' | t }}</p>
+
+        <a href="/collections/phone-cases" class="btn">{{ 'cart.general.shop_now_btn' | t }}</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% if cart.item_count > 0 and upsell_parent != blank %}
+  {% include 'cart-upsell' %}
+
+  {% section 'cart-reviews' %}
+{% endif %}
+
+{% include 'third-party-script' name: 'mm-refer-friend' %}

@@ -1,0 +1,49 @@
+{% include 'index-video' %}
+
+{% schema %}
+{
+  "name": "Video block",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "grey", "label": "Light grey" }
+      ],
+      "label": "Background colour"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "desc",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_title",
+      "label": "Shop button title"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Shop button link"
+    },
+    {
+      "type": "text",
+      "id": "video_link",
+      "label": "Video link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video with text",
+      "category": "Video"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,46 @@
+{% include 'index-hero' %}
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "btn_title",
+      "label": "Hero button title"
+    },
+    {
+      "type": "text",
+      "id": "btn_link",
+      "label": "Hero button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "light_content",
+      "label": "Light content?",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

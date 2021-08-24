@@ -1,0 +1,22 @@
+{% assign ecd_message = 'shopify.checkout.confirmation.existing_cust_discount' | t %}
+{% assign ecd_text_before = '' %}
+{% assign ecd_code = '' %}
+{% assign ecd_text_after = '' %}
+
+{% if ecd_message contains '[' and ecd_message contains ']' %}
+  {% assign ecd_text_before = ecd_message | split: '[' | first %}
+  {% assign ecd_code = ecd_message | split: '[' | last | split: ']' | first %}
+  {% assign ecd_text_after = ecd_message | split: ']' | last %}
+{% endif %}
+
+<div class="existing-cust-discount" checkout="existing-customer-discount-container">
+  <div class="existing-cust-discount__content">
+    <p>
+      {% if ecd_text_before == '' %}
+        {{ ecd_message }}
+      {% else %}
+        {{ ecd_text_before }} <span class="existing-cust-discount__code">{{ ecd_code }}</span> {{ ecd_text_after}}
+      {% endif %}
+    </p>
+  </div>
+</div>

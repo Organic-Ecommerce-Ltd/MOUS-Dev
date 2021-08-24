@@ -1,0 +1,21 @@
+{% if detect_store == 'EU' or detect_store == 'FR' or detect_store == 'ES' %}
+  <!-- Klaviyo Record Language -->
+  <script defer>
+    var _learnq = _learnq || []
+
+    var identifyLanguageToKlaviyo = function(email) {
+      _learnq.push(['identify', {
+        '$email' : email,
+        'lang'  : Weglot.getCurrentLang(),
+      }])
+    }
+
+    if (Shopify.Checkout.step === 'contact_information') {
+      document.querySelector('#checkout_email').addEventListener('blur', function(event) {
+        identifyLanguageToKlaviyo(event.target.value)
+      })
+    } else {
+      identifyLanguageToKlaviyo('{{ checkout.customer.email }}')
+    }
+  </script>
+{% endif %}

@@ -1,0 +1,18 @@
+{% include 'detect-store' %}
+{% include 'detect-product' %}
+{% include 'product-variables' %}
+
+<div class="product-container{% if is_black_layout %} is-black-layout{% endif %}">
+  {%- comment -%} Point of sale {%- endcomment -%}
+  {% include 'product-comingsoon-pos' %}
+
+  {%- comment -%} Instagram bar {%- endcomment -%}
+  <section class="product-instagram-section">
+    <div class="h1">{{ 'products.product.instagram_title' | t }}</div>
+    <div class="h2">{{ 'products.product.instagram_subtitle' | t }}</div>
+
+    {% section 'insta-bar' %}
+  </section>
+</div>
+
+{% include 'klaviyo-product' %}

@@ -1,0 +1,45 @@
+<div class="main-nav__rating nav-rating">
+  <h2 class="nav-rating__title">{{ 'general.header.navigation.rating.title' | t }}</h2>
+
+  <h3 class="nav-rating__subtitle">{{ 'general.header.navigation.rating.subtitle' | t }}</h3>
+
+  <a class="nav-rating__score-container score-container" href="/pages/reviews">
+    <div class="score-container__stars">
+      {% comment %}
+        - This is slightly convoluted but it's because they want any rating over .5 to show a full star
+        but show half stars for rating exactly equally .5 (eg. 4.5).
+        - Once limit is reached then the remaining stars need to be empty.
+      {% endcomment %}
+      {% assign rating_with_decimal = 'general.header.navigation.rating.score' | t | plus: 0 | round: 1 %}
+      {% assign rating_mod = 'general.header.navigation.rating.score' | t | plus: 0 | modulo: 1 %}
+      {% assign limit_reached = false %}
+
+      {% for i in (1..5) %}
+        {% if i <= rating_with_decimal %}
+          {% include 'icon-misc' with icon: 'review-star-full' %}
+        {% else %}
+          {% if limit_reached %}
+            {% include 'icon-misc' with icon: 'review-star-empty' %}
+
+          {% else %}
+            {% if rating_mod == 0 %}
+              {% include 'icon-misc' with icon: 'review-star-empty' %}
+            {% elsif rating_mod <= 0.5 %}
+              {% include 'icon-misc' with icon: 'review-star-half' %}
+            {% else %}
+              {% include 'icon-misc' with icon: 'review-star-full' %}
+            {% endif %}
+
+            {% assign limit_reached = true %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="score-container__rating-container">
+      <span class="score-container__rating">{{ 'general.header.navigation.rating.score' | t }}</span>/5
+    </div>
+
+    <img class="score-container__logo" src="{{ 'yotpo-logo-green.png' | file_url }}" alt="Yotpo logo">
+  </a>
+</div>

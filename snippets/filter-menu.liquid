@@ -1,0 +1,153 @@
+{% assign is_filter_disabled = false %}
+
+{% if settings.hidden_filter_handles contains collection.handle %}
+  {% assign is_filter_disabled = true %}
+{% endif %}
+
+<div class="filter w-25-l w-100 mt2 pr3-l{% if is_filter_disabled %} filter--disabled{% endif %}" js-mobile-filter="container">
+  <div class="filter-mobile-sticky">
+    <div class="filter-mobile tc">
+      {% for level1 in linklists.catalogue-filter.links %}
+        {% include 'set-active-filter-types' %}
+
+        <a href="#filter-list--{{ level1.title | handle | replace: '2f', '' }}" class="filter-mobile__dropdown-btn{% unless show_filter_type %} filter-mobile__dropdown-btn--hidden{% endunless %}" js-mobile-filter-btn="{{ level1.title | handleize }}">
+          <span>{{ level1.title }}</span>
+          <img src="{{ 'icon-filter-delete.svg' | asset_url }}" alt="delete filter" class="filter-mobile-delete">
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="filter-sticky">
+      <h2 class="filter-header">Filter<a href="{{ collection.url }}" class="filter-cancel" js-filter="clearAll">Clear All</a></h2>
+
+      {% if show_magsafe_filter %}
+        {% include 'magsafe-filter' with is_mobile: false %}
+      {% endif %}
+
+      <div class="w-100 filter-list-container">
+        {% for level1 in linklists.catalogue-filter.links %}
+          {% include 'set-active-filter-types' %}
+          {% assign is_device_filter = false %}
+
+          {% if level1.title contains 'Device' %}
+            {% assign is_device_filter = true %}
+          {% endif %}
+
+          <div class="flex flex-wrap filter-list filter-list--{{ level1.title | handle | replace: '2f', '' }}{% unless show_filter_type %} filter-list--hidden{% endunless %}" js-filter-list="{{ level1.title | handleize }}">
+            <div class="filter-item--heading">
+              {{- level1.title -}}
+            </div>
+
+            <div class="filter-sub-list">
+              <div class="filter-menu">
+                {% if is_device_filter %}
+                  <div class="filter-2col">
+                {% endif %}
+
+                {% for level2 in level1.links %}
+                  {% if is_device_filter and level2.title == '-----' %}
+                    </div>
+                    <div class="filter-2col">
+                  {% else %}
+                    {% assign children = level2.links | size %}
+                    {% assign tagHandle = level2.url | split: 'filter' | last | prepend: 'filter' | handle | replace: '2f', '' %}
+                    {% assign tagURL = level2.url %}
+                    {% assign tagSwatch = tagHandle | append: '.jpg' %}
+
+                    {%- capture selected -%}
+                      {%- for tag in current_tags -%}
+                        {%- assign currentTag = tag | handle | replace: '2f', '' -%}
+
+                        {%- if tagHandle contains 'limitless' and currentTag contains 'limitless-all' -%}
+                          selected
+                        {%- elsif currentTag == tagHandle -%}
+                          selected
+                        {%- endif -%}
+                      {%- endfor -%}
+                    {%- endcapture -%}
+
+                    {%- comment -%} Devices {%- endcomment -%}
+                    {% if children > 0 %}
+                      <div class="filter-item--2col {{ tagHandle }}">
+                        <div class="filter-level2-heading">
+                          <div class="filter-item--swatch tc {{ selected }}" data-filter="{{ tagHandle }}" data-filter-type="{{ level1.title | handle | replace: '2f', '' }}" data-filter-pretty="{{ level2.title }}">
+                            <a href="{{ tagURL }}" class="filter-device">
+                              <span class="filter-item__image">{{ tagSwatch | file_url | img_tag }}</span>
+                              <span class="filter-item__title">{{ level2.title }}</span>
+                            </a>
+                          </div>
+                        </div>
+
+                        {% comment %} Check to see if any devices are hidden, if not, don't show more button {% endcomment %}
+                        {% assign any_devices_hidden = false %}
+                        {% for level3 in level2.links %}
+                          {% if level3.title contains '**' %}
+                            {% assign any_devices_hidden = true %}
+                          {% endif %}
+                        {% endfor %}
+
+                        <div id="{{ tagHandle }}" class="filter-level3-links hide">
+                          {% assign chosenOption = false %}
+
+                          {% for level3 in level2.links %}
+                            {% assign tagHandleLevel3 = level3.url | split: 'filter' | last | prepend: 'filter' | handle | replace: '2f', '' %}
+                            {% assign tagURLLevel3 = collection.url | replace: '.', '-' %}
+                            {% assign tagSwatchLevel3 = tagHandleLevel3 | append: '.jpg' %}
+
+                            {%- for tag in current_tags -%}
+                              {%- assign currentHandle = tag | handle | replace: '2f', '' -%}
+                              {%- if currentHandle == tagHandleLevel3 -%}
+                                {% assign chosenOption = tagHandleLevel3 %}
+                                <div class="filter-item filter-item--swatch tc selected" data-filter="{{ tagHandleLevel3 }}" data-filter-type="{{ level1.title | handle | replace: '2f', '' }}" data-filter-pretty="{{ level3.title | remove: '**' }}">
+                                  <a href="{{ tagURLLevel3 }}" class="filter-link" js-filter="link">
+                                    <span class="filter-item__image">{{ tagSwatchLevel3 | file_url | img_tag }}</span>
+                                    <span class="filter-item__title">{{ level3.title | remove: '**' }}</span>
+                                  </a>
+                                </div>
+                              {%- endif -%}
+                            {%- endfor -%}
+                          {% endfor %}
+
+                          {% for level3 in level2.links %}
+                            {% assign tagHandleLevel3 = level3.url | split: 'filter' | last | prepend: 'filter' | handle | replace: '2f', '' %}
+                            {% assign tagURLLevel3 = collection.url | replace: '.', '-' %}
+                            {% assign tagSwatchLevel3 = tagHandleLevel3 | append: '.jpg' %}
+
+                            {% unless chosenOption == tagHandleLevel3 %}
+                              <div class="filter-item filter-item--swatch tc{% if level3.title contains '**' %} hidden{% endif %}" data-filter="{{ tagHandleLevel3 }}" data-filter-type="{{ level1.title | handle | replace: '2f', '' }}" data-filter-pretty="{{ level3.title | remove: '**' }}">
+                                <a href="{{ tagURLLevel3 }}" class="filter-link" js-filter="link">
+                                  <span class="filter-item__image">{{ tagSwatchLevel3 | file_url | img_tag }}</span>
+                                  <span class="filter-item__title">{{ level3.title | remove: '**' }}</span>
+                                </a>
+                              </div>
+                            {% endunless %}
+                          {% endfor %}
+                        </div>
+
+                        {% if any_devices_hidden %}
+                          <a href="#{{ tagHandle }}" class="filter-level3-links__show">More</a>
+                        {% endif %}
+                      </div>
+                    {%- comment -%} Ranges {%- endcomment -%}
+                    {% else %}
+                      <div class="filter-item filter-item--swatch filter-item--{{ level1.title | handle | replace: '2f', '' }} tc {{ selected }}" data-filter="{{ tagHandle }}" data-filter-type="{{ level1.title | handle | replace: '2f', '' }}" data-filter-pretty="{{ level2.title }}">
+                        <a href="{{ tagURL }}" class="filter-link" js-filter="link">
+                          {% unless tagHandle contains 'range' %}<span class="filter-item__image">{{ tagSwatch | file_url | img_tag }}</span>{% endunless %}
+                          <span class="filter-item__title">{{ level2.title }}</span>
+                        </a>
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+
+                {% if is_device_filter %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

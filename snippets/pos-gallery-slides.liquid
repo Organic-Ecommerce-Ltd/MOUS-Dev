@@ -1,0 +1,75 @@
+{% assign first_slide = true %}
+{% assign slide_count = 0 %}
+
+{% for media in product.media %}
+  {% unless media.alt contains 'list-image' %}
+    {% assign alt_option1 = media.alt | split: '|' | last | strip | split: ',' %}
+    {% assign alt_match = false %}
+    {% assign media_url = media.src | img_url: '680x' %}
+    {% assign video_slide = false %}
+
+    {% for option in alt_option1 %}
+      {% if option == selected_variant.option1 %}
+        {% assign alt_match = true %}
+      {% endif %}
+    {% endfor %}
+
+    {%- comment -%} Check if media is an mp4 video {%- endcomment -%}
+    {% if media.media_type == 'video' %}
+      {% for src in media.sources %}
+        {% if src.format == 'mp4' %}
+          {% assign video_slide = true %}
+          {% assign media_url = src.url %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if alt_match or product.has_only_default_variant %}
+      {% if media.alt contains '|' %}
+        {% assign media_alt = media.alt | split: '|' | first | strip %}
+      {% else %}
+        {% assign media_alt = media.alt %}
+      {% endif %}
+
+      {% capture cell_attrs %}
+        {% if is_gallery_nav %}
+          class="pos-gallery-nav__item{% if first_slide %} is-active{% endif %}"
+          pos="gallery-nav-cell"
+        {% else %}
+          class="pos-gallery-carousel__item"
+          pos="gallery-carousel-cell"
+        {% endif %}
+      {% endcapture %}
+
+      {% if product_has_gallery %}
+        <div {{ cell_attrs }} data-index="{{ slide_count }}">
+      {% endif %}
+        {% if video_slide %}
+          {% if is_gallery_nav %}
+            <div class="pos-gallery-nav__video-thumb"></div>
+          {% else %}
+            <video
+              src="{{ media_url }}"
+              aria-label="{{ media_alt }}"
+              pos="video-slide"
+              autoplay
+              loop
+              muted
+              playsinline
+            ></video>
+          {% endif %}
+        {% else %}
+          <img
+            {% if first_slide or is_gallery_nav %}src{% else %}data-flickity-lazyload{% endif %}="{{ media_url }}"
+            alt="{{ media_alt }}"
+          >
+        {% endif %}
+      {% if product_has_gallery %}
+        </div>
+      {% endif %}
+
+      {% assign first_slide = false %}
+      {% assign slide_count = slide_count | plus: 1 %}
+    {% endif %}
+  {% endunless %}
+{% endfor %}

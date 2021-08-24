@@ -1,0 +1,49 @@
+{% include 'index-featured' %}
+
+{% schema %}
+{
+  "name": "Featured products",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "grey", "label": "Light grey" }
+      ],
+      "label": "Background colour"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our current top picks"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "featured_product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

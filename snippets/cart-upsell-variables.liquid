@@ -1,0 +1,88 @@
+
+{% assign selected_variant = product.selected_or_first_available_variant %}
+{% assign selected_variant_matched = false %}
+{% assign _ = product.metafields.global %}
+{% assign matching_accessory = false %}
+{% assign bundle_discount = false %}
+{% assign preorder_date = false %}
+
+{% for tag in product.tags %}
+  {%- comment -%} Create bundle discount amount {%- endcomment -%}
+  {% if tag contains 'bundle_discount:' %}
+    {% assign bundle_discount = tag | split: ':' | last %}
+  {% endif %}
+
+  {%- comment -%} Preorder date {%- endcomment -%}
+  {% if tag contains 'preorder_' %}
+    {% assign preorder_date = tag | remove: 'preorder_' %}
+  {% endif %}
+
+  {%- comment -%}
+    Determine whether a product should be shown in the upsell collection.
+    - If product has variants that don't match case names (e.g. Wrist straps), check it has metafield and is available.
+    - If product has multiple variants, check to see if case variant matches any upsell variant.
+    - If product only has one variant, just check it's available.
+  {%- endcomment -%}
+  {% unless matching_accessory %}
+    {% if tag contains 'filter-device-' %}
+      {% assign filter_device = tag | split: 'filter-device-' | last | handleize %}
+
+      {% if upsell_variant contains filter_device %}
+        {% if _['upsell_no_match_variant'] and product.available %}
+          {% assign matching_accessory = true %}
+        {% endif %}
+
+        {% if product.variants.size > 1 %}
+          {% for variant in product.variants %}
+            {% assign variant_title_slug = variant.title | handleize %}
+
+            {% if variant.available and upsell_variant contains variant_title_slug %}
+              {% assign matching_accessory = true %}
+              {% assign selected_variant_matched = variant %}
+            {% endif %}
+          {% endfor %}
+        {% elsif product.available %}
+          {% assign matching_accessory = true %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% else %}
+    {% break %}
+  {% endunless %}
+{% endfor %}
+
+{% if selected_variant_matched %}
+  {% assign selected_variant = selected_variant_matched %}
+{% endif %}
+
+{% comment %} Change prices if bundle_discount exist {% endcomment %}
+{% assign original_compare_price = selected_variant.compare_at_price %}
+{% assign original_price = selected_variant.price %}
+{% assign non_discounted_price = original_compare_price %}
+{% assign product_price = original_price %}
+
+{% if bundle_discount %}
+  {% comment %} bd_d is used to get the discount value as a percentage && divide by 100.0 as 100 returns the value rounded down eg: 0.9 would become 0 {% endcomment %}
+  {% assign bd_d = 100 | minus: bundle_discount | divided_by: 100.0 %}
+
+  {% if original_compare_price > original_price %}
+    {% assign bundle_discounted_price = original_price | times: bd_d | round %}
+    {% assign bundle_discount_amount = original_price | minus: bundle_discounted_price %}
+    {% assign product_price = original_price | minus: bundle_discount_amount %}
+  {% else %}
+    {% comment %} Times the price by the decimal to take off the discount amount {% endcomment %}
+    {% assign non_discounted_price = original_price %}
+    {% assign product_price = original_price | times: bd_d | round %}
+  {% endif %}
+{% endif %}
+
+{% assign bundle_saving = original_price | minus: product_price %}
+{% assign product_price_pence = product_price %}
+{% assign product_price = product_price | money %}
+
+{%- comment -%} Subtext removal of popup text (used on product templates) {%- endcomment -%}
+{% assign product_subtext = _['p_subtext'] %}
+
+{% if product_subtext and product_subtext contains '#####' %}
+  {% assign product_subtext = product_subtext | split: '#####' | first %}
+{% endif %}

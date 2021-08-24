@@ -1,0 +1,219 @@
+{% include 'detect-store' %}
+
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+<head>
+  <!-- Tracking -->
+  {% include 'gtm' noscript: false %}
+  {% include 'datalayer' %}
+  {% include 'js-inline' type: 'header' %}
+  {% include 'standard-meta-tags' %}
+
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
+
+  <style>
+    {% include 'critical.min.css' %}
+  </style>
+
+  {% include 'seo' %}
+
+  {% include 'canonicals' %}
+
+  {% include 'hreflang_tags' %}
+
+  {% if detect_store == 'EU' or detect_store == 'FR' or detect_store == 'ES' %}
+    <link rel="stylesheet" href="https://cdn.weglot.com/weglot_shopify.min.css" type="text/css" media="all">
+
+    {% include 'weglot_switcher' %}
+  {% endif %}
+
+  {% include 'social-meta-tags' %}
+
+  <!-- Preloads -->
+  <link rel="preload" href="{{ 'main.min.css' | asset_url }}" as="style">
+
+  {% if template contains 'index' %}
+    <link rel="preload" href="{{ 'index.default.min.css' | asset_url }}" as="style">
+  {% elsif template contains 'product' %}
+    <link rel="preload" href="{{ 'product.default.min.css' | asset_url }}" as="style">
+  {% elsif template contains 'collection' %}
+    <link rel="preload" href="{{ 'collection.default.min.css' | asset_url }}" as="style">
+  {% elsif template contains 'blog' or template contains 'article' %}
+    <link rel="preload" href="{{ 'blog.default.min.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'article.default.min.css' | asset_url }}" as="style">
+  {% elsif template contains 'cart' %}
+    {% if template contains 'new' %}
+      <link rel="preload" href="{{ 'cart.new.min.css' | asset_url }}" as="style">
+    {% else %}
+      <link rel="preload" href="{{ 'cart.default.min.css' | asset_url }}" as="style">
+    {% endif %}
+  {% elsif template contains '404' %}
+    <link rel="preload" href="{{ '404.default.min.css' | asset_url }}" as="style">
+  {% elsif template contains 'page.' %}
+    <link rel="preload" href="{{ 'page.subnav.min.css' | asset_url }}" as="style">
+
+    {% if template contains 'page.help' %}
+      <link rel="preload" href="{{ 'page.help.min.css' | asset_url }}" as="style">
+    {% elsif template contains 'page.delivery' %}
+      <link rel="preload" href="{{ 'page.delivery.min.css' | asset_url }}" as="style">
+    {% elsif template contains 'page.careers' %}
+      <link rel="preload" href="{{ 'page.careers.min.css' | asset_url }}" as="style">
+    {% elsif template contains 'page.swell' %}
+      <link rel="preload" href="{{ 'page.swell.min.css' | asset_url }}" as="style">
+    {% elsif template contains 'page.blackFriday' %}
+      <link rel="preload" href="{{ 'page.blackfriday.min.css' | asset_url }}" as="style">
+    {% endif %}
+  {% elsif template contains 'customer' %}
+    <link rel="preload" href="{{ 'customers.default.min.css' | asset_url }}" as="style">
+  {% endif %}
+
+  <!-- STYLESHEETS -->
+  <link rel="stylesheet" href="{{ 'main.min.css' | asset_url }}">
+
+  {% if template contains 'index' %}
+    {{ 'index.default.min.css' | asset_url | stylesheet_tag }}
+  {% elsif template contains 'product' %}
+    {{ 'product.default.min.css' | asset_url | stylesheet_tag }}
+  {% elsif template contains 'collection' %}
+    {{ 'collection.default.min.css' | asset_url | stylesheet_tag }}
+  {% elsif template contains 'blog' or template contains 'article' %}
+    {{ 'blog.default.min.css' | asset_url | stylesheet_tag }}
+    {{ 'article.default.min.css' | asset_url | stylesheet_tag }}
+  {% elsif template contains 'cart' %}
+    {% if template contains 'new' %}
+      {{ 'cart.new.min.css' | asset_url | stylesheet_tag }}
+    {% else %}
+      {{ 'cart.default.min.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+  {% elsif template contains '404' %}
+    {{ '404.default.min.css' | asset_url | stylesheet_tag }}
+
+  {% elsif template contains 'page.' %}
+    {{ 'page.subnav.min.css' | asset_url | stylesheet_tag }}
+
+    {% if template contains 'page.help' %}
+      {{ 'page.help.min.css' | asset_url | stylesheet_tag }}
+    {% elsif template contains 'page.delivery' %}
+      {{ 'page.delivery.min.css' | asset_url | stylesheet_tag }}
+    {% elsif template contains 'page.careers' %}
+      {{ 'page.careers.min.css' | asset_url | stylesheet_tag }}
+    {% elsif template contains 'page.swell' %}
+      {{ 'page.swell.min.css' | asset_url | stylesheet_tag }}
+    {% elsif template contains 'page.blackFriday' %}
+      {{ 'page.blackfriday.min.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+  {% elsif template contains 'customer' %}
+    {{ 'customers.default.min.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+
+  <!-- SCRIPTS -->
+  {% if template contains 'customers' %}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+  {% endif %}
+
+  {% include 'IE11' %}
+
+  {% include 'ip-lookup' %}
+
+  {{ content_for_header }}
+
+  {% include 'js-inline' type: 'fb-pixel' %}
+</head>
+
+<body class="template-{{ template | split: '.' | first }}{% if template contains 'nohdr' %} hdr-no-bg{% endif %}">
+  {% include 'gtm' noscript: true %}
+  {% include 'modal-location' %}
+
+  <div class="container">
+    {% section 'header' %}
+
+    <main class="main-content" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% unless template contains 'product' or template contains 'index' %}
+      {% section 'insta-bar' %}
+    {% endunless %}
+
+    {% if template contains 'collection' %}
+      {% include 'collection-description' %}
+    {% endif %}
+
+    {% if template contains 'index' %}
+      <section class="index-insta-bar">
+        <div class="index-insta-bar__content">
+          <div class="index-insta-bar__title">{{ 'products.product.instagram_title' | t }}</div>
+          <div class="index-insta-bar__subtitle">{{ 'products.product.instagram_subtitle' | t }}</div>
+        </div>
+
+        {% section 'insta-bar' %}
+      </section>
+
+      {% section 'index-about' %}
+    {% endif %}
+
+    <footer class="footer">
+      {% section 'footer' %}
+    </footer>
+  </div>
+
+  <!-- POPUPS -->
+  {% include 'modal-location' %}
+  {% include 'modal-video' %}
+
+  {% if template contains 'index' %}
+    {% include 'modal-device-overlay' %}
+  {% endif %}
+
+  {% if template contains 'product' %}
+    {% include 'modal-coming-soon' %}
+    {% include 'modal-product-description' %}
+  {% endif %}
+
+  <div class="alert"></div>
+
+  <!-- Scripts -->
+  <script src="{{ 'vendors.min.js' | asset_url }}"></script>
+  <script src="{{ 'main.min.js' | asset_url }}" defer></script>
+
+  {% if template contains 'index' %}
+    <script src="{{ 'index.default.min.js' | asset_url }}" defer></script>
+  {% elsif template contains 'product' %}
+    {% include 'klaviyo-back-in-stock' %}
+
+    {% unless template contains 'product.comingsoon' %}
+      <script src="{{ 'product.default.min.js' | asset_url }}" defer></script>
+    {% endunless %}
+  {% elsif template contains 'collection' %}
+    <script src="{{ 'collection.default.min.js' | asset_url }}" defer></script>
+  {% elsif template contains 'cart' %}
+    {% if template contains 'new' %}
+      <script src="{{ 'cart.new.min.js' | asset_url }}" defer></script>
+    {% else %}
+      <script src="{{ 'cart.default.min.js' | asset_url }}" defer></script>
+    {% endif %}
+  {% elsif template contains 'page' %}
+    <script src="{{ 'page.default.min.js' | asset_url }}" defer></script>
+
+    {% if template contains 'page.delivery' %}
+      <script src="{{ 'page.delivery.min.js' | asset_url }}" defer></script>
+    {% elsif template contains 'page.help' or template contains 'page.get-in-touch' %}
+      <script src="{{ 'page.help.min.js' | asset_url }}" defer></script>
+    {% endif %}
+  {% elsif template contains '404' %}
+    <script src="{{ '404.default.min.js' | asset_url }}" defer></script>
+  {% elsif page.handle contains 'careers' %}
+    <script src="{{ 'page.careers.min.js' | asset_url }}" defer></script>
+  {% elsif page.handle contains 'swell' %}
+    <script src="{{ 'page.swell.min.js' | asset_url }}" defer></script>
+  {% elsif template contains 'customer' %}
+    {{ 'customers.default.min.js' | asset_url | script_tag }}
+  {% endif %}
+
+  {% include 'js-inline' type:'footer' %}
+
+	{% include 'cookies-banner' %}
+
+  {% include 'freshdesk-chat-widget' %}
+</body>
+</html>

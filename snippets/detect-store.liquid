@@ -1,0 +1,15 @@
+{% if request.host contains 'www.m' %}
+  {% assign detect_store = 'US' %}
+{% elsif request.host contains 'uk.m' %}
+  {% assign detect_store = 'UK' %}
+{% elsif request.host contains 'eu.m' %}
+  {% assign detect_store = 'EU' %}
+{% elsif request.host contains 'fr.m' %}
+  {% assign detect_store = 'FR' %}
+{% elsif request.host contains 'es.m' %}
+  {% assign detect_store = 'ES' %}
+{% elsif request.host contains 'row.m' %}
+  {% assign detect_store = 'ROW' %}
+{% else %}
+  {% assign detect_store = 'DEV' %}
+{% endif %}

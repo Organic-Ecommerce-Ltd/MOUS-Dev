@@ -1,0 +1,28 @@
+<section class="index-video index-bg-{{ section.settings.background }}">
+  <div class="index-wrap index-video__inner video-inner">
+    <div class="video-inner__content video-inner-content">
+      <h2 class="index-section-title video-inner-content__heading">{{ section.settings.title }}</h2>
+      <p class="index-section-subtitle video-inner-content__description">{{ section.settings.desc }}</p>
+      <a 
+        class="btn index-button video-inner-content__btn"
+        href="{{ section.settings.button_link }}"
+        data-popup="#device-overlay"
+        doverlay="trigger"
+      >
+        {{ section.settings.button_title }}
+      </a>
+    </div>
+
+    <div class="video-inner__container">
+      <div class="video-wrapper">
+        <iframe
+          class="video-wrapper__source"
+          src="https://www.youtube.com/embed/{{ section.settings.video_link | split: '/' | last }}"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

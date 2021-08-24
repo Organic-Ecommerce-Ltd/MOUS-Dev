@@ -1,0 +1,60 @@
+{% include 'index-single-block' %}
+
+{% schema %}
+{
+  "name": "Single image block",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "grey", "label": "Light grey" }
+      ],
+      "label": "Background colour"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section description"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "button_title",
+      "label": "Shop button title"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Shop button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "btn_light",
+      "label": "Light button?",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Single image & text",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

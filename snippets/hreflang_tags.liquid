@@ -1,0 +1,24 @@
+{% comment %} Variables set by Weglot's preferences panel {% endcomment %}
+{% assign destination_languages = "fr,es" | split: ',' %}
+{% assign proxy_prefix = "mous.co/a/l/[LANG]/" %}
+{% assign main_domain = canonical_url | replace: 'eu.', 'www.' | replace: 'fr.', 'www.' | replace: 'es.', 'www.' | replace: 'uk.', 'www.' | replace: 'row.', 'www.' %}
+{% assign eu_countries = 'AD,AL,AT,BA,BE,BG,BY,CH,CY,CZ,DE,DK,EE,ES,FI,FR,GI,GR,HR,HU,IE,IS,IT,LT,LU,LV,MC,ME,MK,MT,NL,NO,PL,PT,RO,RS,SE,SI,SK,UA' | split: ',' %}
+
+{% for eu_country in eu_countries %}
+  <link rel="alternate" hreflang="en-{{ eu_country }}" href="{{ main_domain | replace: 'www.', 'eu.' }}">
+{% endfor %}
+
+{%- comment -%}
+  Hacky way to make sure the hreflang tags are setup correctly for the FR/ES sub domains.
+  Part of the issue is that the 'canonical_url' still returns EU.mous.co on the fr/es sites.
+{%- endcomment -%}
+{% for language in destination_languages %}
+  {% assign lang_with_dot = language | append: '.' %}
+
+  <link rel="alternate" hreflang="{{ language }}-{{ language | upcase }}" href="{{ main_domain | replace: 'www.', lang_with_dot | replace: 'mous.co', proxy_prefix | replace: '[LANG]', language }}">
+{% endfor %}
+
+<link rel="alternate" hreflang="en-GB" href="{{ main_domain | replace: 'www.', 'uk.' }}">
+<link rel="alternate" hreflang="en-US" href="{{ main_domain }}">
+<link rel="alternate" hreflang="en" href="{{ main_domain | replace: 'www.', 'row.' }}">
+<link rel="alternate" hreflang="x-default" href="{{ main_domain | replace: 'www.', 'row.' }}">

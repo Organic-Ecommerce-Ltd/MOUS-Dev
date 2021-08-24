@@ -1,0 +1,35 @@
+<div class="hdr__notice-bar notice-bar" header="notice-bar">
+  {% for block in section.blocks %}
+    {% if block.settings.show_on_stores contains detect_store or block.settings.show_on_stores == '' %}
+      {% assign slide_type = 'div' %}
+
+      {% if block.settings.slide_link != '' %}
+        {% assign slide_type = 'a' %}
+      {% endif %}
+
+      <{{ slide_type }} class="notice-bar__slide"{% if slide_type == 'a' %} href="{{ block.settings.slide_link }}"{% endif %}>
+        {% if block.settings.dynamic_shipping_text %}
+          <span class="notice-bar__dynamic-text" header="dynamic-shipping-text">
+            {% if detect_store == 'US' or detect_store == 'ROW' %}
+              {{ 'general.header.notice_bar.worldwide_store.generic' | t }}
+            {% elsif detect_store == 'UK' %}
+              {{ 'general.header.notice_bar.uk_store.generic' | t }}
+            {% else %}
+              {{ 'general.header.notice_bar.europe_store.generic' | t }}
+            {% endif %}
+          </span>
+        {% elsif block.settings.dynamic_excluded_states_text %}
+          <span class="notice-bar__dynamic-text" header="excluded-state">
+            {{ block.settings.slide_text }}
+          </span>
+        {% else %}
+          {{ block.settings.slide_text }}
+        {% endif %}
+
+        {% if block.settings.slide_img != blank %}
+          <img class="notice-bar__img" src="{{ block.settings.slide_img | img_url: 'x40' }}" alt="">
+        {% endif %}
+      </{{ slide_type }}>
+    {% endif %}
+  {% endfor %}
+</div>

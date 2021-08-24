@@ -1,0 +1,25 @@
+<div class="blog">
+  {% paginate blog.articles by 12 %}
+    <div class="blog__header blog-header">
+      <h1 class="blog-header__title h2">{{ page_title }}</h1>
+
+      <h2 class="blog-header__subtitle h4">{{ 'blogs.listing.subtitle' | t }}</h2>
+    </div>
+
+    <div class="blog__list blog-list">
+      {% for article in blog.articles %}
+        {% include 'article-card', article: article, class: 'blog-list__card' %}
+      {% endfor %}
+    </div>
+
+    {% if blog.articles.size == 0 %}
+      <p class="tc">{{ 'blogs.article.no_matches' | t }}</p>
+    {% endif %}
+
+    {% if paginate.pages > 1 %}
+      <div class="blog__pagination">
+        {% include 'pagination' %}
+      </div>
+    {% endif %}
+  {% endpaginate %}
+</div>

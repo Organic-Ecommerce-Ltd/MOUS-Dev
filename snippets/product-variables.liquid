@@ -1,0 +1,168 @@
+{%- comment -%} Setup selected_variant {%- endcomment -%}
+{% assign selected_variant = product.selected_or_first_available_variant %}
+
+{%- comment -%} Product section metafields shortcut {%- endcomment -%}
+{% assign _ = product.metafields.global %}
+
+{%- comment -%} Setup the correct language strings based on location. {%- endcomment -%}
+{% if detect_store == 'US' %}
+  {% assign coming_soon_id = _.klaviyo_id_us %}
+  {% assign returns_message = 'products.product.returns.worldwide_store.generic' | t %}
+{% elsif detect_store == 'UK' %}
+  {% assign coming_soon_id = _.klaviyo_id_uk %}
+  {% assign returns_message = 'products.product.returns.uk_store.generic' | t %}
+{% elsif detect_store == 'ROW' %}
+  {% assign coming_soon_id = _.klaviyo_id_row %}
+  {% assign returns_message = 'products.product.returns.worldwide_store.generic' | t %}
+{% elsif detect_store == 'DEV' %}
+  {% if _.klaviyo_id_dev %}
+    {% assign coming_soon_id = _.klaviyo_id_dev %}
+  {% else %}
+    {% assign coming_soon_id = 'T7W4RR' %}
+  {% endif %}
+
+  {% assign returns_message = 'products.product.returns.europe_store.generic' | t %}
+{% else %}
+  {% assign coming_soon_id = _.klaviyo_id_eu %}
+  {% assign returns_message = 'products.product.returns.europe_store.generic' | t %}
+{% endif %}
+
+{%- comment -%} Detect whether a product has a gallery or not. {%- endcomment -%}
+{% assign product_has_gallery = false %}
+
+{% if product.images.size > 1 %}
+  {% assign product_has_gallery = true %}
+{% endif %}
+
+{%- comment -%} Add 'grey-img' class to non-flexline product images. {%- endcomment -%}
+{% capture grey_img %}
+  {% unless is_black_layout %}
+    class="grey-img"
+  {% endunless %}
+{% endcapture %}
+
+{%- comment -%}
+  Split product.title into range and title
+  - For Lim4, there are multiple hyphens to cater for
+    'Magsafe Compatible' so we need to do extra splitting.
+{%- endcomment -%}
+{% assign product_split = product.title | split: '-' %}
+{% assign product_title = product_split | first | strip %}
+{% assign product_range = false %}
+
+{% if product_split.size == 2 %}
+  {% assign product_range = product_split | last | strip %}
+{% endif %}
+
+{%- comment -%} Yotpo App Key {%- endcomment -%}
+{% if detect_store == 'US' or detect_store == 'DEV' %}
+  {% assign yotpo_app_key = "pnRVCwShPhK3y3b15Odf8NyHaDIthJ6XakRb5hdM" %}
+{% elsif detect_store == 'UK' %}
+  {% assign yotpo_app_key = "49zZkgxeLSBLSsihZchMLfNiHHqJczDtdO51Ww5R" %}
+{% elsif detect_store == 'ROW' %}
+  {% assign yotpo_app_key = "4noCzAReWKLMu9dkMhXiWO82GlvEAv6Oy5evKjJg" %}
+{% else %}
+  {% assign yotpo_app_key = "guIJFk2YY53bP4ndCsdaU78rwdefpG3BCdLHsWdt" %}
+{% endif %}
+
+{%- comment -%} Product tags {%- endcomment -%}
+{% assign product_offers_array = false %}
+{% assign linked_material_collection = false %}
+
+{% for tag in product.tags %}
+  {% if tag contains 'offer:' %}
+    {% assign offer_tag = tag | split: 'offer:' | last %}
+    {% assign product_offers_array = product_offers_array | remove: false | append: ',' | append: offer_tag %}
+  {% endif %}
+
+  {% if tag contains 'offer=' %}
+    {% assign offer_tag = tag | split: 'offer=' | last %}
+    {% assign product_offers_array = product_offers_array | remove: false | append: ',' | append: offer_tag %}
+  {% endif %}
+
+  {% if tag contains 'linked-collection:' %}
+    {% assign linked_material_collection = tag | remove: 'linked-collection:' %}
+  {% endif %}
+{% endfor %}
+
+{% if product_offers_array %}
+  {% assign product_offers_array = product_offers_array | remove_first: ',' | split: ',' %}
+{% endif %}
+
+{%- comment -%} Add percentage off product tag if product is on sale {%- endcomment -%}
+{% assign percent_off_tag = false %}
+{% if selected_variant.compare_at_price > selected_variant.price %}
+  {% assign percent_off = selected_variant.compare_at_price | minus: selected_variant.price | times: 100.0 | divided_by: selected_variant.compare_at_price | round %}
+
+  {% assign percent_off_tag = 'products.product.percent_off_tag' | t: percent: percent_off | strip %}
+{% endif %}
+
+{%- comment -%} Dynamic variant JSON {%- endcomment -%}
+{% assign dynamic_json_metafield = false %}
+
+{% if _['json_data'] %}
+  {% assign dynamic_json_metafield = true %}
+{% endif %}
+
+{%- comment -%}
+  detect-variant-state is run in a loop in the product JSON so we need to re-run
+  it after so it works for the selected_variant on load.
+{%- endcomment -%}
+{% unless product.empty? %}
+	{% include 'product-json' %}
+{% endunless %}
+
+{%- comment -%} Detect variant state {%- endcomment -%}
+{% include 'detect-variant-state' variant: selected_variant %}
+
+{%- comment -%} Set the main CTA button text {%- endcomment -%}
+{% capture button_state_text %}
+  {% if state_oos or state_discontinued %}
+    {{ 'products.product.cta_text.out_of_stock' | t }}
+  {% elsif state_coming_soon %}
+    {{ 'products.product.cta_text.coming_soon' | t }}
+  {% elsif state_preorder %}
+    {{ 'products.product.cta_text.pre_order' | t }}
+  {% else %}
+    {{ 'products.product.cta_text.add_to_cart' | t }}
+  {% endif %}
+{% endcapture %}
+
+{%- comment -%} Subtext link for description popup {%- endcomment -%}
+{% assign product_subtext = _['p_subtext'] %}
+
+{% if product_subtext and product_subtext contains '#####' %}
+  {% assign subtext_before = product_subtext | split: '#####' | first %}
+  {% assign subtext_after = product_subtext | split: '#####' | last %}
+
+  {% capture product_subtext %}
+    {{ subtext_before }}
+    <br><br>
+    <a href="#" data-popup="#product-description" popup="trigger">{{ subtext_after }}</a>
+  {% endcapture %}
+{% endif %}
+
+{%- comment -%} Product has no variants {%- endcomment -%}
+{% assign product_has_no_variants = false %}
+
+{% if selected_variant.title == 'Default Title' %}
+  {% assign product_has_no_variants = true %}
+{% endif %}
+
+{% comment %}
+  For products with linked collections & device as variant,
+  save the device specific JSON.
+{% endcomment %}
+{% if linked_material_collection %}
+  <script>
+    window.theme.helpers.isLinkedCollection = true
+  </script>
+{% endif %}
+
+{% if dynamic_json_metafield %}
+  {% assign json_data = _['json_data'] %}
+
+  <script>
+    window.theme.helpers.dynamicProductJson = {{ json_data }}
+  </script>
+{% endif %}

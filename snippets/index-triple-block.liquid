@@ -1,0 +1,52 @@
+<section class="index-triple index-bg-{{ section.settings.background }}">
+  <div class="index-wrap index-triple__inner">
+    <div class="index-triple__intro triple-intro">
+      <h2 class="index-section-title triple-intro__heading">{{ section.settings.section_title }}</h2>
+
+      {% if section.settings.section_description != blank %}
+        <p class="index-section-subtitle triple-intro__desc">{{ section.settings.section_description }}</p>
+      {% endif %}
+    </div>
+
+    {% for block in section.blocks %}
+      <div class="index-triple__block index-triple-block index-triple-block--{{ forloop.index }}">
+        <div class="index-triple-block__image-container triple-image-container{% if block.settings.image == blank %} with-icon{% endif %}">
+          {% if block.settings.image != blank %}
+            {% if block.settings.button_link != blank %}
+              <a href="{{ block.settings.button_link }}">
+            {% endif %}
+              <img class="triple-image-container__image lazy" alt="" data-src="{{ block.settings.image | img_url: '450x' }}">
+            {% if block.settings.button_link != blank %}
+              </a>
+            {% endif %}
+          {% else %}
+            <div class="triple-image-container__content">
+              {% if block.settings.icon != blank %}
+                {% include 'icon-misc' with icon: block.settings.icon %}
+              {% endif %}
+
+              {% if block.settings.icon_text != blank %}
+                <h3 class="index-block-title triple-image-container__text">{{ block.settings.icon_text }}</h3>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if block.settings.button_link != blank %}
+            <a class="btn index-button triple-image-container__btn{% if block.settings.btn_light %} triple-image-container__btn--white{% endif %}" href="{{ block.settings.button_link }}">{{ block.settings.button_title }}</a>
+          {% endif %}
+
+        </div>
+
+        <div class="index-triple-block__content triple-content">
+          {% if block.settings.title != blank %}
+            <h3 class="index-block-title triple-content__title">{{ block.settings.title }}</h3>
+          {% endif %}
+
+          {% if block.settings.desc != blank %}
+            <p class="index-copy triple-content__desc">{{ block.settings.desc }}</p>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>

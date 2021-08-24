@@ -1,0 +1,55 @@
+{% if checkout %}
+  {% assign request_path = '' %}
+{% else %}
+  {% assign request_path = request.path %}
+{% endif %}
+
+<div id="location-switch" class="modal fs dn" data-path="{{ request_path }}">
+	<div class="modal-bg"></div>
+
+	<div class="modal-content">
+		<div class="mw pdh tc">
+			<div class="h1 light page-title mv2">{{ 'general.modals.location_popup.title' | t }}</div>
+
+			<div class="location-wrap flex flex-wrap fxc">
+				{% for i in (1..3) %}
+					<div class="location-section">
+						{% case i %}
+							{% when 1 %}
+								<span class="h3">{{ 'general.modals.location_popup.na_title' | t }}</span>
+
+								<ul>
+									<li><a data-currency="USD" data-flag="USD" href="https://www.mous.co{{ request_path }}?userRedirect=US"><span class="icon-flag US"></span> {{ 'general.modals.location_popup.us' | t }}</a></li>
+								</ul>
+
+								<p class="note">{{ 'general.modals.location_popup.excluded_states_html' | t }}</p>
+
+							{% when 2 %}
+								<span class="h3">{{ 'general.modals.location_popup.eu_title' | t }}</span>
+
+								<ul>
+									<li><a href="https://uk.mous.co{{ request_path }}?userRedirect=GB"><span class="icon-flag GB"></span> {{ 'general.modals.location_popup.uk' | t }}</a></li>
+
+                  <li><a href="https://es.mous.co/a/l/es{{ request_path }}?userRedirect=ES"><span class="icon-flag ES"></span> {{ 'general.modals.location_popup.es' | t }}</a></li>
+
+                  <li><a href="https://fr.mous.co/a/l/fr{{ request_path }}?userRedirect=FR"><span class="icon-flag FR"></span> {{ 'general.modals.location_popup.fr' | t }}</a></li>
+
+                  <li><a href="https://eu.mous.co{{ request_path }}?userRedirect=EU"><span class="icon-flag EU"></span> {{ 'general.modals.location_popup.eu' | t }}</a></li>
+								</ul>
+
+							{% when 3 %}
+								<span class="h3">{{ 'general.modals.location_popup.row_title' | t }}</span>
+
+								<ul class="pb5">
+									<li><a data-currency="USD" data-flag="ROW" href="https://row.mous.co{{ request_path }}?userRedirect=ROW"><span class="icon-flag ROW"></span> {{ 'general.modals.location_popup.row' | t }}</a></li>
+								</ul>
+
+						{% endcase %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+    <i class="icon icon-close modal-close"></i>
+	</div>
+</div>

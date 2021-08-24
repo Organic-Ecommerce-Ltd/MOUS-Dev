@@ -1,0 +1,22 @@
+{% if detect_store == 'FR' %}
+  {% assign custom_canonical = canonical_url | replace: 'eu.', 'fr.' %}
+{% elsif detect_store == 'ES' %}
+  {% assign custom_canonical = canonical_url | replace: 'eu.', 'es.' %}
+{% else %}
+  {% assign custom_canonical = canonical_url %}
+{% endif %}
+
+{% comment %}
+  - SEO agency want us to keep the filter-device in the URL so it indexes but not the range.
+  - The filter-device always appears before filter-range so if there's both we can split on the '+'.
+  - If it only contains filter-range, then split on that.
+{% endcomment %}
+{% if template contains 'collection' %}
+  {% if custom_canonical contains '+' %}
+    {% assign custom_canonical = canonical_url | split: '+' | first %}
+  {% elsif custom_canonical contains 'filter-range' %}
+    {% assign custom_canonical = canonical_url | split: 'filter-range' | first %}
+  {% endif %}
+{% endif %}
+
+<link rel="canonical" href="{{ custom_canonical  }}">

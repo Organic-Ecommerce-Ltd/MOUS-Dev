@@ -1,0 +1,143 @@
+<script>
+  {% assign product_offers_array = false %}
+  {% assign preorder_date = '' %}
+
+  {% for tag in product.tags %}
+    {% if tag contains 'offer:' %}
+      {% assign offer_tag = tag | split: 'offer:' | last %}
+      {% assign product_offers_array = product_offers_array | remove: false | append: ',' | append: offer_tag %}
+    {% endif %}
+
+    {% if tag contains 'offer=' %}
+      {% assign offer_tag = tag | split: 'offer=' | last %}
+      {% assign product_offers_array = product_offers_array | remove: false | append: ',' | append: offer_tag %}
+    {% endif %}
+
+    {% if tag contains 'preorder' %}
+		  {% assign preorder_date = preorder_date | append: ',' | append: tag %}
+    {% endif %}
+  {% endfor %}
+
+  {% if product_offers_array %}
+    {% assign product_offers_array = product_offers_array | remove_first: ',' | split: ',' %}
+  {% endif %}
+
+  {% assign preorder_date = preorder_date | remove_first: ',' %}
+
+  window.productVariants = {
+    {% for variant in product.variants %}
+      "{{ variant.id }}": {
+        dataLayer: {
+          id: "{{ variant.sku }}",
+          name: "{{ product.title }}",
+          brand: "{{ product.vendor }}",
+          category: "{{ product.type }}",
+          variant: "{{ variant.title }}",
+          price: {{ variant.price | divided_by: 100.00 }},
+          quantity: 1,
+        },
+        price: "{{ variant.price | money }}",
+        compare: "{{ variant.compare_at_price | money }}",
+        pricePence: "{{ variant.price }}",
+        comparePence: "{{ variant.compare_at_price }}",
+        id: "{{ variant.id }}",
+        url: "{{ variant.url }}",
+        options: [
+          {option: "{{ variant.option1 }}"}{% if variant.option2.size > 0 %},
+          {option: "{{ variant.option2 }}"}{% endif %}{% if variant.option3.size > 0 %},
+          {option: "{{ variant.option3 }}"}{% endif %}
+        ],
+
+        {% include 'detect-variant-state' %}
+
+        variantState: "{{ product_state }}",
+        media: [
+          {% for media in product.media %}
+            {% assign alt_option1 = media.alt | split: '|' | last | strip | split: ',' %}
+            {% assign alt_match = false %}
+            {% assign media_url = media.src | img_url: '680x' %}
+            {% assign video_slide = false %}
+
+            {% for option in alt_option1 %}
+              {% if option == variant.option1 %}
+                {% assign alt_match = true %}
+              {% endif %}
+            {% endfor %}
+
+            {%- comment -%} Check if media is an mp4 video {%- endcomment -%}
+            {% if media.media_type == 'video' %}
+              {% for src in media.sources %}
+                {% if src.format == 'mp4' %}
+                  {% assign media_url = src.url %}
+                  {% assign video_slide = true %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% if alt_match or product.has_only_default_variant %}
+              {
+                main: "{{ media_url }}",
+                alt: "{{ media.alt }}",
+                {% if video_slide %}
+                  type: 'video',
+                {% else %}
+                  type: 'image',
+                {% endif %}
+              },
+            {% endif %}
+          {% endfor %}
+        ],
+        {% if preorder_date contains 'preorder:' %}
+          {% assign preorder_date_split = preorder_date | split: ',' %}
+
+          {% for p_date in preorder_date_split %}
+            {% if p_date contains variant.sku %}
+              preorderDate: "{{ p_date | split: '_' | last }}",
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          preorderDate: "{{ preorder_date | split: '_' | last }}",
+        {% endif %}
+        offers: [
+          {% if product_offers_array %}
+            {% for variant_offers_array in product_offers_array %}
+              {% unless variant_offers_array contains '=' %}
+                {% if variant_offers_array contains '|' %}
+                  {% assign offers_all_skus_split = variant_offers_array | split: '|' %}
+
+                  {% for offer_all_skus_split in offers_all_skus_split %}
+                    "{{ offer_all_skus_split }}",
+                  {% endfor %}
+                {% else %}
+                  "{{ variant_offers_array }}",
+                {% endif %}
+              {% endunless %}
+
+              {% if variant_offers_array contains variant.sku %}
+                {% assign offers_no_sku = variant_offers_array | split: '=' | last | downcase | split: '|' %}
+
+                {% for offer in offers_no_sku %}
+                  "{{ offer }}",
+                {% endfor %}
+              {% endif %}
+
+              {% unless variant_offers_array contains '=' %}
+                {% assign offers_all_skus = variant_offers_array | split: '=' | last %}
+
+                {% if offers_all_skus contains '|' %}
+                  {% assign offers_all_skus_split = offers_all_skus | split: '|' %}
+
+                  {% for offer_all_skus_split in offers_all_skus_split %}
+                    "{{ offer_all_skus_split }}",
+                  {% endfor %}
+                {% else %}
+                  "{{ offers_all_skus }}",
+                {% endif %}
+              {% endunless %}
+            {% endfor %}
+          {% endif %}
+        ],
+      },
+    {% endfor %}
+  }
+</script>

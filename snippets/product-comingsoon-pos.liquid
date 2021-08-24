@@ -1,0 +1,36 @@
+<section class="product-pos">
+  <div class="product-wrap pos">
+    {% include 'product-breadcrumbs' %}
+
+    <div class="pos__grid pos-grid">
+      {%- comment -%} Title and range {%- endcomment -%}
+      <h1 class="h2 pos-grid__title pos-title">
+        <span class="pos-title__product">{{ product_title }}</span>
+
+        {% unless product.vendor == 'Other Accessories' or product.vendor == 'Screen Protectors' %}
+          {% if product_range %}
+            <span class="pos-title__separator">-</span>
+            <span class="pos-title__range">{{ product_range }}</span>
+          {% endif %}
+        {% endunless %}
+      </h1>
+
+      {%- comment -%} Product gallery {%- endcomment -%}
+      <div class="pos-grid__gallery pos-gallery">
+        {% include 'pos-tags' %}
+
+        <img class="pos-gallery__comingsoon-img" src="{{ product.featured_image | img_url: '680x' }}">
+      </div>
+
+      {%- comment -%} Subtext{%- endcomment -%}
+      <div class="pos-grid__subtext pos-subtext">
+        {{ product.description }}
+      </div>
+
+      {%- comment -%} Details {%- endcomment -%}
+      <div class="pos-grid__signup pos-signup">
+        <div class="klaviyo-form-{{ coming_soon_id }}"></div>
+      </div>
+    </div>
+  </div>
+</section>

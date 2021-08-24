@@ -1,0 +1,63 @@
+{% assign shipping = checkout.shipping_address %}
+
+{% capture shipping_address %}
+  {% if shipping.address1 != '' %}
+    {{ shipping.address1 }},&nbsp;
+  {% endif %}
+
+  {% if shipping.address2 != '' %}
+    {{ shipping.address2 }},&nbsp;
+  {% endif %}
+
+  {% if shipping.city != '' %}
+    {{ shipping.city }},&nbsp;
+  {% endif %}
+
+  {% if shipping.zip != '' %}
+    {{ shipping.zip }},&nbsp;
+  {% endif %}
+
+  {% if shipping.country != '' %}
+    {{ shipping.country }}
+  {% endif %}
+{% endcapture %}
+
+{% assign compatible_devices = '' %}
+
+{% for line_item in checkout.line_items %}
+  {% assign product_type = line_item.product.type | downcase | handleize %}
+
+  {% if product_type == 'case' %}
+    {% assign product_title = line_item.title | split: '-' | first | split: 'Case' | first | strip %}
+    {% assign compatible_devices = compatible_devices | append: ',' | append: product_title %}
+  {% elsif product_type == 'accessories' or product_type == 'case-add-ons' %}
+    {% if line_item.product.handle contains 'flip' or line_item.product.handle contains 'protector' %}
+      {% assign compatible_devices = compatible_devices | append: ',' | append: line_item.variant.title %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<div class="order-check" checkout="check-container">
+  <span class="order-check__tag">{{ 'shopify.checkout.confirmation.important_tag' | t }}</span>
+
+  <div class="order-check__content">
+    <div class="order-check__devices" checkout="check-devices">
+      <div class="order-check__content-title">{{ 'shopify.checkout.confirmation.compatibility_title' | t }}</div>
+
+      <ul class="order-check__list" checkout="check-device-list">
+        {% assign compatible_devices = compatible_devices | remove_first: ',' | split: ',' | uniq %}
+
+        {% for device in compatible_devices %}
+          <li>{{ device }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="order-check__content-title">{{ 'shopify.checkout.confirmation.delivery_address_title' | t }}</div>
+
+    <div class="order-check__address">{{ shipping_address }}</div>
+  </div>
+
+  <a class="order-check__btn" href="/pages/get-in-touch" checkout="something-wrong">{{ 'shopify.checkout.confirmation.something_wrong_button' | t }}</a>
+  <p>{{ 'shopify.checkout.confirmation.something_wrong_text' | t }}</p>
+</div>

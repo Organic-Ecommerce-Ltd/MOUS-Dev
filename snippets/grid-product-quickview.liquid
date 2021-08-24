@@ -1,0 +1,141 @@
+{% include 'product-collection-json' %}
+
+{% include 'collection-product-variables' %}
+
+{% include 'detect-variant-state' variant: selectedVariant %}
+
+{% if show_product %}
+  {% assign product_count = product_count | plus: 1 %}
+{% endif %}
+
+<div class="grid-item w-50 ph2 tc mb4{% unless show_product %} dn{% endunless %}" itemtype="http://schema.org/Product" data-index="{{ product_count }}">
+  <div class="grid-item__outer">
+    <div class="grid-item__inner">
+      <div class="grid-item__top" grid-item="top">
+        {% include 'collection-product-offers' %}
+
+        {% unless is_case or is_lim4_accessory %}
+          {% if product.vendor contains 'Limitless' %}
+            <p class="product-info__range product-info__range--{{ product.vendor | handle }}">for <span class="ttu">{{ product.vendor }}</span> cases</p>
+          {% endif %}
+        {% endunless %}
+
+        <div class="{% if product.images.size > 1 %}grid-gallery{% else %}grid-single{% endif %}">
+          {% include 'collection-gallery-slides' %}
+        </div>
+      </div>
+
+      <div class="grid-item__bottom" grid-item="bottom">
+        <div class="product-info">
+          <p class="product-info__title">
+            <a href="{{ selectedVariant.url }}" data-index="{{ product_count }}" class="product-url">
+              {{ product.title | split: ' - ' | first }}
+            </a>
+          </p>
+
+          {% if has_range %}
+            {% unless is_lim4_accessory %}
+              <p class="product-info__range product-info__range--{{ product.vendor | handle }}">{{ product.vendor }}</p>
+            {% endunless %}
+          {% endif %}
+
+          <p class="product-info__price--wrapper{% if state_coming_soon and selectedVariant.price == 0 %} dn{% endif %}" grid-item="price-wrapper">
+            {% if is_from_price_collection %}
+              <span class="product-info__from-price">From <span class="product-info__price">{{ lowest_variant_price | money }}</span></span>
+            {% endif %}
+
+            <s class="product-info__price-compare {% unless selectedVariant.compare_at_price > selectedVariant.price %}dn{% endunless %}">{{ selectedVariant.compare_at_price | money }}</s>
+
+            <span class="product-info__price">{{ selectedVariant.price | money }}</span>
+          </p>
+
+          <form class="product-info__form">
+            {% if is_multi_variant %}
+              <div class="nice-select icon-chevron-down">
+                <select name="id[]" id="product-select-{{ product.id }}" class="select variant-selector js-variant-select center no-js">
+                  {% for variant in product.variants %}
+                    {% assign variant_handle = variant.title | handle %}
+
+                    <option
+                      value="{{ variant.id }}"
+                      {% if variant.title == selectedVariant.title %}selected="selected"{% endif %}
+                      data-index="{{ product_count }}"
+                      data-price="{{ variant.price | money }}"
+                      data-product-handle="{{ product.handle }}"
+                      data-sku="{{ variant.sku }}"
+                      data-variant-id="{{ variant.id }}"
+                    >
+                      {{ variant.title }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% else %}
+              <input
+                class="js variant-selector single-option"
+                id="variant-{{ selectedVariant.id }}"
+                name="id[]"
+                type="hidden"
+                value="{{ selectedVariant.id }}"
+                data-product-handle="{{ product.handle }}"
+                data-sku="{{ selectedVariant.sku }}"
+                data-variant-id="{{ selectedVariant.id }}"
+              >
+
+              {% if show_single_variant %}
+                <div class="product-info__single-variant">{{ product.variants[0].title }}</div>
+              {% endif %}
+            {% endif %}
+
+            <div class="grid-btns">
+              <p class="highlight h4 product-info__preorder{% unless state_preorder %} dn{% endunless %}">
+                {{ 'products.product.pre_order_ships' | t }}
+
+                <span collection="preorder-date">
+                  {% if preorder_date contains 'preorder:' %}
+                    {% assign preorder_date_split = preorder_date | split: ',' %}
+
+                    {% for p_date in preorder_date_split %}
+                      {% if p_date contains selectedVariant.sku %}
+                        {{ p_date | split: '_' | last }}
+                      {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    {{ preorder_date | split: '_' | last }}
+                  {% endif %}
+                </span>
+              </p>
+
+              <a href="{{ selectedVariant.url }}" class="product-url btn btn-alt" grid-item="more-details">
+                {% if state_coming_soon or state_oos %}
+                  Email me<span class="hide--xl-down"> when available</span>
+                {% else %}
+                  More details
+                {% endif %}
+              </a>
+
+              <button
+                class="cart-submit btn"
+                href="{{ selectedVariant.url }}"
+                data-id="{{ product.id }}"
+                product="add-to-cart"
+                {% if state_oos or state_coming_soon or state_discontinued %} disabled{% endif %}
+                {% if state_preorder %} data-preorder{% endif %}
+              >
+                {% if state_oos or state_discontinued %}
+                  Out of Stock
+                {% elsif state_coming_soon %}
+                  Coming Soon
+                {% elsif state_preorder %}
+                  Pre-order
+                {% else %}
+                  Add to Cart
+                {% endif %}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

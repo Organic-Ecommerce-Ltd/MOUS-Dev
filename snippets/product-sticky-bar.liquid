@@ -1,0 +1,16 @@
+<div class="pos__sticky pos-sticky" pos="sticky-bar">
+  <div class="h2 pos-sticky__title{% unless product_has_no_variants %} is-mobile-hidden{% endunless %}">
+    {% if product_range %}
+      {{ product_range }} -
+    {% endif %}
+
+    {{ product_title }}
+  </div>
+
+  <div class="pos-sticky__variant-wrapper{% if product_has_no_variants %} dni{% endif %}">
+    <span class="pos-sticky__variant" pos="variant-name">{{ selected_variant.title }}</span>
+    <a class="pos-sticky__change" href="#" pos="sticky-change">{{ 'products.product.change_text' | t }}</a>
+  </div>
+
+  {% include 'pos-main-cta', class: 'sticky' %}
+</div>

@@ -1,0 +1,30 @@
+<div class="grid-item-offer__wrapper" grid-item="offers-container">
+  {% if offer_array or non_discounted_price > product_price %}
+    {% for offer in offer_array %}
+      {% assign offer_tags = offer | split: '=' | last | downcase | split: '|' %}
+
+      {% for offer_tag in offer_tags %}
+        {% assign offer_tag_handlised = offer_tag | handleize %}
+
+        {% if offer_tag_handlised contains 'magsafe' %}
+          {% assign offer_class = 'light' %}
+        {% else %}
+          {% assign offer_class = 'dark' %}
+        {% endif %}
+
+        <div
+          class="grid-item-offer grid-item-offer--{{ offer_class }}"
+          data-sku="{{ offer | split: '=' | first }}"
+        >
+          {{ offer_tag }}
+        </div>
+      {% endfor %}
+    {% endfor %}
+
+    {% if non_discounted_price > product_price %}
+      {% assign percent_off = non_discounted_price | minus: product_price | times: 100.0 | divided_by: non_discounted_price | round %}
+
+      <div class="grid-item-offer grid-item-offer--dark">-{{ percent_off }}%</div>
+    {% endif %}
+  {% endif %}
+</div>

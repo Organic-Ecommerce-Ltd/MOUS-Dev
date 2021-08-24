@@ -1,0 +1,32 @@
+
+<div
+  class="pos__breadcrumbs pos-breadcrumbs"
+  role="navigation"
+  aria-label="breadcrumbs"
+  pos-breadcrumb="container"
+>
+  <a class="pos-breadcrumbs__link" href="/" title="Home">Home</a>
+
+  <span class="pos-breadcrumbs__collection" pos-breadcrumb="collection">
+    <span aria-hidden="true">/</span>
+
+    <a
+      class="pos-breadcrumbs__link"
+      href="#"
+      pos-breadcrumb="collection-link"
+    >
+    </a>
+  </span>
+
+  <span aria-hidden="true">/</span>
+
+  <span class="pos-breadcrumbs__text">
+    {% unless is_accessory or is_screen_protector %}
+      {% if product_range %}
+        {{ product_range }} -
+      {% endif %}
+    {% endunless %}
+
+    {{ product_title }}
+  </span>
+</div>

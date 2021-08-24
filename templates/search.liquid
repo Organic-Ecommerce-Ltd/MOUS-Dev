@@ -1,0 +1,25 @@
+{% paginate search.results by 30 %}
+
+{% if search.results_count == 0 or search.performed == false %}
+{% else %}
+    {% if search.performed and search.results_count > 0 %}
+        <div class="collection-content">
+            <div class="collection-grid mw9 center ph3 cf">
+                {% assign imgSize = 'large' %}
+                {% assign imgRetina = 'grande' %}
+                {% for item in search.results %}
+                    {% if item.object_type == 'product' %}
+                        {% include 'collection-item', product: item %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+
+{% endpaginate %}

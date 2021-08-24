@@ -1,0 +1,74 @@
+<div class="careers mt5">
+  {% for block in section.blocks %}
+    <div class="careers__accordion-row mt3">
+      <div class="careers__title pb2 mb2 flex-l justify-between self-center">
+        <div>
+          <h2 class="mv0">{{ block.settings.title }}</h2>
+          <small>{{ block.settings.date }}</small>
+        </div>
+        <div>
+          <div class="btn btn-alt">
+            <span class="careers__more">Find out more</span>
+            <span class="careers__less">Hide</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="careers__content mb3">
+        <div class="careers__summary">
+          {{ block.settings.summary }}
+        </div>
+
+        <p class="mt4">
+          <a href="{{ block.settings.jobspec }}" target="_blank" class="btn mh3">Download Full Spec</a>
+          <a href="#careersForm" class="btn mh3 form-trigger" data-role="{{ block.settings.title }}">Apply Now</a>
+        </p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div id="careersForm" class="modal modal--careers fs dn">
+	<div class="modal-bg"></div>
+	<div class="modal-content">
+		<div class="mw pdh">
+      <div class="elfsight-app-241239e8-59af-42fb-8480-650310064260 careers-form"></div>
+		</div>
+    <i class="icon icon-close modal-close"></i>
+	</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Careers Page",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "section",
+        "name": "Role",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "date",
+            "label": "Date Posted (dd/mm/yyyy)"
+          },
+          {
+            "type": "richtext",
+            "id": "summary",
+            "label": "Summary"
+          },
+          {
+            "type": "text",
+            "id": "jobspec",
+            "label": "Job Spec File"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

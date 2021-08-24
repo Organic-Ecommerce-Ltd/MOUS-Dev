@@ -1,0 +1,137 @@
+{% assign product_type = product.type | downcase | handleize %}
+{% assign is_case = false %}
+{% assign is_hidden = false %}
+{% assign is_hidden_from_collections = false %}
+{% assign is_hidden_from_cart = false %}
+{% assign is_airpods_case = false %}
+{% assign is_ipad_case = false %}
+{% assign is_add_on = false %}
+{% assign is_wallet = false %}
+{% assign is_flip_wallet = false %}
+{% assign is_mount = false %}
+{% assign is_wireless_charger = false %}
+{% assign is_wireless_charger_pad = false %}
+{% assign is_wireless_charger_stand_only = false %}
+{% assign is_accessory = false %}
+{% assign is_phone_accessory = false %}
+{% assign is_wrist_strap = false %}
+{% assign is_cable = false %}
+{% assign is_screen_protector = false %}
+{% assign is_macbook_case = false %}
+{% assign is_multi_variant = false %}
+{% assign is_lim4_accessory = false %}
+{% assign is_upsell_only = false %}
+{% assign has_range = false %}
+{% assign iphonexi_case = false %}
+{% assign is_black_layout = false %}
+{% assign preorder_date = '' %}
+{% assign show_single_variant = false %}
+{% assign is_power_adaptor = false %}
+
+{%- comment -%} Standard product type checks {%- endcomment -%}
+{% case product_type %}
+	{% when 'hidden' %}
+		{% assign is_hidden = true %}
+
+	{% when 'case' %}
+		{% assign is_case = true %}
+
+	{% when 'airpods-case' %}
+		{% assign is_airpods_case = true %}
+
+	{% when 'ipad-case' %}
+		{% assign is_ipad_case = true %}
+
+	{% when 'case-add-ons' %}
+		{% assign is_add_on = true %}
+
+		{% if product.handle contains 'wallet' %}
+			{% assign is_wallet = true %}
+
+			{% if product.handle contains 'flip-wallet' %}
+				{% assign is_flip_wallet = true %}
+			{% endif %}
+		{% elsif product.handle contains 'mount' %}
+			{% assign is_mount = true %}
+		{% elsif product.handle contains 'charger' %}
+			{% assign is_wireless_charger = true %}
+
+			{% if product.handle == 'wireless-charger-pad' %}
+				{% assign is_wireless_charger_pad = true %}
+			{% endif %}
+
+			{% if product.handle == 'magsafe-compatible-charger-stand' or product.handle == 'wireless-charger-stand' %}
+				{% assign is_wireless_charger_stand_only = true %}
+			{% endif %}
+		{% endif %}
+
+	{% when 'accessories' %}
+		{% assign is_accessory = true %}
+
+		{% if product.handle contains 'cable' or product.handle contains 'wrist-strap' %}
+			{% assign is_phone_accessory = true %}
+
+			{% if product.handle contains 'cable' %}
+				{% assign is_cable = true %}
+			{% elsif product.handle contains 'wrist-strap' %}
+				{% assign is_wrist_strap = true %}
+			{% endif %}
+		{% elsif product.handle contains 'protector' %}
+			{% assign is_screen_protector = true %}
+		{% endif %}
+
+	{% when 'power-adaptor' %}
+		{% assign is_power_adaptor = true %}
+
+	{% when 'upsell-only' %}
+		{% assign is_upsell_only = true %}
+
+	{% when 'macbook-case' %}
+		{% assign is_macbook_case = true %}
+{% endcase %}
+
+{%- comment -%} Special declaration for Lim4 and Infinity accessories {%- endcomment -%}
+{% unless is_case %}
+	{% if product.vendor == 'Limitless 4.0' %}
+		{% assign is_lim4_accessory = true %}
+	{% endif %}
+{% endunless %}
+
+{%- comment -%} Check if product has range {%- endcomment -%}
+{% if product.vendor contains 'Limitless' or product.vendor == 'Contour' or product.vendor contains 'Clarity' or product.vendor == 'Infinity' or product.vendor == 'Aramax' %}
+	{% assign has_range = true %}
+{% endif %}
+
+{%- comment -%} Custom checks {%- endcomment -%}
+{% if product.variants.size > 1 %}
+	{% assign is_multi_variant = true %}
+{% endif %}
+
+{% if product.options_with_values[0].name == 'Size' %}
+	{% assign show_single_variant = true %}
+{% endif %}
+
+{% if product.handle == 'durable-charging-cable' %}
+	{% assign is_black_layout = true %}
+{% elsif product.handle == 'charger-stand-bundle' %}
+	{% assign is_hidden_from_cart = true %}
+{% endif %}
+
+{%- comment -%} Product tags based variables {%- endcomment -%}
+{% for tag in product.tags %}
+	{% if tag contains 'preorder' %}
+		{% assign preorder_date = preorder_date | append: ',' | append: tag %}
+	{% endif %}
+
+	{% if tag contains 'iPhone 11' %}
+		{% if product_type == 'case' %}
+			{% assign iphonexi_case = true %}
+		{% endif %}
+	{% endif %}
+
+	{% if tag == 'hide_from_collections' %}
+		{% assign is_hidden_from_collections = true %}
+	{% endif %}
+{% endfor %}
+
+{% assign preorder_date = preorder_date | remove_first: ',' %}

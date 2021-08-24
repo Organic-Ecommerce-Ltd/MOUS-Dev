@@ -1,0 +1,12 @@
+<div class="filter-list--magsafe{% if is_mobile %} is-mobile{% endif %}" js-filter="magsafe-container">
+  <div class="filter-item filter-item--swatch{% if request.path contains 'filter-range-magsafe-compatible' %} selected{% endif %}" data-filter="filter-range-magsafe-compatible" data-filter-type="range" data-filter-pretty="MagSafe Compatible">
+    <a class="filter-link" href="/collections/phone-cases" js-filter="link">
+      <span class="filter-item__title">{{ 'collections.magsafe.filter_title' | t }}</span>
+    </a>
+  </div>
+
+  <div class="filter-magsafe-expandable magsafe-expandable">
+    <div class="magsafe-expandable__title" role="button" js-filter="expand-link">{{ 'collections.magsafe.question_expand_title' | t }}</div>
+    <div class="magsafe-expandable__text" js-filter="expanded-text">{{ 'collections.magsafe.question_expanded_text' | t }}</div>
+  </div>
+</div>

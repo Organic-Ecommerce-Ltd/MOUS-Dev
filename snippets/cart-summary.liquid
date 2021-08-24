@@ -1,0 +1,78 @@
+{% capture checkout_btn %}
+  <input
+    class="btn cart-summary__checkout-btn{% if type == 'static' %} cart-summary-btns__btn{% endif %}"
+    type="submit"
+    name="checkout"
+    value="{{ 'cart.general.checkout_btn' | t }}"
+    cart="checkout-btn"
+  >
+{% endcapture %}
+
+{% capture dynamic_shipping_message %}
+  {% if detect_store == 'US' %}
+    {% assign spend_amount = 'cart.dynamic_shipping_message.us_store.spend_amount' | t | times: 100 %}
+
+    {% if cart.total_price >= spend_amount %}
+      {{ 'cart.dynamic_shipping_message.us_store.above_spend' | t }}
+    {% else %}
+      {{ 'cart.dynamic_shipping_message.us_store.below_spend' | t }}
+    {% endif %}
+  {% elsif detect_store == 'UK' %}
+    {% assign spend_amount = 'cart.dynamic_shipping_message.uk_store.spend_amount' | t | times: 100 %}
+
+    {% if cart.total_price >= spend_amount %}
+      {{ 'cart.dynamic_shipping_message.uk_store.above_spend' | t }}
+    {% else %}
+      {{ 'cart.dynamic_shipping_message.uk_store.below_spend' | t }}
+    {% endif %}
+  {% elsif detect_store == 'ROW' %}
+    {% assign spend_amount = 'cart.dynamic_shipping_message.row_store.spend_amount' | t | times: 100 %}
+
+    {% if cart.total_price >= spend_amount %}
+      {{ 'cart.dynamic_shipping_message.row_store.above_spend' | t }}
+    {% else %}
+      {{ 'cart.dynamic_shipping_message.row_store.below_spend' | t }}
+    {% endif %}
+  {% else %}
+    {% assign spend_amount = 'cart.dynamic_shipping_message.eu_store.spend_amount' | t | times: 100 %}
+
+    {% if cart.total_price >= spend_amount %}
+      {{ 'cart.dynamic_shipping_message.eu_store.above_spend' | t }}
+    {% else %}
+      {{ 'cart.dynamic_shipping_message.eu_store.below_spend' | t }}
+    {% endif %}
+  {% endif %}
+{% endcapture %}
+
+<div
+  class="cart-summary{% if type == 'fixed' %} cart-summary--sticky{% endif %}"
+  summary="{{ type }}"
+>
+  <div class="cart-summary__amount">
+    {{ 'cart.general.total' | t }} {{ cart.total_price | money }}
+  </div>
+
+  <div class="cart-summary__shipping" cart="summary-shipping">{{ dynamic_shipping_message }}</div>
+
+  {% if type == 'fixed' %}
+    {{ checkout_btn }}
+  {% endif %}
+</div>
+
+{% if type == 'static' %}
+  <div class="cart-summary-btns">
+    {{ checkout_btn }}
+
+    {% if upsell_parent != blank %}
+      <button class="btn btn-alt cart-summary__upsell-btn cart-summary-btns__btn" upsell="scroll-btn">
+        {% include 'icon-misc' with icon: 'checkmark' %}
+
+        {{ 'cart.general.upsell_btn' | t }}
+      </button>
+    {% endif %}
+
+    <!-- Begin Mention Me dashboard placeholder div -->
+    <div class="cart-summary__refer-friend" id="mmWrapper"></div>
+    <!-- End Mention Me dashboard placeholder div -->
+  </div>
+{% endif %}

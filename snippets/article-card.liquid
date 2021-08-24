@@ -1,0 +1,27 @@
+<div class="{{ class }} blog-card">
+  <a class="blog-card__link" href="{{ article.url }}" title="{{ article.title }}">
+    <div class="blog-card__img-wrapper">
+      <img
+        class="blog-card__img"
+        src="{{ article.image.src | img_url: '460x' }}"
+        alt="{{ article.image.alt | escape }}"
+      >
+    </div>
+
+    <div class="blog-card__info">
+      <h3 class="blog-card__title">{{ article.title }}</h3>
+
+      <div class="blog-card__excerpt rte">
+        {% if article.excerpt.size > 0 %}
+          {{ article.excerpt }}
+        {% else %}
+          {{ article.content | strip_html | truncatewords: 15 }}
+        {% endif %}
+      </div>
+
+      <span class="blog-card__date">
+        {{ article.published_at | time_tag: format: 'date' }}
+      </span>
+    </div>
+  </a>
+</div>

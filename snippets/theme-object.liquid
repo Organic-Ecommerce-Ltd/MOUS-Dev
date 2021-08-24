@@ -1,0 +1,223 @@
+{% assign screenProtectorData = all_products["tpu-screen-protector"] %}
+{% assign wirelessStandData = all_products[settings.wireless_stand_handle] %}
+
+<script>
+  window.productVariants = {}
+  window.productUpsellVariants = {}
+
+  window.theme = {
+    strings: {
+      addToCart: {{ 'products.product.cta_text.add_to_cart' | t | json }},
+      comingSoon: {{ 'products.product.cta_text.coming_soon' | t | json }},
+      preOrder: {{ 'products.product.cta_text.pre_order' | t | json }},
+      outOfStock: {{ 'products.product.cta_text.out_of_stock' | t | json }},
+      maxInCart: {{ 'products.product.max_in_cart' | t | json }},
+      deliveryPage: {
+        noResults: {{ 'general.delivery_page.no_results_html' | t | json }},
+      },
+      noticeBar: {
+        rowUS: {{ 'general.header.notice_bar.worldwide_store.usa' | t | json }},
+        rowCA: {{ 'general.header.notice_bar.worldwide_store.canada' | t | json }},
+        rowAU: {{ 'general.header.notice_bar.worldwide_store.australia' | t | json }},
+        euDE: {{ 'general.header.notice_bar.europe_store.germany' | t | json }},
+        euNL: {{ 'general.header.notice_bar.europe_store.netherlands' | t | json }},
+      },
+      returnsPolicy: {
+        rowUS: {{ 'products.product.returns.worldwide_store.usa' | t | json }},
+        rowCA: {{ 'products.product.returns.worldwide_store.canada' | t | json }},
+        rowAU: {{ 'products.product.returns.worldwide_store.australia' | t | json }},
+        euDE: {{ 'products.product.returns.europe_store.germany' | t | json }},
+        euNL: {{ 'products.product.returns.europe_store.netherlands' | t | json }},
+      },
+      deviceOverlay: {
+        stepTitles: {
+          device: {{ 'general.modals.device_overlay.step_titles.device' | t | json }},
+          brand: {{ 'general.modals.device_overlay.step_titles.brand' | t | json }},
+          model: {
+            phone: {{ 'general.modals.device_overlay.step_titles.model.phone' | t | json }},
+            iPad: {{ 'general.modals.device_overlay.step_titles.model.ipad' | t | json }},
+            airPods: {{ 'general.modals.device_overlay.step_titles.model.airpods' | t | json }},
+            macBookPro: {{ 'general.modals.device_overlay.step_titles.model.macbook_pro' | t | json }},
+          },
+        },
+        discount: {
+          code: {{ 'general.modals.device_overlay.discount.code' | t | json }},
+          codeCopied: {{ 'general.modals.device_overlay.discount.code_copied' | t | json }},
+        }
+      },
+      cart: {
+        dynamic_shipping_spend: {
+          uk: {{ 'cart.dynamic_shipping_message.uk_store.spend_amount' | t | json }},
+          us: {{ 'cart.dynamic_shipping_message.us_store.spend_amount' | t | json }},
+          eu: {{ 'cart.dynamic_shipping_message.eu_store.spend_amount' | t | json }},
+          row: {{ 'cart.dynamic_shipping_message.row_store.spend_amount' | t | json }},
+          dev: {{ 'cart.dynamic_shipping_message.eu_store.spend_amount' | t | json }},
+        },
+      },
+      checkout: {
+        latinCharsNote: {{ 'shopify.checkout.latin_characters_note' | t | json }},
+        shippingDelay: {
+          uk: {{ 'shopify.checkout.shipping_delay_message_uk' | t | json }},
+          us: {{ 'shopify.checkout.shipping_delay_message_us' | t | json }},
+          row: {{ 'shopify.checkout.shipping_delay_message_row' | t | json }},
+          euGeneric: {{ 'shopify.checkout.shipping_delay_message_eu_generic' | t | json }},
+          euDelayed: {{ 'shopify.checkout.shipping_delay_message_eu_delayed' | t | json }},
+        },
+        shippingPhoneNumberLimit: {{ 'shopify.checkout.shipping_phone_number_limit' | t | json }},
+        dispatchTimes: {
+          uk: {{ 'shopify.checkout.dispatch_message_uk' | t | json }},
+          us: {{ 'shopify.checkout.dispatch_message_us' | t | json }},
+          eu: {{ 'shopify.checkout.dispatch_message_eu' | t | json }},
+          row: {{ 'shopify.checkout.dispatch_message_row' | t | json }},
+        },
+        invalidDiscountCodeMessage: {{ 'shopify.checkout.invalid_discount_code_message' | t | json }},
+        contactUsLink: {{ 'shopify.checkout.contact_us_link' | t | json }},
+        howDidYouHear: {
+          title: {{ 'shopify.checkout.how_did_you_hear.title' | t | json }},
+          pleaseSelectOption: {{ 'shopify.checkout.how_did_you_hear.options.select' | t | json }},
+          options: [
+            {{ 'shopify.checkout.how_did_you_hear.options.one' | t | json }},
+            {{ 'shopify.checkout.how_did_you_hear.options.two' | t | json }},
+            {{ 'shopify.checkout.how_did_you_hear.options.three' | t | json }},
+            {{ 'shopify.checkout.how_did_you_hear.options.four' | t | json }},
+            {{ 'shopify.checkout.how_did_you_hear.options.five' | t | json }},
+            {{ 'shopify.checkout.how_did_you_hear.options.six' | t | json }},
+            {{ 'shopify.checkout.how_did_you_hear.options.seven' | t | json }},
+          ],
+          otherOption: {{ 'shopify.checkout.how_did_you_hear.options.other' | t | json }},
+        },
+        expressCheckoutRedirectText: {{ 'shopify.checkout.express_checkout_redirect_text' | t | json }},
+      },
+    },
+    caseSkusTPU: {
+      'LIMI8+BLK-WALNT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67+-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMI8+BLK-BMBOO-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67+-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMI8+BLK-KEVLR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67+-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMI8+BLK-LETHRBLK-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67+-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMI8+BLK-SHELLWHT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67+-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMI8BLK-WALNT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMI8BLK-BMBOO-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMI8BLK-KEVLR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMI8BLK-LETHRBLK-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMI8BLK-SHELLWHT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX61BLK-BMBOO-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX61-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX61BLK-WALNT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX61-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX61BLK-KEVLR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX61-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX61BLK-SHELLWHT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX61-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX61BLK-LETHRBLK-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX61-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'CLA-IX61-BLK-CLEAR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX61-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'CLA-IX61-BLK2-CLEAR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX61-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX65BLK-BMBOO-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX65-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX65BLK-WALNT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX65-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX65BLK-KEVLR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX65-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX65BLK-SHELLWHT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX65-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIM2-IX65BLK-LETHRBLK-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX65-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'CLA-IX65-BLK-CLEAR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX65-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'CLA-IX65-BLK2-CLEAR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX65-SPROTECT-TPU-R" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMIXBLK-LETHRBLK-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMIXBLK-SHELLWHT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMIXBLK-WALNT-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMIXBLK-BMBOO-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'LIMIXBLK-KEVLR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'CLAIX-BLK-CLEAR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'CLA-IX-BLK2-CLEAR-NS-RET': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIMIX-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+      'HUN-A0440-CLRCLR-000-W1': {% for variant in screenProtectorData.variants %}{% if variant.sku == "LIM67-SPROTECT-TPU" %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+    },
+    macsy: {
+      productId: '4868318199896',
+      variantId: '33611804147800',
+    },
+    wirelessChargerBundle: {
+      handles: '{{ settings.wireless_bundle_handles }}'.split(','),
+      standId: {% for variant in wirelessStandData.variants %}{% if variant.sku == settings.wireless_stand_sku %}{{variant.id}}{% break %}{% elsif forloop.last %}false{% endif %}{% else %}false{% endfor %},
+    },
+    filesURL: "{{ 'shopify_files_url.jpg' | file_url | split: 'shopify_files_url' | first }}",
+    shopCurrency: "{% if request.host contains 'uk.m' %}£{% elsif request.host contains 'www.m' or request.host contains 'row.m' or request.host contains 'staging' %}${% else %}€{% endif %}",
+    shopCurrencyISO: "{{ shop.currency }}",
+    selectors: {},
+    collection: {
+      filterData: {
+        collectionURL: '{{ collection.url }}',
+        {% assign filterPrefix = 'filter-device-,filter-range-,filter-material-' | split: ',' %}
+        {% assign materials = '' %}
+        {% assign materialsPretty = '' %}
+        {% assign multiple = false %}
+        {% for prefix in filterPrefix %}
+          {{ prefix | split: '-' | last }}: {
+            {% for tag in current_tags %}
+              {% assign tagFound = false %}
+              {% if tag contains prefix %}
+                {% assign tagFound = true %}
+                {% assign filterType = prefix | split: '-' %}
+                handle: '{{ tag | handle }}',
+                pretty: '{{ tag | remove: "filter-device-" | remove: "filter-range-" | remove: "filter-material-" | remove: " all" | replace: '-', ' ' }}',
+              {% endif %}
+            {% endfor %}
+          },
+        {% endfor %}
+      }
+    },
+    helpers: {
+      deliveryId: "{% if detect_store == 'FR' or detect_store == 'ES' %}EU{% else %}{{ detect_store }}{% endif %}",
+      detectStore: '{{ detect_store }}',
+      euArray: ['AL','AD','AM','AT','BY','BE','BA','BG','CH','CY','CZ','DE','DK','EE','ES','FO','FI','FR','GB','GE','GI','GR','HU','HR','IE','IS','IT','LT','LU','LV','MC','MK','MT','NO','NL','PO','PT','RO','RU','SE','SI','SK','SM','TR','UA','VA'],
+      ukArray: ['GB', 'GG', 'IM', 'JE'],
+      usExcludedStates: ['AK', 'AS', 'GU', 'HI', 'MP', 'PR', 'VI'],
+      formatMoney: function (price, symbol) {
+        let val = symbol + (price / 100).toFixed(2)
+
+        if (symbol === '€') {
+          val = val.replace('.', ',')
+        }
+
+        return val
+      },
+      {% if template contains 'product' %}
+        {% include 'detect-product' %}
+        isMultiVariant: {{ is_multi_variant }},
+        isCase: {{ is_case }},
+        isBlackLayout: {{ is_black_layout }},
+        isLinkedCollection: false,
+      {% endif %}
+      isQuickview: {% if template contains 'collection' %}true{% else %}false{% endif %},
+      isHidden: function (el) {
+        var style = window.getComputedStyle(el)
+        return (style.display === 'none')
+      },
+      findCookie: function (cname) {
+        var name = cname + "="
+        var decodedCookie = decodeURIComponent(document.cookie)
+        var ca = decodedCookie.split(';')
+
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i]
+
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1)
+          }
+
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length)
+          }
+        }
+
+        return ''
+      },
+      setCookie: function (name, value, days) {
+        var expires = ''
+
+        if (days) {
+          var date = new Date()
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
+          expires = ' expires=' + date.toUTCString()
+        }
+
+        document.cookie = name + '=' + (value || '') +';'+ expires +';'+ ' path=/'
+      },
+    },
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    window.Shopify.currentVariantHandle = '{{ product.selected_or_first_available_variant.title | handle }}'
+  })
+</script>

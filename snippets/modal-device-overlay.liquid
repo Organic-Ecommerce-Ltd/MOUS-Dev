@@ -1,0 +1,256 @@
+{% assign device_menu = linklists['device-overlay'] %}
+
+{% case detect_store %}
+  {% when 'UK' %}
+    {% assign klaviyo_id = 'SwzUSt' %}
+
+  {% when 'US' %}
+    {% assign klaviyo_id = 'R6NNTx' %}
+
+  {% when 'ROW' %}
+    {% assign klaviyo_id = 'SZDsUZ' %}
+
+  {% when 'DEV' %}
+    {% assign klaviyo_id = 'UniWgB' %}
+
+  {% else %}
+    {% assign klaviyo_id = 'VquT4g' %}
+{% endcase %}
+
+<div
+  id="device-overlay"
+  class="modal device-overlay"
+  device-picker
+>
+	<div class="modal-bg"></div>
+
+	<div class="modal-content pdh device-overlay__modal">
+    <button
+      class="device-overlay__back-btn"
+      doverlay="back-btn"
+    >
+      {% include 'icon-misc' with icon: 'arrow-thin-prev' %}
+
+      {{ 'general.modals.device_overlay.back_button' | t }}
+    </button>
+
+    {% include 'device-overlay-breadcrumbs' %}
+
+    <div class="device-overlay__step-container">
+      <div class="device-overlay__model-select model-select">
+        <h3 class="model-select__title" doverlay="step-title">{{ 'general.modals.device_overlay.step_titles.device' | t }}</h3>
+
+        <div class="model-select__inner" doverlay="model-select">
+          <div class="model-select__step" data-step="0" data-section="device">
+            <ul class="model-select__list">
+              {% for level1 in device_menu.links %}
+                {% assign doverlay_item_image = level1.title | handleize | append: '.jpg' | prepend: 'desktop-device-overlay-' %}
+                {% assign has_children = false %}
+                {% assign has_brand_step = false %}
+
+                {% if level1.levels > 0 %}
+                  {% assign has_children = true %}
+                {% endif %}
+
+                {% if level1.title == 'Phone' %}
+                  {% assign has_brand_step = true %}
+                {% endif %}
+
+                <li class="model-select__item" doverlay-item>
+                  <button
+                    class="model-select__button"
+                    data-title="{{ level1.title }}"
+                    doverlay="next"
+                  >
+                    <picture>
+                      <source
+                        srcset="{{ doverlay_item_image | remove: 'desktop-' | file_img_url: '600x' }}"
+                        media="(max-width: 767px) and (max-height: 670px)"
+                      >
+                      <img
+                        class="model-select__image"
+                        src="{{ doverlay_item_image | file_img_url: '600x' }}"
+                        alt=""
+                      >
+                    </picture>
+
+                    <span class="model-select__text">
+                      {{ level1.title }}
+                    </span>
+                  </button>
+
+                  {% if has_children %}
+                    <div
+                      class="model-select__step{% if level1.levels == 1 %} model-select__model-step{% endif %}"
+                      data-step="{% if has_brand_step %}1{% else %}2{% endif %}"
+                      data-section="{% if has_brand_step %}brand{% else %}model{% endif %}"
+                    >
+                      <ul class="model-select__list">
+                        {% for level2 in level1.links %}
+                          {% assign doverlay_item_image = level2.title | handleize | append: '.jpg' | prepend: 'desktop-device-overlay-' %}
+                          {% assign has_children = false %}
+
+                          {% if level2.levels > 0 %}
+                            {% assign has_children = true %}
+                          {% endif %}
+
+                          {% if level2.title == '-----' %}
+                            </ul>
+                            <ul class="model-select__list">
+                          {% else %}
+                            {% assign model_title = false %}
+
+                            {% if level2.title contains '#' %}
+                              {% assign model_title = true %}
+                            {% endif %}
+
+                            <li class="model-select__item{% if model_title %} model-select__item--title{% endif %}" doverlay-item>
+                              {% if has_children %}
+                                <button
+                                  class="model-select__button"
+                                  data-title="{{ level2.title }}"
+                                  doverlay="next"
+                                >
+                                  <picture>
+                                    <source
+                                      srcset="{{ doverlay_item_image | remove: 'desktop-' | file_img_url: '600x' }}"
+                                      media="(max-width: 767px) and (max-height: 670px)"
+                                    >
+                                    <img
+                                      class="model-select__image"
+                                      src="{{ doverlay_item_image | file_img_url: '600x' }}"
+                                      alt=""
+                                    >
+                                  </picture>
+
+                                  <span class="model-select__text">
+                                    {{ level2.title }}
+                                  </span>
+                                </button>
+
+                                <div class="model-select__step model-select__model-step" data-step="2" data-section="model">
+                                  <ul class="model-select__list">
+                                    {% for level3 in level2.links %}
+                                      {% if level3.title == '-----' %}
+                                        </ul>
+                                        <ul class="model-select__list">
+                                      {% else %}
+                                        {% assign model_title = false %}
+
+                                        {% if level3.title contains '#' %}
+                                          {% assign model_title = true %}
+                                        {% endif %}
+
+                                        <li class="model-select__item{% if model_title %} model-select__item--title{% endif %}" doverlay-item>
+                                          {% if model_title %}
+                                            <span class="model-select__title">{{ level3.title | remove: '#' }}</span>
+                                          {% else %}
+                                            <button
+                                              class="model-select__button"
+                                              data-link="{{ level3.url }}"
+                                              data-title="{{ level3.title }}"
+                                              doverlay="model-btn"
+                                            >
+                                              {{ level3.title }}
+                                            </button>
+                                          {% endif %}
+                                        </li>
+                                      {% endif %}
+                                    {% endfor %}
+                                  </ul>
+                                </div>
+                              {% else %}
+                                {% if model_title %}
+                                  <span class="model-select__title">{{ level2.title | remove: '#' }}</span>
+                                {% else %}
+                                  <button
+                                    class="model-select__button"
+                                    data-link="{{ level2.url }}"
+                                    data-title="{{ level2.title }}"
+                                    doverlay="model-btn"
+                                  >
+                                    {{ level2.title }}
+                                  </button>
+                                {% endif %}
+                              {% endif %}
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="device-overlay__discount-step discount-step" doverlay="discount-step">
+        <div class="discount-step__inner">
+          <h3 class="discount-step__title">
+            {{ 'general.modals.device_overlay.discount.title' | t }}
+          </h3>
+
+          <h4 class="discount-step__subtitle">
+            {{ 'general.modals.device_overlay.discount.subtitle_top' | t }}
+          </h4>
+
+          <div class="discount-step__info-text">
+            {{ 'general.modals.device_overlay.discount.subtitle_bottom' | t }}
+          </div>
+
+          <div class="discount-step__form" data-id="{{ klaviyo_id }}" doverlay="form">
+            <div class="klaviyo-form-{{ klaviyo_id }}"></div>
+          </div>
+
+          <div class="discount-step__code-container" doverlay="discount-code">
+            <input
+              class="discount-step__code-input"
+              type="text"
+              value="{{ 'general.modals.device_overlay.discount.code' | t }}"
+              readonly
+              doverlay="code-input"
+            >
+
+            <button class="btn discount-step__copy-btn" doverlay="copy-code-btn">
+              {% include 'icon-misc' with icon: 'copied-checkmark' %}
+
+              <span doverlay="copy-code-text">
+                {{ 'general.modals.device_overlay.discount.copy_code_btn' | t }}
+              </span>
+            </button>
+          </div>
+
+          <button class="btn discount-step__discount-btn" doverlay="discount-btn">
+            {{ 'general.modals.device_overlay.discount.wants_discount_btn' | t }}
+          </button>
+
+          <hr>
+
+          <a
+            class="btn btn-alt discount-step__products-btn"
+            href="#"
+            doverlay="show-products-link"
+          >
+            {{ 'general.modals.device_overlay.discount.show_products_btn' | t }}
+          </a>
+
+          <p class="discount-step__terms">
+            {{ 'general.modals.device_overlay.discount.privacy_and_terms_html' | t }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <a
+      class="device-overlay__show-everything"
+      href="/collections/shop"
+      doverlay="show-everything"
+    >
+      {{ 'general.modals.device_overlay.show_everything_link' | t }}
+    </a>
+
+    <i class="icon icon-close modal-close"></i>
+  </div>
+</div>

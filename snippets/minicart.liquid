@@ -1,0 +1,21 @@
+<div class="hdr-cart relative">
+    <a class="icon icon-cart" href="/cart" title="Cart" aria-label="Cart">
+        <span id="cart-count" class="cart-count{% if cart.item_count > 0 %} show{% endif %}">{{ cart.item_count}}</span>
+    </a>
+
+    <div class="hdr-cart__modal dn">
+      <form action="/cart" method="post" novalidate class="mini-cart">
+        <div class="hdr-cart__list"></div>
+        <div class="hdr-cart__footer tc">
+            <p class="hdr-cart__total">Total: <span id="cartSubtotal"></span></p>
+            <button type="submit" class="btn btn--minicart" name="cart">
+              Review Cart
+            </button>
+            <div class="hdr-cart__continue pt3">
+              <small><a href="#continueShopping">Continue Shopping</a></small>
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="hdr-cart__bg dn"></div>
+</div>

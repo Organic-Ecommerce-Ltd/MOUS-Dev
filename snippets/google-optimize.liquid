@@ -1,0 +1,33 @@
+{% assign experiment_handle = experimentName | remove: ':' %}
+{% assign experiment_cookie = experiment_handle | append: 'Cookie' %}
+
+<script>
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max))
+  }
+
+  function {{experiment_cookie}}() {
+    var variationId = getRandomInt({{experimentVariants}})
+    var today = new Date(Date.now())
+    var twoWeeksTime = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000)
+
+    document.cookie = '{{experimentName}}='+variationId+'; expires='+twoWeeksTime+'; path=/'
+  }
+
+  function {{experiment_handle}}() {
+    if (window.theme.helpers.findCookie('{{experimentName}}') == '') {
+      {{experiment_cookie}}()
+    }
+
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: 'experimentLoaded',
+      exp_name: '{{experiment_handle}}',
+      exp_id_var: '{{experimentId}}.'+window.theme.helpers.findCookie('{{experimentName}}'),
+    })
+
+    console.log('Experiment Activated: {{experimentName}} / Variation ID:'+window.theme.helpers.findCookie('{{experimentName}}'))
+  }
+
+  {{experiment_handle}}()
+</script>

@@ -1,0 +1,19 @@
+<div class="grid-item fl w-100 ph2 tc mt2">
+  <div class="no-result-image">
+    {{ 'no-results.png' | asset_img_url: '300x' | img_tag }}
+  </div>
+
+  <h3>Sorry! {% if isClarityFilter %}{{ isClarityFilter | remove: 'filter-range-' }} is not compatible with {% if currentDeviceTag %}{{ currentDeviceTag | remove: 'filter-device-' }}{% else %}{{ collection.title | downcase }}{% endif %}{% else %}No results.{% endif %}</h3>
+
+  <p>Remove filters or take a look at other product categories</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    window.dataLayer = window.dataLayer || []
+
+    window.dataLayer.push({
+      event: 'noFilterResult',
+    })
+  })
+</script>

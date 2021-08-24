@@ -1,0 +1,123 @@
+{% if section.settings.show == true %}
+  {% assign showBar = true %}
+{% else %}
+  {% assign templates = 'index,collection,product,cart,page,blog,article,404' %}
+  {% assign templates = templates | split: "," %}
+  {% for t in templates %}
+    {% if page.template contains t and section.settings[t] == true %}
+      {% assign showBar = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if showBar %}
+  <div id="insta-bar">
+    {% for block in section.blocks %}
+      {% if forloop.last == true and section.settings.insta_more == true %}{% assign showMoreInsta = true %}{% endif %}
+      <a href="{{ block.settings.ig-link }}">
+        <img class="lazy" data-src="{{ block.settings.ig-image | img_url: '420x420', crop: 'center' }}" alt="{{ shop.name }} on Instagram">
+          {% if showMoreInsta %}
+          <div class="meta tc">
+            <i class="icon notranslate icon-instagram db"></i>
+            <span class="db pv2">{{ section.settings.insta_more_text }}</span>
+            <span class="db">&rarr;</span>
+          </div>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Instagram Module",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Where should we show it?"
+      },
+      {
+        "type": "checkbox",
+        "id": "show",
+        "label": "All pages",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "index",
+        "label": "Home",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "collection",
+        "label": "Collection",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "product",
+        "label": "Product",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "cart",
+        "label": "Cart",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "page",
+        "label": "Pages",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "blog",
+        "label": "Blog",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "article",
+        "label": "Blog Articles",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "More options"
+      },
+      {
+        "type": "checkbox",
+        "id": "insta_more",
+        "label": "End image links to more?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "insta_more_text",
+        "label": "More Text",
+        "default": "See <br>more"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "ig-image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "ig-link",
+            "label": "Instagram Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,45 @@
+{% include 'media-queries' %}
+
+<section class="index-single index-bg-{{ section.settings.background }}">
+  <div class="index-wrap">
+    <div class="index-single__intro single-intro">
+      <h2 class="index-section-title single-intro__heading">{{ section.settings.section_title }}</h2>
+
+      {% if section.settings.section_description != blank %}
+        <p class="index-section-subtitle single-intro__desc">{{ section.settings.section_description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="index-single__container">
+      <div class="single-wrapper">
+        <div class="single-wrapper__media-container">
+          {% if section.settings.button_link != blank %}
+            <a href="{{ section.settings.button_link }}">
+          {% endif %}
+            <picture>
+              <source 
+                media="{{ large_mq }}"
+                data-srcset="{{ section.settings.image | img_url: '1246x' }}"
+              >
+              <source 
+                media="{{ medium_mq }}"
+                data-srcset="{{ section.settings.image | img_url: '768x' }}"
+              >
+              <img 
+                class="single-wrapper__image lazy" 
+                data-src="{{ section.settings.mobile_image | img_url: '414x' }}"
+                alt="{{ section.settings.title }}" 
+              >
+            </picture>
+          {% if section.settings.button_link != blank %}
+            </a>
+          {% endif %}
+
+          {% if section.settings.button_link != blank %}
+            <a class="btn index-button single-wrapper__btn{% if section.settings.btn_light %} single-wrapper__btn--white{% endif %}" href="{{ section.settings.button_link }}">{{ section.settings.button_title }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

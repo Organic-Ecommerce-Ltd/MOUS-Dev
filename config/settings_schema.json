@@ -1,0 +1,214 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Mous Custom",
+    "theme_author": "Mous",
+    "theme_version": "0.0.1",
+    "theme_documentation_url": "https:\/\/mous.co",
+    "theme_support_url": "https:\/\/mous.co"
+  },
+  {
+    "name": "Cookies Banner",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "cookies_banner_text",
+        "label": "Copy",
+        "default": "We use cookies to ensure that we give you the best experience on our website. If you continue we'll assume that you understand this."
+      },
+      {
+        "type": "text",
+        "id": "cookies_banner_more_info",
+        "label": "Link text",
+        "default": "Learn more"
+      },
+      {
+        "type": "page",
+        "id": "cookies_banner_privacy_page",
+        "label": "Page to link to"
+      },
+      {
+        "type": "text",
+        "id": "cookies_banner_button_text",
+        "label": "Button text",
+        "default": "Accept"
+      }
+    ]
+  },
+  {
+    "name": "Collection Settings",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "hidden_filter_handles",
+        "label": "Hidden Filter Handles",
+        "default": "airpods-cases, ipad-cases",
+        "info": "Disable entire filter section (semi-transparent, non-clickable)."
+      },
+      {
+        "type": "textarea",
+        "id": "excluded_magsafe_handles",
+        "label": "Excluded MagSafe Filter Handles",
+        "default": "screen-protectors, airpods-cases, ipad-cases, charging-cables-phone-accessories, iphone-11-pro-max-case, iphone-11-pro-case, iphone-11-case, iphone-se-case, iphone-xs-max-case, iphone-xs-case, iphone-xr-case, iphone-x-case, iphone-8-plus-case, iphone-8-case, iphone-7-plus-case, iphone-7-case, iphone-6s-plus-case, iphone-6s-case, iphone-6-plus-case, iphone-6-case, galaxy-s21-case, galaxy-s21-plus-case, galaxy-s21-ultra-case, galaxy-note-20-ultra-case, galaxy-note-20-case, galaxy-s20-case, galaxy-s20-plus-case, galaxy-s20-ultra-case, galaxy-note-10-case, galaxy-note-10-plus-case, galaxy-s10-case, galaxy-s10e-case, galaxy-s10-plus-case, galaxy-s9-case, galaxy-s9-plus-case, galaxy-s8-case, galaxy-s8-plus-case, pixel-5-case, pixel-4a-5g-case, pixel-4-case, pixel-4xl-case"
+      },
+      {
+        "type": "textarea",
+        "id": "excluded_device_handles",
+        "label": "Excluded Device Filter Handles",
+        "default": "iphone-12-pro-max-case, iphone-12-pro-case, iphone-12-case, iphone-12-mini-case, iphone-11-pro-max-case, iphone-11-pro-case, iphone-11-case, iphone-se-case, iphone-xs-max-case, iphone-xs-case, iphone-xr-case, iphone-x-case, iphone-8-plus-case, iphone-8-case, iphone-7-plus-case, iphone-7-case, iphone-6s-plus-case, iphone-6s-case, iphone-6-plus-case, iphone-6-case, galaxy-s21-case, galaxy-s21-plus-case, galaxy-s21-ultra-case, galaxy-note-20-ultra-case, galaxy-note-20-case, galaxy-s20-case, galaxy-s20-plus-case, galaxy-s20-ultra-case, galaxy-note-10-case, galaxy-note-10-plus-case, galaxy-s10-case, galaxy-s10e-case, galaxy-s10-plus-case, galaxy-s9-case, galaxy-s9-plus-case, galaxy-s8-case, galaxy-s8-plus-case, pixel-5-case, pixel-4a-5g-case, pixel-4-case, pixel-4xl-case"
+      },
+      {
+        "type": "textarea",
+        "id": "excluded_range_handles",
+        "label": "Excluded Range Filter Handles",
+        "default": "airpods-cases, screen-protectors, charging-cables-phone-accessories, ipad-cases"
+      },
+      {
+        "type": "textarea",
+        "id": "collections_with_from_price",
+        "label": "Collections with from price",
+        "default": "cases-cables,shop,iphone-12-limitless-cases,iphone-x-cases,iphone-8-7-6-cases,galaxy-s21-cases,galaxy-note-20-cases,galaxy-s20-cases,galaxy-s10-cases,galaxy-note-10-cases,galaxy-s9-cases,galaxy-s8-s9-cases,pixel-4-cases,ipad-pro-cases,all-cases,ipad-air-cases,iphone-cases,galaxy-cases,pixel-cases,ipad-cases,magsafe-cases,screen-protectors,phone-wallets,sale,magnetic-phone-cases,clear-phone-cases,phone-cases,iphone-12-cases,iphone-11-cases",
+        "info": "A comma separated list of collection handles which should show a \"from X\" price on mobile instead of normal discount & full price."
+      },
+      {
+        "type": "textarea",
+        "id": "collection_url_variant_array",
+        "label": "Collection URLs & Matching Variant List",
+        "default": "iphone-xs-case,iphone-x-case,iphone-x-cases=iphone-x-xs|iphone-8-plus-case,iphone-7-plus-case,iphone-6s-plus-case,iphone-6-plus-case=iphone-8-7-6-plus|iphone-8-case,iphone-7-case,iphone-6s-case,iphone-6-case,iphone-8-7-6-cases=iphone-8-7-6|iphone-12-cases,iphone-cases=iphone-12-pro|iphone-11-cases=iphone-11-pro|iphone-se-cases=iphone-se-2nd-gen|samsung-galaxy-s21-collection,galaxy-cases=galaxy-s21|galaxy-s20-cases=galaxy-s20|galaxy-s10-cases=galaxy-s10|galaxy-s8-s9-cases=galaxy-s9|galaxy-note-20-cases=galaxy-note-20|galaxy-note-10-cases=galaxy-note-10-plus|google-pixel-cases,google-pixel-4-cases=google-pixel-4|ipad-pro-12-9-inch-2021-case=12-9-inch-2021|ipad-pro-11-inch-2021-case=11-inch-2021|ipad-pro-12-9-inch-2020-case=12-9-inch-2020|ipad-pro-11-inch-2020-case=11-inch-2020",
+        "info": "A comma separated list of collection URLs with an equals symbol '=' for which variant they should match to. Each set should be separated by a vertical line '|' character."
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social sharing options"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Social accounts"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter",
+        "info": "https:\/\/twitter.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https:\/\/facebook.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest",
+        "info": "https:\/\/pinterest.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "http:\/\/instagram.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr",
+        "info": "http:\/\/shopify.tumblr.com"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat",
+        "info": "https:\/\/www.snapchat.com\/add\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube",
+        "info": "https:\/\/www.youtube.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo",
+        "info": "https:\/\/vimeo.com\/shopify"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Wireless Charger Bundling",
+    "settings": [
+      {
+        "type": "text",
+        "id": "wireless_bundle_handles",
+        "label": "Chargers with stand handles",
+        "default": "aramid-fibre-wireless-charger-pad-stand,walnut-wireless-charger-pad-stand,wireless-charger-pad-stand",
+        "info": "The product handles of the wireless chargers that requires a free stand to be bundled."
+      },
+      {
+        "type": "text",
+        "id": "wireless_stand_sku",
+        "label": "Stand SKU",
+        "default": "PUC-A0452-000000-STA-W1",
+        "info": "The bundled wireless charger stand SKU."
+      },
+      {
+        "type": "text",
+        "id": "wireless_stand_handle",
+        "label": "Stand Handle",
+        "default": "charger-stand-bundle",
+        "info": "The bundled wireless charger stand product handle."
+      }
+    ]
+  },
+  {
+    "name": "Checkout Custom",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Checkout Options"
+      },
+      {
+        "type": "textarea",
+        "id": "chk_text",
+        "label": "Checkbox Text",
+        "default": "Our cases are seriously protective but they do not make your phone indestructible. Throwing, dropping or mis-treating phones in our cases can cause cracked screens and internal damage. Details of the product warranty are set out in our [Warranty=\/pages\/warranty] which apply to your purchase.",
+        "info": "To add a link, wrap linked word and link in square brackets and place the link after an equals character. eg. [link=\/pages\/warranty]"
+      }
+    ]
+  }
+]

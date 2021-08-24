@@ -1,0 +1,138 @@
+{% capture html_open_tag %}
+  {% if is_hidden or is_upsell_only %}
+    <div>
+  {% else %}
+    <a href="{{ item.url }}">
+  {% endif %}
+{% endcapture %}
+
+{% capture html_close_tag %}
+  {% if is_hidden or is_upsell_only %}
+    </div>
+  {% else %}
+    </a>
+  {% endif %}
+{% endcapture %}
+
+<div class="cart-item{% if is_hidden_from_cart %} is-hidden{% endif %}">
+  <div class="cart-item__img-container">
+    {{ html_open_tag }}
+      <img class="cart-item__img" src="{{ item.image | img_url: '200x' }}" alt="{{ item.title | escape }} thumbnail">
+    {{ html_close_tag }}
+  </div>
+
+  <div class="cart-item__details item-details">
+    {{ html_open_tag }}
+      <div class="item-details__title">
+        {{ item.product.title }}
+      </div>
+    {{ html_close_tag }}
+
+    <div class="item-details__meta">
+      {% unless item.variant.title contains 'Default' %}
+        {{ item.variant.title }}
+      {% endunless %}
+    </div>
+
+    <div class="price">
+      {% if item.product.handle contains 'tpu-screen-protector' and free_clarity_protector == true %}
+        <s>{{ item.price | times: item.quantity | money }}</s>
+      {% else %}
+        {% if item.discounts.size > 0 %}
+          <s>{{ item.original_price | times: item.quantity | money }}</s>
+        {% elsif item.variant.compare_at_price > item.variant.price %}
+          <s>{{ item.variant.compare_at_price | times: item.quantity | money }}</s>
+        {% endif %}
+
+        <span>
+          {{ item.price | times: item.quantity | money }}
+
+          {% if item.discounts.size > 0 %}<span class="positive"> ({{ item.discounts[0].title }})</span>{% endif %}
+        </span>
+      {% endif %}
+    </div>
+
+    {% if item.product.handle contains 'tpu-screen-protector' and free_clarity_protector == true %}
+      <p class="mv0 highlight">{{ 'cart.general.clarity_screen_protector' | t }}</p>
+    {% endif %}
+
+    {% comment %} Show message if cart doesn't contain a matching case for add-on {% endcomment %}
+    {% for k in (2..3) %}
+      {% assign addon_vendor = 'Limitless #.0' | replace: '#', k %}
+
+      {% if is_add_on and item.product.vendor == addon_vendor %}
+        {% unless limitless_in_cart contains addon_vendor and is_flip_wallet == false %}
+          {% unless is_wireless_charger_pad %}
+            <p class="mv0 highlight">
+              {{ 'cart.general.addon_case_compatibility' | t: case: item.product.vendor }}
+            </p>
+          {% endunless %}
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} Show message if cart doesn't contain a compatible case for wrist strap {% endcomment %}
+    {% if is_wrist_strap %}
+      {% unless strap_compatible %}
+        <p class="mv0 highlight">{{ 'cart.general.wrist_strap_not_compatible' | t }}</p>
+      {% endunless %}
+    {% endif %}
+
+    {% if is_lim4_accessory and lim4_or_infinity_case_in_cart == false %}
+      <p class="mv0 highlight">{{ 'cart.general.magsafe_compatible_accessory' | t }}</p>
+    {% endif %}
+
+    {% if power_adaptor_in_cart and item.variant.title contains 'USB-A' %}
+      <p class="mv0 highlight">{{ 'cart.general.cable_incompatibility_message' | t }}</p>
+    {% endif %}
+
+    {%- comment -%} Variant specific preorder date {%- endcomment -%}
+    {% assign selected_preorder_date = false %}
+
+    {% if preorder_date contains 'preorder:' %}
+      {% assign preorder_date_split = preorder_date | split: ',' %}
+
+      {% for p_date in preorder_date_split %}
+        {% if p_date contains item.sku %}
+          {% assign selected_preorder_date = p_date | split: '_' | last %}
+        {% endif %}
+      {% endfor %}
+    {% elsif preorder_date contains 'preorder_' %}
+      {% assign selected_preorder_date = preorder_date | split: '_' | last %}
+    {% endif %}
+
+    {% if selected_preorder_date %}
+      <div class="cart-item__preorder-msg">{{ 'products.product.pre_order_ships' | t }} {{ selected_preorder_date }}</div>
+    {% endif %}
+  </div>
+
+  <div
+    class="cart-item__qty"
+    data-id="{{ item.id }}"
+    data-index="{{ forloop.index }}"
+    data-sku="{{ item.sku }}"
+    data-bundled-item="{{ item.properties['_bundledVariantId'] }}"
+  >
+    {% unless is_hidden %}
+      <button class="js-qty js-qty-minus" data-delta="-1" cart-quantity="minus">-</button>
+    {% endunless %}
+
+    <input
+      class="js-qty-input{% if is_hidden %} is-free-tpu{% endif %}"
+      id="updates_{{ item.id }}"
+      min="1"
+      name="updates[]"
+      pattern="[0-9]*"
+      type="number"
+      value="{{ item.quantity }}"
+      data-id="{{ item.id }}"
+      data-sku="{{ item.sku }}"
+      cart-quantity-input
+      readonly
+    >
+
+    {% unless is_hidden %}
+      <button class="js-qty js-qty-plus cart__quantity-selector" data-delta="1" cart-quantity="plus">+</button>
+    {% endunless %}
+  </div>
+</div>

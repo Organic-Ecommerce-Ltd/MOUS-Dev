@@ -1,0 +1,34 @@
+{% include 'media-queries' %}
+
+{% assign first_image = true %}
+
+{% for image in product.images %}
+
+  {% assign image_alt_option1 = image.alt | split: '|' | last | strip | split: ',' %}
+  {% assign image_alt_match = false %}
+
+  {% for option in image_alt_option1 %}
+    {% if option == selectedVariant.option1 %}
+      {% assign image_alt_match = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% if image_alt_match or product.has_only_default_variant %}
+    <div class="grid-gallery__slide">
+      {% if image.alt contains '|' %}
+        {% assign img_alt = image.alt | split: '|' | first | strip %}
+      {% else %}
+        {% assign img_alt = image.alt %}
+      {% endif %}
+
+        <a href="{{ selectedVariant.url }}">
+          <picture>
+            <source media="{{ small_mq }}" srcset="{{ image.src | img_url: '400x' }}">
+            <img {% if first_image or product_flexline %}src{% else %}data-flickity-lazyload{% endif %}="{{ image.src | img_url: '158x' }}" alt="{{ img_alt }}">
+          </picture>
+        </a>
+      </div>
+
+    {% assign first_image = false %}
+  {% endif %}
+{% endfor %}

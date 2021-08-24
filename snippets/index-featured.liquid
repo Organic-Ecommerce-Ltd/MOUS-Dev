@@ -1,0 +1,53 @@
+{% include 'media-queries' %}
+
+<section class="index-featured index-bg-{{ section.settings.background }}">
+  <div class="index-wrap index-featured__inner">
+    <h2 class="index-section-title index-featured__title">{{ section.settings.title }}</h2>
+
+    <div class="index-featured__slider" index="featured-slider">
+      {% for block in section.blocks %}
+        {% assign slide = all_products[block.settings.featured_product] %}
+
+        {%- comment -%} Split product.title into range and title {%- endcomment -%}
+        {% assign product_title = slide.title | split: '-' | first | strip %}
+        {% assign product_range = false %}
+
+        {% if slide.title contains '-' %}
+          {% assign product_range = slide.title | split: '-' | last | strip %}
+        {% endif %}
+
+        <a class="index-featured__slide featured-slide" href="{{ slide.url }}">
+          <div class="featured-slide__inner">
+            {% if block.settings.tag != '' %}
+              <div class="featured-slide__tag">
+                {{ block.settings.tag }}
+              </div>
+            {% endif %}
+            
+            <picture>
+              <source 
+                media="{{ medium_mq }}"
+                srcset="{{ slide.featured_image | img_url: '400x' }}"
+              >
+              <img 
+                class="featured-slide__img"
+                src="{{ slide.featured_image | img_url: '200x' }}"
+                alt="" 
+              >
+            </picture>
+
+            <div class="featured-slide__content">
+              {% if product_range %}
+                <span class="index-copy featured-slide__range">{{ product_range }}</span>
+              {% endif %}
+
+              <h3 class="index-block-title featured-slide__product">{{ product_title }}</h3>
+
+              <button class="btn index-button featured-slide__btn">{{ 'home.featured_products.shop_btn' | t }}</button>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

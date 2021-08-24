@@ -1,0 +1,25 @@
+<script>
+  function addParameterToURL(param) {
+    var _url = location.href
+    _url += (_url.split('?')[1] ? '&' : '?') + param
+    return _url
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    if (window.theme.helpers.findCookie('experiment:cartUpsell') === '1' || window.theme.helpers.findCookie('experiment:cartUpsell') === '3') {
+      if (window.location.href.indexOf('view=new') <= -1) {
+        window.location.href = addParameterToURL('view=new')
+      } else {
+        document.querySelector('body').classList.add('ab-ready')
+      }
+    } else {
+      document.querySelector('body').classList.add('ab-ready')
+
+      if (window.theme.helpers.findCookie('experiment:cartUpsell') === '2') {
+        if (window.location.href.indexOf('view=default') <= -1) {
+          window.location.href = addParameterToURL('view=default')
+        }
+      }
+    }
+  })
+</script>

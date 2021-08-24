@@ -1,0 +1,65 @@
+<div class="help-content mw pdh">
+    {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'section' %}
+                {% unless forloop.first == true %}
+                    </div>
+                    </div>
+                {% endunless %}
+                <div class="help-section">
+                    <h2>{{ block.settings.title }}</h2>
+                    <div class="help-wrap flex flex-wrap">
+            {% when 'video' %}
+                <div class="video w-50">
+                    <a href="{{ block.settings.video }}" class="video-link video-thumb" data-video="{{ block.settings.video }}" modal-trigger="youtube">
+                        <img class="w-100 lazy" data-src="{{ block.settings.image | img_url: '500x'}}" alt="{{ block.settings.title }}">
+                    </a>
+                    <h3>{{ block.settings.title }}</h3>
+                </div>
+        {% endcase %}
+        {% if forloop.last == true %}
+            </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% schema %}
+  {
+    "name": "Tutorials Page",
+    "blocks": [
+      {
+        "type": "section",
+        "name": "Section",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }
+        ]
+      },
+      {
+        "type": "video",
+        "name": "Tutorial Video",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "video",
+            "label": "Video",
+            "info": "Youtube/vimeo link"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Placeholder Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

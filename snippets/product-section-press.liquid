@@ -1,0 +1,31 @@
+{% if _.n-p_press_1-logo %}
+  <section class="product-section-press">
+    <div class="product-wrap tc ps-press">
+      <div class="ps-press__quotes" product="press-quotes">
+        {% for i in (1..6) %}
+          {% assign press_item_logo = 'n-p_press_#-logo' | replace: '#', i %}
+          {% assign press_item_quote = 'n-p_press_#-quote' | replace: '#', i %}
+
+          {% if _[press_item_logo] %}
+            <div class="ps-press__item">
+              <div class="ps-press__text">{{ _[press_item_quote] }}</div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="ps-press__gallery" product="press-gallery">
+        {% for i in (1..6) %}
+          {% assign press_item_logo = 'n-p_press_#-logo' | replace: '#', i %}
+          {% assign press_item_quote = 'n-p_press_#-quote' | replace: '#', i %}
+
+          {% if _[press_item_logo] %}
+            <div class="ps-press__item">
+              <img class="ps-press__img" src="{{ _[press_item_logo] | file_url }}">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

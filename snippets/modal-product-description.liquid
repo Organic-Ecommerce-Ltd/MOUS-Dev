@@ -1,0 +1,17 @@
+<div id="product-description" class="modal modal--slim product-description-popup">
+	<div class="modal-bg"></div>
+
+  <div class="modal-content-wrapper">
+    <div class="modal-content pdh">
+      <div class="rte">
+        {% if product.description contains '[[' and product.description contains ']]' %}
+          {{ product.description | replace: '[[', '<div class="modal-content__note">' | replace: ']]', '</div>' }}
+        {% else %}
+          {{ product.description }}
+        {% endif %}
+      </div>
+
+      <i class="icon icon-close modal-close"></i>
+    </div>
+  </div>
+</div>
