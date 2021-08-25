@@ -12,8 +12,12 @@
   data-title="{{ collection.title }}"
   el="collection-meta"
 >
+
+ {% section 'collection-filters' %}
+ 
   <div class="pdh pl2 pr2 pdb flex flex-wrap items-start">
     {% include 'filter-menu' %}
+
 
     {% if show_magsafe_filter %}
       {% include 'magsafe-filter' with is_mobile: true %}
