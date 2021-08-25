@@ -1,0 +1,360 @@
+<div class="container filter-collections pdh">
+
+    <div class="top-breadcrums">
+            <span>Homepage / All Cases / Apple iPhone / iPhone 12 Pro</span>
+    </div>
+    <div class="Collections-title">
+        <h1>All Phone Cases</h1>
+    </div> 
+    <hr class="hr-shadow" /> 
+
+    <div class="filter-menu">
+ 
+        <ul>
+            <li><img src="https://cdn.shopify.com/s/files/1/0020/2194/9513/files/MOUS_icons_Latest_Filter.png?v=1629208136"></li>
+            <li>Device <span><img src="https://cdn.shopify.com/s/files/1/0020/2194/9513/files/Fill_1.png?v=1629202546"></span></li>
+            <li>Connectivity <span><img src="https://cdn.shopify.com/s/files/1/0020/2194/9513/files/Fill_1.png?v=1629202546"></span></li>
+            <li>Clear <span><img src="https://cdn.shopify.com/s/files/1/0020/2194/9513/files/Fill_1.png?v=1629202546"></span></li>
+       
+        
+        </ul>
+
+        <div class="hide-out-of-stock">
+
+            <div class="hide-checkbox">
+
+                
+                <input type="checkbox" id="hide_out_of_stock" name="hide_out_of_stock" value="hide_out_of_stock"><label for="html">Hide out of stock</label><br>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="collection-data">
+
+
+
+        <div class="filter-devices">
+
+            <div class="main-collections">
+
+                {%- for block in section.blocks -%}
+                        
+                {%- assign b_i = block.settings -%}
+        
+        
+                {%- assign collection_block = collections[b_i.main_collection] -%}
+                
+                <div for="s" id="l"  class="click_label collection-step-1 collection-grid-item filter_collections" attr_id="{{ b_i.main_collection }}" attr_url="{{ collection_block.url }}" >
+                
+                    <div class="collection-grid-item__title-wrapper " >
+                        <div class="collection-grid-item__title h3">
+        
+                            <img src="{{ collection_block.featured_image | img_url:'50x' }}">
+                            <p> {{ collection_block.title }}</p>
+                            <p> </p>
+                    
+                        </div>
+                    </div> 
+                
+                </div>
+                
+            {% endfor %}
+        
+            </div>
+
+        </div>
+
+
+
+        <div class="sub-collection-filters sub-collections"  style="display:none;">
+
+            <div class="desktop-sub-filters">
+
+                <div class="sub-collections-tot">
+            
+                {%- for block in section.blocks -%}
+                            
+                {%- assign b_i = block.settings -%}
+            
+                {% assign selected_handles = b_i.Sub_collection | split: ',' %}
+            
+                    {% for selected_handle in selected_handles %}
+                        <div class="collection-grid-item common_filter_class {{ b_i.main_collection }}">
+                            
+                            <a href="{{ collections[selected_handle].url }}">
+                                <div class="collection-grid-item__title-wrapper">
+                                    <div class="collection-grid-item__title h3">
+                                        
+                                        <img src="{{ collections[selected_handle].featured_image | img_url:'50x' }}">
+                                        <p> {{ collections[selected_handle].title }}</p>
+                                    
+                                    </div>
+                                </div>
+                            </a>
+            
+                        </div>
+            
+                    {% endfor %}
+            
+                {% endfor %}
+             
+                </div>
+             
+                </div>
+
+        </div>
+ 
+        <div class="collection-connectivity">
+
+            <div class="conn-tags">
+  
+             
+                {% assign conn_array = section.settings.connectivity | split: "," %}
+
+
+                <ul>
+                {% for conn_tags in conn_array %}
+                  <li><a href="{{ collection.url }}/{{ conn_tags }}">{{ conn_tags| replace: "-", " " }}</a></li>
+                {% endfor %}
+    
+
+                </ul>
+ 
+            </div>
+ 
+        </div> 
+
+    </div>
+
+
+</div>
+ 
+
+
+
+{% schema %}
+{
+  "name": "Collection filters",
+  "settings": [
+      {
+        "type": "text",
+        "id": "connectivity",
+        "label": "Connectivity Filters"
+      }
+      
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "limit": 12,
+      "name": "Collection",
+      "settings": [
+        
+        {
+          "type": "text",
+          "id": "main_collection",
+          "label": "Main Collection"
+          
+        },
+        {	
+          "type": "text",
+          "id": "Sub_collection",
+          "label": "Sub collections",
+          "info" : "Add collection slug sperated by comma ,"
+        }
+      ]
+    }
+    
+  ],
+  "presets": [
+    {
+      "name": "Collection filters",
+        "category": "Collection",
+      "blocks": [
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+    $(".click_label").click(function(){
+
+        var get_Class = $(this).attr('attr_id');
+        var attr_url = $(this).attr('attr_url');
+        localStorage.setItem("step_1_class", get_Class);
+
+        window.location = attr_url;
+
+       /* setInterval(function(){ 
+
+            get_url_details();
+
+        }, 2000);
+        */          
+ 
+    });
+
+    $(document).ready(function(){
+
+        var local_url =  localStorage.getItem("step_1_class");
+
+        console.log(local_url);
+
+        if(local_url){
+
+            $(".sub-collections").show();
+            $(".common_filter_class").hide();
+            $("."+local_url).show();
+
+        }
+    
+    /*  hide out of stock */
+
+        $("#hide_out_of_stock").click(function(){
+            $(".hide-out-stock").toggleClass("hide");
+        });
+
+
+    });
+
+    
+    
+    </script>
+
+
+<style>
+
+.main-collections {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+.sub-collections {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.collection-grid-item__title.h3 p {
+    font-size: 13px;
+    text-align: center;
+}
+
+.collection-grid-item {
+    cursor: pointer;
+}
+
+
+
+.mobile-sub-filters {
+    display: none;
+}
+ 
+.desktop-sub-filters {
+    display: block;
+}
+
+select#s {
+    visibility: hidden;
+}
+
+.container.filter-collections {
+    background: #F7F7F7;
+}
+
+.container.filter-collections.pdh {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.filter-menu ul li {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.filter-menu li {
+    margin-right: 50px;
+}
+
+.filter-menu ul {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.filter-menu ul li span {
+    margin-left: 15px;
+}
+
+.filter-menu {
+    margin-top: 40px;
+}
+
+.filter-menu ul li {
+    display: flex;
+    align-items: center;
+}
+.hide-checkbox label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.filter-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hide-checkbox label {
+    margin-left: 10px;
+}
+.filter-menu ul li {
+ 
+    cursor: pointer;
+}
+
+.collection-grid-item__title.h3 img {
+    margin: 0px auto;
+}
+
+.filter-menu ul li:hover {
+    color: #00BEC8;
+}
+
+.sub-collections-tot {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.conn-tags ul li a {
+    cursor: pointer;
+}
+.hide {
+    display: none;
+}
+@media only screen and (max-width: 767px) {
+
+    .mobile-sub-filters {
+        display: block;
+    }
+    .desktop-sub-filters {
+        display: none;
+    }
+ 
+   
+  }
+
+</style>
+
